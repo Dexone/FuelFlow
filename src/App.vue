@@ -1,13 +1,20 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import Bar from './components/Bar.vue'
 </script>
 
 <template>
 
-  <HelloWorld msg="Vite + Vue" />
+
+
+
+
+
+  <Bar msg="Vite + Vue" />
+
+  <!-- <div class="routerViews">
+    <router-view>
+    </router-view>
+  </div> -->
+
 </template>
 
-<style scoped>
-
-
-</style>
