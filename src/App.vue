@@ -1,5 +1,6 @@
 <script setup>
 import Bar from './components/Bar.vue'
+import Login from './components/Login.vue'
 </script>
 
 <template>
@@ -10,6 +11,7 @@ import Bar from './components/Bar.vue'
 
 
   <Bar msg="Vite + Vue" />
+  <Login msg="Vite + Vue" />
 
   <!-- <div class="routerViews">
     <router-view>
