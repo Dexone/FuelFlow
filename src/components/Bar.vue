@@ -103,7 +103,5 @@ defineProps({
 
 
 
-// axios.get(`https://martynovd.ru/back-api/users`).then((res) => {
-//         console.log(res.data)
-//       })
+
 </script>

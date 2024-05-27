@@ -24,8 +24,10 @@
                         <span class="sr-only">Close modal</span>
                     </button>
                 </div>
-                <!-- Modal body -->
-                <div class="p-4 md:p-5">
+
+
+                <!-- Login -->
+                <div class="p-4 md:p-5" v-if="logOrReg == 'log' && userStore.user == 1">
                     <form class="space-y-4" action="#">
                         <div>
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Логин</label>
@@ -33,36 +35,107 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 placeholder="Dexone" required />
                         </div>
+
                         <div>
                             <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Пароль</label>
                             <input type="password" name="password" id="password" placeholder="••••••••"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 required />
                         </div>
-                        <!-- <div class="flex justify-between">
-                            <div class="flex items-start">
-                                <div class="flex items-center h-5">
-                                    <input id="remember" type="checkbox" value=""
-                                        class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300"
-                                        required />
-                                </div>
-                                <label for="remember"
-                                    class="ms-2 text-sm font-medium text-gray-900">Remember
-                                    me</label>
-                            </div>
-                            <a href="#" class="text-sm text-blue-700 hover:underline ">Lost
-                                Password?</a>
-                        </div> -->
+
                         <button type="submit"
                             class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Войти</button>
                         <div class="text-sm font-medium text-gray-500">
-                            Не зарегистрированы?<a href="#" class="text-blue-700 hover:underline"> Создать аккаунт</a>
+                            Не зарегистрированы?<a href="#" @click="logOrReg = 'reg'"
+                                class="text-blue-700 hover:underline"> Создать аккаунт</a>
                         </div>
                     </form>
                 </div>
+
+
+                <!-- Registration -->
+                <div class="p-4 md:p-5" v-if="logOrReg == 'reg' && userStore.user == 1">
+                    <form class="space-y-4" action="#">
+                        <div>
+                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Логин</label>
+                            <input type="email" name="email" id="email" v-model="regData[0]"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                placeholder="Dexone" required />
+                        </div>
+
+                        <div>
+                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Пароль</label>
+                            <input type="password" name="password" id="password" placeholder="••••••••"
+                                v-model="regData[1]"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                required />
+                        </div>
+
+                        <button type="submit" @click="userStore.registration(regData)"
+                            class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Создать
+                            аккаунт</button>
+                        <div class="text-sm font-medium text-gray-500">
+                            Уже есть аккаунт?<a href="#" @click="logOrReg = 'log'"
+                                class="text-blue-700 hover:underline"> Войти</a>
+                        </div>
+                    </form>
+                </div>
+
+
+
+
+
+                <!-- Account -->
+                <div class="flex flex-col items-center pb-10 pt-10" v-if="userStore.user > 1">
+                    <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="" alt="Bonnie image" />
+                    <h5 class="mb-1 text-xl font-medium text-gray-900">Bonnie Green</h5>
+                    <span class="text-sm text-gray-500">Visual Designer</span>
+                    <div class="flex mt-4 md:mt-6">
+                        <a href="#"
+                            class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">Add
+                            friend</a>
+                        <a href="#"
+                            class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100">Message</a>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                {{ userStore.user }}
+
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </template>
 
 
@@ -70,12 +143,23 @@
 import { ref } from 'vue'
 import axios from 'axios';
 import { useComponents } from '../../store/ComponentsHidden';
-const hiddenStore = useComponents();
-
-
-
+import { useUser } from '../../store/User';
 defineProps({
     msg: String,
 })
+const hiddenStore = useComponents();
+const userStore = useUser();
+const logOrReg = ref('reg')
+
+const regData = ref([])
+
+
+
+
+
+
+
+
+
 
 </script>
