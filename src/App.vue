@@ -11,7 +11,7 @@ import Login from './components/Login.vue'
 
 
   <Bar msg="Vite + Vue" />
-  <Login msg="Vite + Vue" />
+  <Login class="max-w-md max-h-[520px] mx-auto" msg="Vite + Vue" />
 
   <!-- <div class="routerViews">
     <router-view>
@@ -19,4 +19,3 @@ import Login from './components/Login.vue'
   </div> -->
 
 </template>
-

@@ -9,5 +9,4 @@ export const useComponents = defineStore('hiddenStore', {
     actions: {
 
     },
-    persist: true
 });
