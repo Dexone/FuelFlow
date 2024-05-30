@@ -90,7 +90,6 @@
 
 <script setup>
 import { ref } from 'vue'
-import axios from 'axios';
 import { useComponents } from '../../store/ComponentsHidden';
 const hiddenStore = useComponents();
 
