@@ -4,7 +4,7 @@
 
     <!-- Main modal -->
     <div id="authentication-modal" tabindex="-1" aria-hidden="true" :class="{ 'hidden': hiddenStore.showLogin }"
-        class=" overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        class=" overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-w-md max-h-[450px] mx-auto">
         <div class="relative p-4 w-full max-w-md max-h-full">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow">
@@ -147,17 +147,7 @@
                 </div>
 
 
-                <!-- 
-                {"userID":1,"userLogin":"guest"} -->
-
-
-
-
-
-
-
-
-                <button @click="userStore.test()">test</button>
+       
 
 
 

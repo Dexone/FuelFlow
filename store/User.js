@@ -3,7 +3,9 @@ import axios from 'axios';
 import { ref } from 'vue'
 
 export const useUser = defineStore('userStore', {
-    state: () => ({ userID: 1, userLogin: "guest" }),
+    state: () => ({
+        userID: 1, userLogin: "guest", userCost: 0, userInfo: [], userRashod: 0, userProbeg: 0, userRate: 0
+    }),
     getters: {
     },
     actions: {
@@ -20,7 +22,7 @@ export const useUser = defineStore('userStore', {
 
                 if (logins.includes(value[0]) == false) {
                     axios.post(`https://martynovd.ru/back-api/users`, { id: lastId + 1, login: value[0], password: value[1] }) //создание пользователя
-                    axios.post(`https://martynovd.ru/back-api/data`, { id: lastId + 1, info: [] }) //создание data
+                    axios.post(`https://martynovd.ru/back-api/data`, { id: lastId + 1, cost: 50, info: [] }) //создание data
                     this.userID = lastId + 1 //задает id нового пользователя в сторе
                     this.userLogin = value[0] //задается login пользователя в сторе
                 }
@@ -75,40 +77,45 @@ export const useUser = defineStore('userStore', {
 
         },
 
-        test() {
 
-            axios.get(`https://martynovd.ru/back-api/data/${this.userID}`).then((res) => {
-                let updInfo = res.data.info
-                updInfo.push(["data and time", "probeg", "litres"])
+        updateInfo() {
+
+            setTimeout(() => {
+                axios.get(`https://martynovd.ru/back-api/data/${this.userID}`).then((res) => {
+                    console.log(res.data)
+                    let rashod = 0
+                    let count = 0
+                    for (let i = 1; i < res.data.info.length; i++) {
+                        rashod = rashod + (res.data.info[i][2] / (res.data.info[i][1] - res.data.info[i - 1][1]) * 100)
+                        count++
+                    }
+
+                    let summ = 0 //сумма всех заправок
+                    for (let i = 0; i < res.data.info.length; i++) {
+                        summ = summ + (res.data.cost * res.data.info[i][2])
+                    }
+                    let inHour = summ / ((res.data.info[res.data.info.length - 1][0] - res.data.info[0][0]) / 1000 / 60 / 60)
+                    console.log(inHour)
 
 
+                    this.userRashod = rashod / count
+                    this.userCost = res.data.cost
+                    this.userProbeg = res.data.info[res.data.info.length - 1][1]
+                    this.userInfo = res.data.info
+                    this.userRate = inHour * 24 * 30 //расход на бензин в рублях в месяц
+                    console.log(this.userRashod)
+                })
+            }, 2000);
 
-                axios.patch(`https://martynovd.ru/back-api/data/${this.userID}`, { info: updInfo }) //создание пользователя
-                console.log(res)
-            })
 
         }
     },
+
     persist: true
-});
+}
+
+);
 
 
-
-
-// {
-//     "users": [
-//         {
-//             "id": "1",
-//             "login": "guest",
-//             "password": "guest"
-//         }
-//     ],
-//     "data": [
-//         {
-//             "id": "1",
-//             "info": []
-//         }
-//     ]
-// }
 
 

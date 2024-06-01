@@ -3,7 +3,7 @@ import axios from 'axios';
 import { ref } from 'vue'
 
 export const useComponents = defineStore('hiddenStore', {
-    state: () => ({ showLogin: true }),
+    state: () => ({ showLogin: true, showAdd: true, showAdjustment: true }),
     getters: {
     },
     actions: {
