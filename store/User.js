@@ -4,27 +4,26 @@ import { ref } from 'vue'
 
 export const useUser = defineStore('userStore', {
     state: () => ({
-        userID: 1, userLogin: "guest", userCost: 0, userInfo: [], userRashod: 0, userProbeg: 0, userRate: 0
+        userID: 1, userLogin: "guest", userCost: 0, userInfo: [], userRashod: 0, userProbeg: 0, userRate: 0, userCar: " "
     }),
     getters: {
     },
     actions: {
         registration(value) {
             axios.get(`https://martynovd.ru/back-api/users`).then((res) => {
-                // console.log(res.data)
-                // console.log(value[0])
                 let lastId = Number(res.data[res.data.length - 1].id) //последний зарегистрированный id
 
-                let logins = []
+                let logins = [] //массив логинов
                 for (let i = 0; i < res.data.length; i++) {
                     logins.push(res.data[i].login)
                 }
 
-                if (logins.includes(value[0]) == false) {
+                if (logins.includes(value[0]) == false) { //если логин не найден в бд допускается регистрация
                     axios.post(`https://martynovd.ru/back-api/users`, { id: lastId + 1, login: value[0], password: value[1] }) //создание пользователя
-                    axios.post(`https://martynovd.ru/back-api/data`, { id: lastId + 1, cost: 50, info: [] }) //создание data
+                    axios.post(`https://martynovd.ru/back-api/data`, { id: lastId + 1, car: "Unnamed Car", cost: 50, info: [] }) //создание data
                     this.userID = lastId + 1 //задает id нового пользователя в сторе
                     this.userLogin = value[0] //задается login пользователя в сторе
+                    this.updateInfo()
                 }
                 else {
                     alert("Такой пользователь существует")
@@ -55,6 +54,7 @@ export const useUser = defineStore('userStore', {
         exit() {
             this.userID = 1 //задается id пользователя в сторе
             this.userLogin = "guest" //задается login пользователя в сторе
+            this.updateInfo()
         },
 
         deleteAccount() {
@@ -62,10 +62,11 @@ export const useUser = defineStore('userStore', {
             axios.delete(`https://martynovd.ru/back-api/data/${this.userID}`) //удаление data
             this.userID = 1 //задается id пользователя в сторе
             this.userLogin = "guest" //задается login пользователя в сторе
+            this.updateInfo()
         },
 
         editPassword(value) {
-            if (value[0] == value[1]) {
+            if (value[0] == value[1]) { //если пароль и повтор пароля совпадают
                 axios.patch(`https://martynovd.ru/back-api/users/${this.userID}`, { password: value[0] }) //изменение пароля
                 value[0] = ""
                 value[1] = ""
@@ -74,36 +75,52 @@ export const useUser = defineStore('userStore', {
             else {
                 alert("Пароли не совпадают")
             }
-
         },
 
 
         updateInfo() {
-
             setTimeout(() => {
                 axios.get(`https://martynovd.ru/back-api/data/${this.userID}`).then((res) => {
-                    console.log(res.data)
-                    let rashod = 0
-                    let count = 0
-                    for (let i = 1; i < res.data.info.length; i++) {
-                        rashod = rashod + (res.data.info[i][2] / (res.data.info[i][1] - res.data.info[i - 1][1]) * 100)
-                        count++
+
+                    //расход бензина на 100км
+                    if (res.data.info.length > 1) { //если более 1 записи в истории заправок
+                        let rashod = 0
+                        let count = 0
+                        for (let i = 1; i < res.data.info.length; i++) {
+                            rashod = rashod + (res.data.info[i][2] / (res.data.info[i][1] - res.data.info[i - 1][1]) * 100)
+                            count++
+                        }
+                        //
+
+                        //расход на бензин в рублях в месяц
+                        let inHour
+                        let summ = 0 //сумма всех заправок
+                        for (let i = 0; i < res.data.info.length; i++) {
+                            summ = summ + (res.data.cost * res.data.info[i][2])
+                        }
+                        inHour = (summ / ((res.data.info[res.data.info.length - 1][0] - res.data.info[0][0]) / 1000 / 60 / 60)) * 24 * 30
+                        console.log(inHour)
+                        //
+
+
+
+                        this.userRashod = rashod / count //расход на 100км
+                        this.userCost = res.data.cost //стоимость литра топлива
+                        this.userCar = res.data.car //модель машины
+                        this.userProbeg = res.data.info[res.data.info.length - 1][1] //текущий пробег (последнее показание в info)
+                        this.userInfo = res.data.info //список записей заправок
+                        this.userRate = inHour //расход на топливо в месяц в рублях
                     }
 
-                    let summ = 0 //сумма всех заправок
-                    for (let i = 0; i < res.data.info.length; i++) {
-                        summ = summ + (res.data.cost * res.data.info[i][2])
+                    else {
+                        this.userCost = res.data.cost
+                        this.userCar = res.data.car
+                        this.userRashod = 0
+                        this.userInfo = []
+                        this.userProbeg = 0
+                        this.userRate = 0
                     }
-                    let inHour = summ / ((res.data.info[res.data.info.length - 1][0] - res.data.info[0][0]) / 1000 / 60 / 60)
-                    console.log(inHour)
 
-
-                    this.userRashod = rashod / count
-                    this.userCost = res.data.cost
-                    this.userProbeg = res.data.info[res.data.info.length - 1][1]
-                    this.userInfo = res.data.info
-                    this.userRate = inHour * 24 * 30 //расход на бензин в рублях в месяц
-                    console.log(this.userRashod)
                 })
             }, 2000);
 

@@ -10,7 +10,8 @@
                     <h3 class="text-xl font-semibold text-gray-900">
                         Заправка
                     </h3>
-                    <button type="button" @click="hiddenStore.showAdd = !hiddenStore.showAdd"
+                    <button type="button"
+                        @click="hiddenStore.showAdd = !hiddenStore.showAdd, hiddenStore.blur = !hiddenStore.blur"
                         class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center "
                         data-modal-hide="authentication-modal">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -72,13 +73,18 @@ const probeg = ref()
 const litres = ref()
 
 function addValue() {
-    axios.get(`https://martynovd.ru/back-api/data/${userStore.userID}`).then((res) => {
-        let seconds = Date.now()
-        let updInfo = res.data.info
-        updInfo.push([seconds, probeg.value, litres.value])
-        axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { info: updInfo }) //
-    })
-    userStore.updateInfo()
+    if (userStore.userID === 1) {
+        alert("Для использования приложения необходимо зарегистрироваться")
+    }
+    else {
+        axios.get(`https://martynovd.ru/back-api/data/${userStore.userID}`).then((res) => {
+            let seconds = Date.now()
+            let updInfo = res.data.info
+            updInfo.push([seconds, probeg.value, litres.value])
+            axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { info: updInfo }) //
+        })
+        userStore.updateInfo()
+    }
 }
 
 

@@ -5,11 +5,6 @@ import Login from './components/Login.vue'
 import Add from './components/Add.vue'
 import Adjustment from './components/Adjustment.vue'
 
-
-
-
-
-
 </script>
 
 <template>
