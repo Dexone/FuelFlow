@@ -8,7 +8,14 @@ export const useComponents = defineStore('hiddenStore', {
 
     },
     actions: {
-
+        blurEdit() {
+            if (this.showLogin == false || this.showAdd == false || this.showAdjustment == false) {
+                this.blur = true
+            }
+            else {
+                this.blur = false
+            }
+        }
     },
 
 }

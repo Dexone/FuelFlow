@@ -15,9 +15,9 @@
                 <div class="space-y-2 text-gray-900  font-medium leading-loose">
                     {{ userStore.userCar }} <br />
                     {{ userStore.userProbeg }} км. <br />
-                    {{ Math.round(userStore.userRashod) }} л./100км. <br />
+                    {{ userStore.userRashod }} л./100км. <br />
 
-                    {{ Math.round(userStore.userRate) }} р./мес.
+                    {{ userStore.userRate }} р./мес.
                 </div>
             </div>
         </div>
@@ -37,16 +37,20 @@
             <ul class="my-4 space-y-3">
 
 
-                <li v-for="info in userStore.userInfo.slice().reverse()">
+                <li v-for="info, index in userStore.userInfo.slice().reverse()">
+
                     <a
                         class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow  ">
-                        {{ info[2] }}л.
+                        <button @click="deleteValue(index)"> X </button>
+                        {{ info[2] }}
                         <span class="flex-1 ms-3 whitespace-nowrap">{{ new Date(info[0]).toLocaleString().slice(0, 10)
                             }}</span>
                         <span
                             class="inline-flex items-center justify-center px-2 py-0.5 ms-3 text-xs font-medium text-gray-500 bg-gray-200 rounded ">{{
-                                info[1] }} км.</span>
+                                info[1] }}</span>
+
                     </a>
+
                 </li>
 
             </ul>
@@ -73,6 +77,7 @@
 import { useUser } from '../../store/User';
 import { useComponents } from '../../store/ComponentsHidden';
 import { watch, ref } from 'vue';
+import axios from 'axios';
 const hiddenStore = useComponents();
 const userStore = useUser();
 defineProps({
@@ -82,7 +87,17 @@ defineProps({
 userStore.updateInfo()
 
 
+function deleteValue(value) {
 
+    axios.get(`https://martynovd.ru/back-api/data/${userStore.userID}`).then((res) => {
+        let edit = res.data.info
+        edit.splice(value, 1)
+        console.log(edit)
+        axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { info: edit })
+    })
+    
+    userStore.updateInfo()
+}
 
 
 
