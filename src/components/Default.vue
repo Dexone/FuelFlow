@@ -10,14 +10,16 @@
                     Модель<br />
                     Текущий пробег<br />
                     Расход топлива<br />
-                    Стоимость топлива
+                    Стоимость топлива <br/>
+                    Годовой пробег
                 </div>
                 <div class="space-y-2 text-gray-900  font-medium leading-loose">
                     {{ userStore.userCar }} <br />
                     {{ userStore.userProbeg }} км. <br />
                     {{ userStore.userRashod }} л./100км. <br />
 
-                    {{ userStore.userRate }} р./мес.
+                    {{ userStore.userRate }} р./мес. <br/>
+                    {{ userStore.userYearProbeg }} км.
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@ import { ref } from 'vue'
 
 export const useUser = defineStore('userStore', {
     state: () => ({
-        userID: 1, userLogin: "guest", userCost: 0, userInfo: [], userRashod: 0, userProbeg: 0, userRate: 0, userCar: " "
+        userID: 1, userLogin: "guest", userCost: 0, userInfo: [], userRashod: 0, userProbeg: 0, userRate: 0, userYearProbeg: 0, userCar: " "
     }),
     getters: {
     },
@@ -44,6 +44,7 @@ export const useUser = defineStore('userStore', {
                 if (search > 0 && res.data[search].password == value[1]) { //если найден логин и пароль по этому индексу равен введенному value то
                     this.userID = res.data[search].id //задается id пользователя в сторе
                     this.userLogin = res.data[search].login //задается login пользователя в сторе
+                    this.updateInfo()
                 }
                 else {
                     alert("Неверный логин или пароль")
@@ -104,12 +105,21 @@ export const useUser = defineStore('userStore', {
                         //
 
 
+
+
+
+
+
+
+
                         this.userRashod = (rashod / count).toFixed(2) //расход на 100км
                         this.userCost = res.data.cost //стоимость литра топлива
                         this.userCar = res.data.car //модель машины
                         this.userProbeg = res.data.info[res.data.info.length - 1][1] //текущий пробег (последнее показание в info)
                         this.userInfo = res.data.info //список записей заправок
                         this.userRate = inHour.toFixed() //расход на топливо в месяц в рублях
+
+                        this.userYearProbeg = (((res.data.info[res.data.info.length - 1][1] - res.data.info[0][1]) / ((res.data.info[res.data.info.length - 1][0] - res.data.info[0][0]) / 1000 / 60 / 60)) * 24 * 365).toFixed()
                     }
 
                     else {
@@ -119,6 +129,7 @@ export const useUser = defineStore('userStore', {
                         this.userInfo = res.data.info
                         this.userProbeg = 0
                         this.userRate = 0
+                        this.userYearProbeg = 0
                     }
 
                 })
