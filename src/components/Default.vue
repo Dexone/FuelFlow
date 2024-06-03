@@ -32,8 +32,8 @@
             <h5 class="mb-3 text-base font-semibold text-gray-900 md:text-xl ">
                 История заправок
             </h5>
-            <p class="text-sm font-normal text-gray-500 ">Connect with one of our available wallet
-                providers or create a new one.</p>
+            <!-- <p class="text-sm font-normal text-gray-500 ">Connect with one of our available wallet
+                providers or create a new one.</p> -->
             <ul class="my-4 space-y-3">
 
 
@@ -41,7 +41,7 @@
 
                     <a
                         class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow  ">
-                        <button @click="deleteValue(index)"> X </button>
+                        <button @click="deleteValue(index)"> X&nbsp;</button>
                         {{ info[2] }}
                         <span class="flex-1 ms-3 whitespace-nowrap">{{ new Date(info[0]).toLocaleString().slice(0, 10)
                             }}</span>
@@ -54,7 +54,7 @@
                 </li>
 
             </ul>
-            <div>
+            <!-- <div>
                 <a class="inline-flex items-center text-xs font-normal text-gray-500 hover:underline ">
                     <svg class="w-3 h-3 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 20 20">
@@ -62,7 +62,7 @@
                             d="M7.529 7.988a2.502 2.502 0 0 1 5 .191A2.441 2.441 0 0 1 10 10.582V12m-.01 3.008H10M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
                     Удалить последнее значение</a>
-            </div>
+            </div> -->
         </div>
     </div>
 
@@ -89,14 +89,22 @@ userStore.updateInfo()
 
 function deleteValue(value) {
 
-    axios.get(`https://martynovd.ru/back-api/data/${userStore.userID}`).then((res) => {
-        let edit = res.data.info
-        edit.splice(value, 1)
-        console.log(edit)
-        axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { info: edit })
-    })
-    
-    userStore.updateInfo()
+    if (userStore.userID === 1) {
+        alert("Для использования приложения необходимо зарегистрироваться")
+    }
+    else {
+        axios.get(`https://martynovd.ru/back-api/data/${userStore.userID}`).then((res) => {
+            let edit = res.data.info
+            edit.splice(value, 1)
+            console.log(edit)
+            axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { info: edit })
+        })
+
+        userStore.updateInfo()
+    }
+
+
+
 }
 
 
