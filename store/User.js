@@ -99,9 +99,7 @@ export const useUser = defineStore('userStore', {
                         for (let i = 1; i < res.data.info.length; i++) {
                             summ = summ + (res.data.cost * res.data.info[i][2]) //сумма всех заправок
                         }
-                        console.log(summ)
                         inHour = (summ / ((res.data.info[res.data.info.length - 1][0] - res.data.info[0][0]) / 1000 / 60 / 60)) * 24 * 30
-                        console.log(inHour)
                         //
 
 
@@ -118,7 +116,6 @@ export const useUser = defineStore('userStore', {
                         this.userProbeg = res.data.info[res.data.info.length - 1][1] //текущий пробег (последнее показание в info)
                         this.userInfo = res.data.info //список записей заправок
                         this.userRate = inHour.toFixed() //расход на топливо в месяц в рублях
-
                         this.userYearProbeg = (((res.data.info[res.data.info.length - 1][1] - res.data.info[0][1]) / ((res.data.info[res.data.info.length - 1][0] - res.data.info[0][0]) / 1000 / 60 / 60)) * 24 * 365).toFixed()
                     }
 

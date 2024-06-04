@@ -1,7 +1,5 @@
 <template>
 
-
-
     <!-- Main modal -->
     <div id="authentication-modal" tabindex="-1" aria-hidden="true" :class="{ 'hidden': hiddenStore.showLogin }"
         class=" overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-w-md max-h-[450px] mx-auto">
@@ -83,8 +81,6 @@
 
 
 
-
-
                 <!-- Account -->
                 <div class="flex flex-col items-center pb-10 pt-10" v-if="userStore.userID > 1 && showing != 'edit'">
                     <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="" alt="Image" />
@@ -106,17 +102,6 @@
                         Удалить аккаунт
                     </button>
                 </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -151,19 +136,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 </template>
