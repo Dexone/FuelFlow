@@ -10,7 +10,7 @@
                     Модель<br />
                     Текущий пробег<br />
                     Расход топлива<br />
-                    Стоимость топлива <br/>
+                    Стоимость топлива <br />
                     Годовой пробег
                 </div>
                 <div class="space-y-2 text-gray-900  font-medium leading-loose">
@@ -18,11 +18,13 @@
                     {{ userStore.userProbeg }} км. <br />
                     {{ userStore.userRashod }} л./100км. <br />
 
-                    {{ userStore.userRate }} р./мес. <br/>
+                    {{ userStore.userRate }} р./мес. <br />
                     {{ userStore.userYearProbeg }} км.
                 </div>
             </div>
         </div>
+
+
 
 
 
@@ -42,8 +44,15 @@
                 <li v-for="info, index in userStore.userInfo.slice().reverse()">
 
                     <a
-                        class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow  ">
-                        <button @click="deleteValue(index)"> X&nbsp;</button>
+                        class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow">
+                        <button @click="deleteValue(index)"
+                            class="inline-flex items-center pr-1.5 pt-0.5 text-sm text-gray-400 bg-transparent rounded-sm hover:bg-gray-200 hover:text-gray-900">
+                            <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                            </svg>
+                        </button>
                         {{ info[2] }}
                         <span class="flex-1 ms-3 whitespace-nowrap">{{ new Date(info[0]).toLocaleString().slice(0, 10)
                             }}</span>
@@ -90,7 +99,6 @@ userStore.updateInfo()
 
 
 function deleteValue(value) {
-
     if (userStore.userID === 1) {
         alert("Для использования приложения необходимо зарегистрироваться")
     }
@@ -101,12 +109,8 @@ function deleteValue(value) {
             console.log(edit)
             axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { info: edit })
         })
-
         userStore.updateInfo()
     }
-
-
-
 }
 
 
