@@ -1,5 +1,5 @@
 <script setup>
-import Default from './components/Default.vue'
+import History from './components/History.vue'
 import Bar from './components/Bar.vue'
 import Login from './components/Login.vue'
 import Add from './components/Add.vue'
@@ -11,9 +11,9 @@ const hiddenStore = useComponents();
 </script>
 
 <template>
-  <div :class="{ 'blur-md': hiddenStore.blur }">
+  <div class="mx-3" :class="{ 'blur-md': hiddenStore.blur } ">
     <Stats />
-    <Default />
+    <History />
     <Graph />
   </div>
 

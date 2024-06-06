@@ -1,5 +1,4 @@
 <template>
-
     <!-- Main modal -->
     <div id="authentication-modal" tabindex="-1" aria-hidden="true" :class="{ 'hidden': hiddenStore.showLogin }"
         class=" overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-w-md max-h-[450px] mx-auto">
@@ -11,7 +10,8 @@
                     <h3 class="text-xl font-semibold text-gray-900">
                         Авторизация
                     </h3>
-                    <button type="button" @click="hiddenStore.showLogin = !hiddenStore.showLogin, hiddenStore.blur = !hiddenStore.blur"
+                    <button type="button"
+                        @click="hiddenStore.showLogin = !hiddenStore.showLogin, hiddenStore.blur = !hiddenStore.blur"
                         class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center "
                         data-modal-hide="authentication-modal">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -22,7 +22,6 @@
                         <span class="sr-only">Close modal</span>
                     </button>
                 </div>
-
 
                 <!-- Login -->
                 <div class="p-4 md:p-5" v-if="showing == 'log' && userStore.userID == 1">
@@ -79,11 +78,9 @@
                     </a>
                 </div>
 
-
-
                 <!-- Account -->
                 <div class="flex flex-col items-center pb-10 pt-10" v-if="userStore.userID > 1 && showing != 'edit'">
-                    <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="" alt="Image" />
+                    <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="../assets/avatar.png" alt="Image" />
                     <h5 class="mb-1 text-xl font-medium text-gray-900">{{ userStore.userLogin }}</h5>
                     <span class="text-sm text-gray-500">ID: {{ userStore.userID }}</span>
                     <div class="flex mt-4 md:mt-6">
@@ -102,9 +99,6 @@
                         Удалить аккаунт
                     </button>
                 </div>
-
-
-
 
                 <!-- editPassword -->
                 <div class="p-4 md:p-5" v-if="showing == 'edit' && userStore.userID > 1">
@@ -131,8 +125,6 @@
                     </a>
                 </div>
 
-
-    
             </div>
         </div>
     </div>
@@ -156,6 +148,5 @@ const showing = ref('reg')
 const regData = ref([])
 const enterData = ref([])
 const editPassData = ref([])
-
 
 </script>

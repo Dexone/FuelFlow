@@ -1,12 +1,4 @@
 <template>
-
-
-
-
-
-
-
-
     <div class="w-full max-w-md mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 ">
         <h5 class="mb-3 text-base font-semibold text-gray-900 md:text-xl ">
             История заправок
@@ -70,8 +62,6 @@ defineProps({
     msg: String,
 })
 
-
-
 function deleteValue(value) {
     if (userStore.userID === 1) {
         alert("Для использования приложения необходимо зарегистрироваться")
@@ -85,6 +75,16 @@ function deleteValue(value) {
         userStore.updateInfo()
     }
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

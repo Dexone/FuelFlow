@@ -2,7 +2,7 @@
     <div
         class="fixed z-50 w-full h-16 max-w-md -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-4 left-1/2 ">
         <div class="grid h-full max-w-lg grid-cols-5 mx-auto">
-            <button onclick="alert('В разработке')" data-tooltip-target="tooltip-home" type="button"
+            <button @click="topFunction()" data-tooltip-target="tooltip-home" type="button"
                 class="inline-flex flex-col items-center justify-center px-5 rounded-s-full hover:bg-gray-50">
                 <svg class="w-5 h-5 mb-1 text-gray-500  group-hover:text-blue-600 " aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -16,15 +16,14 @@
                 Home
                 <div class="tooltip-arrow" data-popper-arrow></div>
             </div>
-            <button onclick="alert('В разработке')" data-tooltip-target="tooltip-wallet" type="button"
+            <button @click="userStore.updateInfo()" data-tooltip-target="tooltip-wallet" type="button"
                 class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50  group">
-                <svg class="w-5 h-5 mb-1 text-gray-500  group-hover:text-blue-600 " aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                        d="M11.074 4 8.442.408A.95.95 0 0 0 7.014.254L2.926 4h8.148ZM9 13v-1a4 4 0 0 1 4-4h6V6a1 1 0 0 0-1-1H1a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h17a1 1 0 0 0 1-1v-2h-6a4 4 0 0 1-4-4Z" />
-                    <path
-                        d="M19 10h-6a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1Zm-4.5 3.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2ZM12.62 4h2.78L12.539.41a1.086 1.086 0 1 0-1.7 1.352L12.62 4Z" />
+                <svg class="w-[27px] h-[27px] mb-1 text-gray-500  group-hover:text-blue-600 " aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4" />
                 </svg>
+
                 <span class="sr-only">Wallet</span>
             </button>
             <div id="tooltip-wallet" role="tooltip"
@@ -90,7 +89,9 @@
 <script setup>
 import { ref, watch } from 'vue'
 import { useComponents } from '../../store/ComponentsHidden';
+import { useUser } from '../../store/User';
 const hiddenStore = useComponents();
+const userStore = useUser();
 
 defineProps({
     msg: String,
@@ -101,7 +102,12 @@ watch(hiddenStore, () => {
     hiddenStore.blurEdit()
 })
 
-
+function topFunction() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    })
+}
 
 
 </script>

@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import axios from 'axios';
 import { ref } from 'vue'
+import { useComponents } from './ComponentsHidden';
 
 export const useUser = defineStore('userStore', {
     state: () => ({
@@ -64,6 +65,7 @@ export const useUser = defineStore('userStore', {
             this.userID = 1 //задается id пользователя в сторе
             this.userLogin = "guest" //задается login пользователя в сторе
             this.updateInfo()
+
         },
 
         editPassword(value) {
@@ -72,6 +74,7 @@ export const useUser = defineStore('userStore', {
                 value[0] = ""
                 value[1] = ""
                 alert("Пароль изменен")
+                // useComponents().showLogin = true
             }
             else {
                 alert("Пароли не совпадают")

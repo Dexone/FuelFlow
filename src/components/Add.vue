@@ -84,6 +84,7 @@ function addValue() {
             axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { info: updInfo }) //
         })
         userStore.updateInfo()
+        hiddenStore.showAdd = true
     }
 }
 
