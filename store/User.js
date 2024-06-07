@@ -83,7 +83,9 @@ export const useUser = defineStore('userStore', {
 
 
         updateInfo() {
+            useComponents().loaderUpdateInfo = true
             setTimeout(() => {
+
                 axios.get(`https://martynovd.ru/back-api/data/${this.userID}`).then((res) => {
 
                     //расход бензина на 100км
@@ -105,14 +107,6 @@ export const useUser = defineStore('userStore', {
                         inHour = (summ / ((res.data.info[res.data.info.length - 1][0] - res.data.info[0][0]) / 1000 / 60 / 60)) * 24 * 30
                         //
 
-
-
-
-
-
-
-
-
                         this.userRashod = (rashod / count).toFixed(2) //расход на 100км
                         this.userCost = res.data.cost //стоимость литра топлива
                         this.userCar = res.data.car //модель машины
@@ -133,8 +127,8 @@ export const useUser = defineStore('userStore', {
                     }
 
                 })
+                useComponents().loaderUpdateInfo = false
             }, 2000);
-
 
         }
     },

@@ -8,7 +8,7 @@
         <ul class="my-4 space-y-3">
 
 
-            <li v-for="info, index in userStore.userInfo.slice().reverse()">
+            <li v-if="hiddenStore.loaderUpdateInfo === false" v-for="info, index in userStore.userInfo.slice().reverse()">
 
                 <a
                     class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow">
@@ -41,6 +41,49 @@
                     </svg>
                     Удалить последнее значение</a>
             </div> -->
+
+
+
+        <div v-if="hiddenStore.loaderUpdateInfo === true"
+            class="max-w-md p-1 space-y-4 divide-y divide-gray-200 rounded animate-pulse">
+            <div class="flex items-center justify-between">
+                <div>
+                    <div class="h-2.5 bg-gray-300 rounded-full  w-24 mb-2.5"></div>
+                    <div class="w-32 h-2 bg-gray-200 rounded-full "></div>
+                </div>
+                <div class="h-2.5 bg-gray-300 rounded-full w-12"></div>
+            </div>
+            <div class="flex items-center justify-between pt-4">
+                <div>
+                    <div class="h-2.5 bg-gray-300 rounded-full  w-24 mb-2.5"></div>
+                    <div class="w-32 h-2 bg-gray-200 rounded-full "></div>
+                </div>
+                <div class="h-2.5 bg-gray-300 rounded-full  w-12"></div>
+            </div>
+            <div class="flex items-center justify-between pt-4">
+                <div>
+                    <div class="h-2.5 bg-gray-300 rounded-full  w-24 mb-2.5"></div>
+                    <div class="w-32 h-2 bg-gray-200 rounded-full "></div>
+                </div>
+                <div class="h-2.5 bg-gray-300 rounded-full  w-12"></div>
+            </div>
+            <div class="flex items-center justify-between pt-4">
+                <div>
+                    <div class="h-2.5 bg-gray-300 rounded-full  w-24 mb-2.5"></div>
+                    <div class="w-32 h-2 bg-gray-200 rounded-full "></div>
+                </div>
+                <div class="h-2.5 bg-gray-300 rounded-full  w-12"></div>
+            </div>
+            <div class="flex items-center justify-between pt-4">
+                <div>
+                    <div class="h-2.5 bg-gray-300 rounded-full  w-24 mb-2.5"></div>
+                    <div class="w-32 h-2 bg-gray-200 rounded-full "></div>
+                </div>
+                <div class="h-2.5 bg-gray-300 rounded-full  w-12"></div>
+            </div>
+            <span class="sr-only">Loading...</span>
+        </div>
+
     </div>
 
 
@@ -62,6 +105,8 @@ defineProps({
     msg: String,
 })
 
+
+
 function deleteValue(value) {
     if (userStore.userID === 1) {
         alert("Для использования приложения необходимо зарегистрироваться")
@@ -69,7 +114,7 @@ function deleteValue(value) {
     else {
         axios.get(`https://martynovd.ru/back-api/data/${userStore.userID}`).then((res) => {
             let edit = res.data.info
-            edit.splice(value, 1)
+            edit.reverse().splice(value, 1)
             axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { info: edit })
         })
         userStore.updateInfo()
