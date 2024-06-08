@@ -62,17 +62,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
         <div class="relative bg-gray-50 p-4 rounded-b-lg border border-gray-200 not-italic grid grid-cols-2">
 
             <!-- loader -->
