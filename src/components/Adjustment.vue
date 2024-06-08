@@ -86,9 +86,6 @@
 
 
 
-
-
-
                     <label class="block mb-2 mx-5 text-sm font-medium text-gray-900">Название авто</label>
                     <div class="flex">
                         <div class="relative w-full mx-5 mb-5">
