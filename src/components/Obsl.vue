@@ -18,7 +18,7 @@
 
     <!-- Main modal -->
     <div
-        class="max-w-md mx-auto    justify-center items-center w-full shadow border border-gray-200 rounded-lg mb-24 mt-3">
+        class="max-w-md mx-auto    justify-center items-center w-full shadow border border-gray-200 rounded-lg mt-3">
         <div class="relative  w-full">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg ">
