@@ -61,15 +61,14 @@
 
 
 
-
         <div class="relative bg-gray-50 p-4 rounded-b-lg border border-gray-200 not-italic grid grid-cols-2">
 
             <!-- loader -->
             <div v-if="hiddenStore.loaderUpdateInfo === true">
-                <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-                <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
-                <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
-                <div class="h-2 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+                <div class="h-2.5 bg-gray-200 rounded-full w-48 mb-4"></div>
+                <div class="h-2 bg-gray-200 rounded-full mb-2.5"></div>
+                <div class="h-2 bg-gray-200 rounded-full mb-2.5"></div>
+                <div class="h-2 bg-gray-200 rounded-full"></div>
             </div>
             <!-- loader -->
 
@@ -139,7 +138,6 @@ watch(userStore, () => {
 const picture = ref()
 //  = ref(import.meta.env.BASE_URL + "/src/assets/avatar.png")
 function updatePicture() {
-    console.log(picture)
     axios.get(`https://www.googleapis.com/customsearch/v1?key=AIzaSyDvbL24s32QoD8BbdJj70f62ARqvr9-kRc&searchType=image&cx=e6981af369f6343e2&q=${userStore.userCar}`).then((res) => {
         picture.value = res.data.items[0].link
         pictureLoader.value = true

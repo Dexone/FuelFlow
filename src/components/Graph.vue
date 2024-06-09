@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full max-w-md mx-auto bg-white border border-gray-200 rounded-lg shadow mt-3 mb-24">
+    <div class="w-full max-w-md mx-auto bg-white border border-gray-200 rounded-lg shadow mt-3">
         <ul
             class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50 ">
             <li class="me-2">
@@ -78,7 +78,6 @@ function updateInfo() {
         for (let i = 1; i < userStore.userInfo.length; i++) {
             info.value.push((((userStore.userInfo[i][1] - userStore.userInfo[i - 1][1]) / ((userStore.userInfo[i][0] - userStore.userInfo[i - 1][0]) / 1000 / 60 / 60)) * 24).toFixed())
             date.value.push(new Date(userStore.userInfo[i - 1][0]).toLocaleString().slice(0, 5) + " - " + (new Date(userStore.userInfo[i][0]).toLocaleString().slice(0, 5)))
-            console.log(userStore.userInfo)
         }
         label.value = "График среднего пробега по дням"
     }

@@ -6,15 +6,17 @@ import Add from './components/Add.vue'
 import Adjustment from './components/Adjustment.vue'
 import Graph from './components/Graph.vue'
 import Stats from './components/Stats.vue'
+import Obsl from './components/Obsl.vue'
 import { useComponents } from '../store/ComponentsHidden'
 const hiddenStore = useComponents();
 </script>
 
 <template>
-  <div class="mx-3" :class="{ 'blur-md': hiddenStore.blur } ">
+  <div class="mx-3" :class="{ 'blur-md': hiddenStore.blur }">
     <Stats />
     <History />
     <Graph />
+    <Obsl />
   </div>
 
   <Adjustment />
