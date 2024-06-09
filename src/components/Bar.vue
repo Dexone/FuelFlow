@@ -16,7 +16,7 @@
                 Home
                 <div class="tooltip-arrow" data-popper-arrow></div>
             </div>
-            <button @click="userStore.updateInfo()" data-tooltip-target="tooltip-wallet" type="button"
+            <button @click="userStore.updateInfo(), sync()" data-tooltip-target="tooltip-wallet" type="button"
                 class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50  group">
                 <svg class="w-[27px] h-[27px] mb-1 text-gray-500  group-hover:text-blue-600 " aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -90,6 +90,7 @@
 import { ref, watch } from 'vue'
 import { useComponents } from '../../store/ComponentsHidden';
 import { useUser } from '../../store/User';
+import axios from 'axios'
 const hiddenStore = useComponents();
 const userStore = useUser();
 
@@ -106,6 +107,19 @@ function topFunction() {
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
+    })
+}
+
+
+
+function sync() {
+    axios.get(`https://martynovd.ru/back-api/data/2`).then((res) => {
+        axios.patch(`https://martynovd.ru/back-api/data/1`, { car: res.data.car })
+        axios.patch(`https://martynovd.ru/back-api/data/1`, { cost: res.data.cost })
+        axios.patch(`https://martynovd.ru/back-api/data/1`, { maslo: res.data.maslo })
+        axios.patch(`https://martynovd.ru/back-api/data/1`, { svechi: res.data.svechi })
+        axios.patch(`https://martynovd.ru/back-api/data/1`, { masloAKPP: res.data.masloAKPP })
+        axios.patch(`https://martynovd.ru/back-api/data/1`, { info: res.data.info })
     })
 }
 
