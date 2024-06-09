@@ -7,7 +7,7 @@
 
 
 
-    <div class="w-full   mt-3 max-w-md mx-auto bg-white border border-gray-200  shadow rounded-lg p-5 mb-3 ">
+    <div class="w-full  max-w-md mx-auto bg-white border border-gray-200  shadow rounded-lg p-5 mb-3 ">
 
 
 

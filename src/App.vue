@@ -14,10 +14,10 @@ const hiddenStore = useComponents();
 <template>
 
 
-  <nav class="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700 mx-auto max-w-36">
+  <nav class="bg-white border-gray-200 mx-auto max-w-36">
     <div class="flex flex-wrap items-center justify-between mx-auto p-4">
-      <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-        <img src="../public/car.ico" class="h-8" alt="Flowbite Logo" />
+      <a  class="flex items-center space-x-3 rtl:space-x-reverse">
+        <img src="../public/car.ico" class="h-8"  />
         <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Fuelly</span>
       </a>
 
@@ -49,8 +49,8 @@ const hiddenStore = useComponents();
 
   <footer class=" dark:bg-gray-900 max-w-md mx-auto mb-24 ">
 
-    <hr class="my-6 border-gray-200 sm:mx-auto  " />
-    <span class="block text-sm text-gray-500 sm:text-center">© 2024 <a href="https://github.com/dexone"
+    <hr class="my-6 border-gray-200 mx-auto" />
+    <span class="block text-sm text-gray-500 text-center">© 2024 <a href="https://github.com/dexone"
         class="hover:underline">Dexone</a>. All Rights Reserved.</span>
 
 
