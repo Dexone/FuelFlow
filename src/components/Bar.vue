@@ -121,6 +121,7 @@ function sync() {
         axios.patch(`https://martynovd.ru/back-api/data/1`, { masloAKPP: res.data.masloAKPP })
         axios.patch(`https://martynovd.ru/back-api/data/1`, { info: res.data.info })
         axios.patch(`https://martynovd.ru/back-api/data/1`, { toplFilter: res.data.toplFilter })
+        axios.patch(`https://martynovd.ru/back-api/data/1`, { tormozn: res.data.tormozn })
     })
 }
 

@@ -127,8 +127,12 @@
                         <div class="text-sm font-normal">
                             {{ ob.name }}
                         </div>
-                        <div class="flex items-center ms-auto space-x-2 rtl:space-x-reverse">
-                            <a class="text-sm font-medium p-1.5 rounded-lg"> {{
+                        <div class="flex items-center ms-auto space-x-2 rtl:space-x-reverse ">
+                            <a v-if="ob.probeg <= 0" class="text-sm font-medium p-1.5 rounded-lg text-red-600"> {{
+                                ob.probeg }}км ~{{ ob.forecast }}дн
+                            </a>
+
+                            <a v-if="ob.probeg > 0" class="text-sm font-medium p-1.5 rounded-lg"> {{
                                 ob.probeg }}км <a class="text-blue-600">~{{ ob.forecast }}дн</a>
                             </a>
                         </div>
