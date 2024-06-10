@@ -17,8 +17,7 @@
 
 
     <!-- Main modal -->
-    <div
-        class="max-w-md mx-auto    justify-center items-center w-full shadow border border-gray-200 rounded-lg mt-3">
+    <div class="max-w-md mx-auto    justify-center items-center w-full shadow border border-gray-200 rounded-lg mt-3">
         <div class="relative  w-full">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg ">
@@ -90,7 +89,7 @@
 
 
                 <div v-if="hiddenStore.loaderUpdateInfo === false" class="p-4 space-y-4">
-                    <div class="flex items-center w-full  px-4 text-gray-500">
+                    <!-- <div class="flex items-center w-full  px-4 text-gray-500">
                         <div class="text-sm font-normal">
                             Замена масла
                         </div>
@@ -121,15 +120,26 @@
                                 userStore.userMasloAKPPCh }}
                             </a>
                         </div>
+                    </div> -->
+
+
+                    <div class="flex items-center w-full  px-4 text-gray-500" v-for="ob in obsl">
+                        <div class="text-sm font-normal">
+                            {{ ob.name }}
+                        </div>
+                        <div class="flex items-center ms-auto space-x-2 rtl:space-x-reverse">
+                            <a class="text-sm font-medium text-blue-600 p-1.5 rounded-lg"> {{
+                                ob.probeg }}км. (~{{ ob.forecast }}дн.)
+                            </a>
+                        </div>
                     </div>
+
 
                 </div>
 
             </div>
         </div>
     </div>
-
-
 
 
 
@@ -156,4 +166,41 @@ defineProps({
 })
 const hiddenStore = useComponents();
 const userStore = useUser();
+
+
+// const obsl = ref([Number(userStore.userMasloAKPPCh), Number(userStore.userSvechiCh), Number(userStore.userMasloCh)])
+
+// obsl.value = obsl.value.sort(function (a, b) {
+//     return a - b;
+// });
+
+
+
+// const obsl = ref({ "АКПП": Number(userStore.userMasloAKPPCh), "Свечи": Number(userStore.userSvechiCh), "Масло": Number(userStore.userMasloCh) })
+// console.log(obsl)
+
+const obsl = ref([
+    {
+        "name": "Масло АКПП",
+        "probeg": userStore.userMasloAKPPCh,
+        "forecast": (userStore.userMasloAKPPCh / (userStore.userYearProbeg / 365)).toFixed()
+    }, {
+        "name": "Свечи",
+        "probeg": userStore.userSvechiCh,
+        "forecast": (userStore.userSvechiCh / (userStore.userYearProbeg / 365)).toFixed()
+    }, {
+        "name": "Масло ДВС",
+        "probeg": userStore.userMasloCh,
+        "forecast": (userStore.userMasloCh / (userStore.userYearProbeg / 365)).toFixed()
+    }
+])
+
+
+
+obsl.value.sort(function (a, b) {
+    return a.probeg - b.probeg;
+});
+
+
+console.log(obsl)
 </script>
