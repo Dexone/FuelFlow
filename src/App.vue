@@ -24,9 +24,6 @@ const hiddenStore = useComponents();
     </div>
   </nav>
 
-
-
-
   <div class="mx-3" :class="{ 'blur-md': hiddenStore.blur }">
     <Stats />
     <History />
@@ -39,25 +36,11 @@ const hiddenStore = useComponents();
   <Add />
   <Login />
 
-  <!-- <div class="routerViews">
-    <router-view>
-    </router-view>
-  </div> -->
 
-
-
-
-  <footer class=" dark:bg-gray-900 max-w-md mx-auto mb-24 ">
-
+  <footer class="max-w-md mx-auto mb-24 ">
     <hr class="my-6 border-gray-200 mx-auto" />
     <span class="block text-sm text-gray-500 text-center">© 2024 <a href="https://github.com/dexone"
         class="hover:underline">Dexone</a>. All Rights Reserved.</span>
-
-
   </footer>
-
-
-
-
 
 </template>
