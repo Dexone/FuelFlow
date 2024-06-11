@@ -66,7 +66,6 @@ export const useUser = defineStore('userStore', {
             this.userID = 1 //задается id пользователя в сторе
             this.userLogin = "guest" //задается login пользователя в сторе
             this.updateInfo()
-
         },
 
         editPassword(value) {
@@ -81,7 +80,6 @@ export const useUser = defineStore('userStore', {
                 alert("Пароли не совпадают")
             }
         },
-
 
         updateInfo() {
             useComponents().loaderUpdateInfo = true
@@ -108,8 +106,6 @@ export const useUser = defineStore('userStore', {
                         inHour = (summ / ((res.data.info[res.data.info.length - 1][0] - res.data.info[0][0]) / 1000 / 60 / 60)) * 24 * 30
                         //
 
-
-
                         // обслуживание
                         this.userMasloCh = 6000 - (res.data.info[res.data.info.length - 1][1] - res.data.maslo)
                         this.userSvechiCh = 30000 - (res.data.info[res.data.info.length - 1][1] - res.data.svechi)
@@ -117,8 +113,6 @@ export const useUser = defineStore('userStore', {
                         this.userToplFilterCh = 30000 - (res.data.info[res.data.info.length - 1][1] - res.data.toplFilter)
                         this.userTormoznCh = 30000 - (res.data.info[res.data.info.length - 1][1] - res.data.tormozn)
                         //
-
-
 
                         this.userRashod = (rashod / count).toFixed(2) //расход на 100км
                         this.userCost = res.data.cost //стоимость литра топлива
@@ -152,14 +146,12 @@ export const useUser = defineStore('userStore', {
                         this.userRate = 0
                         this.userYearProbeg = 0
                     }
-
                 })
                 useComponents().loaderUpdateInfo = false
             }, 2000);
 
         }
     },
-
     persist: true
 }
 

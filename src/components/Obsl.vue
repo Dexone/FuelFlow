@@ -1,16 +1,16 @@
 <template>
-    <div class="max-w-md mx-auto    justify-center items-center w-full shadow border border-gray-200 rounded-lg mt-3">
-        <div class="relative  w-full">
-            <div class="relative bg-white rounded-lg ">
-                <div class="flex items-center justify-between p-4  border-b rounded-t ">
+    <div class="max-w-md mx-auto  justify-center items-center w-full shadow border border-gray-200 rounded-lg mt-3">
+        <div class="relative w-full">
+            <div class="relative bg-white rounded-lg">
+                <div class="flex items-center justify-between p-4 border-b rounded-t">
                     <h3 class="text-xl font-semibold text-gray-900">
                         Обслуживание
                     </h3>
                 </div>
 
 
-                <div v-if="hiddenStore.loaderUpdateInfo === true" role="status"
-                    class="max-w-md p-4 space-y-4  divide-y divide-gray-200 rounded animate-pulse  md:p-6">
+                <div v-if="hiddenStore.loaderUpdateInfo === true"
+                    class="max-w-md p-4 space-y-4  divide-y divide-gray-200 rounded animate-pulse  p-6">
                     <div class="flex items-center justify-between">
                         <div>
                             <div class="h-2.5 bg-gray-300 rounded-full w-24 mb-2.5"></div>
@@ -51,11 +51,11 @@
 
                 <div v-if="hiddenStore.loaderUpdateInfo === false" class="p-4">
 
-                    <div class="flex items-center w-full  px-4 text-gray-500 mt-2" v-for="ob in obsl">
+                    <div class="flex items-center w-full px-4 text-gray-500 mt-2" v-for="ob in obsl">
                         <div class="text-sm font-normal">
                             {{ ob.name }}
                         </div>
-                        <div class="flex items-center ms-auto space-x-2 rtl:space-x-reverse ">
+                        <div class="flex items-center ms-auto">
                             <a v-if="ob.probeg <= 0" class="text-sm font-medium p-1.5 rounded-lg text-red-600"> {{
                                 ob.probeg }}км ~{{ ob.forecast }}дн
                             </a>
@@ -65,7 +65,6 @@
                             </a>
                         </div>
                     </div>
-
 
                 </div>
             </div>
@@ -115,9 +114,7 @@ function update() {
         return a.probeg - b.probeg;
     });
 }
-
 update()
-
 watch(userStore, () => {
     update()
 })
