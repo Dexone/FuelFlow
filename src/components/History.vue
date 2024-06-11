@@ -1,6 +1,6 @@
 <template>
-    <div class="w-full max-w-md mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow p-6 ">
-        <h5 class="mb-3 text-base font-semibold text-gray-900 text-xl ">
+    <div class="w-full max-w-md mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow p-6">
+        <h5 class="mb-3 text-base font-semibold text-gray-900 text-xl">
             История заправок
         </h5>
 
@@ -11,7 +11,7 @@
                     class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow">
                     <button @click="deleteValue(index)"
                         class="inline-flex items-center pr-1.5 pt-0.5 text-sm text-gray-400 bg-transparent rounded-sm hover:text-gray-900">
-                        <svg class="w-2 h-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                        <svg class="w-2 h-2" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
@@ -64,7 +64,6 @@
                 </div>
                 <div class="h-2.5 bg-gray-300 rounded-full  w-12"></div>
             </div>
-            <span class="sr-only">Loading...</span>
         </div>
 
     </div>
@@ -75,7 +74,6 @@
 <script setup>
 import { useUser } from '../../store/User';
 import { useComponents } from '../../store/ComponentsHidden';
-import { watch, ref } from 'vue';
 import axios from 'axios';
 const hiddenStore = useComponents();
 const userStore = useUser();

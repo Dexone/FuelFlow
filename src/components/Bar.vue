@@ -62,7 +62,7 @@
 
 
 <script setup>
-import { ref, watch } from 'vue'
+import { watch } from 'vue'
 import { useComponents } from '../../store/ComponentsHidden';
 import { useUser } from '../../store/User';
 import axios from 'axios'

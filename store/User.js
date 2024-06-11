@@ -98,15 +98,15 @@ export const useUser = defineStore('userStore', {
                         //
 
                         //расход на бензин в рублях в месяц
-                        let inHour
+                        let rate
                         let summ = 0 //сумма всех заправок
                         for (let i = 1; i < res.data.info.length; i++) {
                             summ = summ + (res.data.cost * res.data.info[i][2]) //сумма всех заправок
                         }
-                        inHour = (summ / ((res.data.info[res.data.info.length - 1][0] - res.data.info[0][0]) / 1000 / 60 / 60)) * 24 * 30
+                        rate = (summ / ((res.data.info[res.data.info.length - 1][0] - res.data.info[0][0]) / 1000 / 60 / 60)) * 24 * 30
                         //
 
-                        // обслуживание
+                        // обслуживание через км
                         this.userMasloCh = 6000 - (res.data.info[res.data.info.length - 1][1] - res.data.maslo)
                         this.userSvechiCh = 30000 - (res.data.info[res.data.info.length - 1][1] - res.data.svechi)
                         this.userMasloAKPPCh = 30000 - (res.data.info[res.data.info.length - 1][1] - res.data.masloAKPP)
@@ -117,15 +117,15 @@ export const useUser = defineStore('userStore', {
                         this.userRashod = (rashod / count).toFixed(2) //расход на 100км
                         this.userCost = res.data.cost //стоимость литра топлива
                         this.userCar = res.data.car //модель машины
-                        this.userMaslo = res.data.maslo
-                        this.userSvechi = res.data.svechi
-                        this.userTormozn = res.data.tormoznCh
-                        this.userToplFilter = res.data.toplFilter
-                        this.userMasloAKPP = res.data.masloAKPP
+                        this.userMaslo = res.data.maslo //пробег последней замены масла
+                        this.userSvechi = res.data.svechi //пробег последней замены свечей
+                        this.userTormozn = res.data.tormozn //пробег последней торм жидкости
+                        this.userToplFilter = res.data.toplFilter //пробег последней замены топл фильтра
+                        this.userMasloAKPP = res.data.masloAKPP //пробег последней замены масла акпп
                         this.userProbeg = res.data.info[res.data.info.length - 1][1] //текущий пробег (последнее показание в info)
                         this.userInfo = res.data.info //список записей заправок
-                        this.userRate = inHour.toFixed() //расход на топливо в месяц в рублях
-                        this.userYearProbeg = (((res.data.info[res.data.info.length - 1][1] - res.data.info[0][1]) / ((res.data.info[res.data.info.length - 1][0] - res.data.info[0][0]) / 1000 / 60 / 60)) * 24 * 365).toFixed()
+                        this.userRate = rate.toFixed() //расход на топливо в месяц в рублях
+                        this.userYearProbeg = (((res.data.info[res.data.info.length - 1][1] - res.data.info[0][1]) / ((res.data.info[res.data.info.length - 1][0] - res.data.info[0][0]) / 1000 / 60 / 60)) * 24 * 365).toFixed() //годовой пробег
                     }
 
                     else {
@@ -133,21 +133,24 @@ export const useUser = defineStore('userStore', {
                         this.userCar = res.data.car
                         this.userRashod = 0
                         this.userInfo = res.data.info
-                        this.userMaslo = 0
-                        this.userTormozn = 0
-                        this.userSvechi = 0
-                        this.userMasloAKPP = 0
-                        this.userToplFilter = 0
-                        this.userMasloCh = 0
-                        this.userSvechiCh = 0
-                        this.userMasloAKPPCh = 0
-                        this.userInfo = res.data.info
                         this.userProbeg = 0
                         this.userRate = 0
                         this.userYearProbeg = 0
+
+                        userMaslo = 0
+                        userSvechi = 0
+                        userMasloAKPP = 0
+                        userToplFilter = 0
+                        userTormozn = 0
+
+                        userMasloCh = 0
+                        userSvechiCh = 0
+                        userMasloAKPPCh = 0
+                        userToplFilterCh = 0
+                        userTormoznCh = 0
                     }
                 })
-                useComponents().loaderUpdateInfo = false
+                useComponents().loaderUpdateInfo = false //отключение лоадеров после обновления
             }, 2000);
 
         }

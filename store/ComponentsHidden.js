@@ -17,6 +17,5 @@ export const useComponents = defineStore('hiddenStore', {
             }
         }
     },
-
 }
 );

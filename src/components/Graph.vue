@@ -55,7 +55,7 @@
 import axios from 'axios'
 import Chart from 'chart.js/auto';
 import { LineChart } from "vue-chart-3"
-import { computed, inject, watch, ref, reactive } from 'vue'
+import { computed, watch, ref, reactive } from 'vue'
 import { useUser } from '../../store/User';
 import { useComponents } from '../../store/ComponentsHidden';
 const hiddenStore = useComponents();
@@ -65,7 +65,6 @@ defineProps({
 })
 
 const page = ref([true, false, false])
-
 
 const info = ref([])
 const date = ref([])
@@ -127,9 +126,7 @@ const lineData = computed(() => ({
             borderWidth: 1, // толщина линии
             backgroundColor: 'rgba(255, 255, 255, 0.0)', //точки
         },
-
     ],
-
 }));
 
 </script>
