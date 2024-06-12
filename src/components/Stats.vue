@@ -84,7 +84,7 @@
             </div>
 
 
-            <div class="flex items-center mt-1">
+            <!-- <div class="flex items-center mt-1">
                 <div class="flex-1 min-w-0">
                     <p class="text-gray-500">
                         Годовой пробег
@@ -94,7 +94,7 @@
                 <div class="inline-flex items-center text-base font-medium text-gray-900">
                     {{ userStore.userYearProbeg }}км
                 </div>
-            </div>
+            </div> -->
         </div>
 
         </div>

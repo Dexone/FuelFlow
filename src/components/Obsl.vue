@@ -85,31 +85,33 @@ const userStore = useUser();
 const obsl = ref()
 
 function update() {
-    obsl.value = [
-        {
-            "name": "Масло АКПП",
-            "probeg": userStore.userMasloAKPPCh,
-            "forecast": (userStore.userMasloAKPPCh / (userStore.userYearProbeg / 365)).toFixed()
-        }, {
-            "name": "Свечи",
-            "probeg": userStore.userSvechiCh,
-            "forecast": (userStore.userSvechiCh / (userStore.userYearProbeg / 365)).toFixed()
-        }, {
-            "name": "Масло ДВС",
-            "probeg": userStore.userMasloCh,
-            "forecast": (userStore.userMasloCh / (userStore.userYearProbeg / 365)).toFixed()
-        },
-        {
-            "name": "Топл. фильтр",
-            "probeg": userStore.userToplFilterCh,
-            "forecast": (userStore.userToplFilterCh / (userStore.userYearProbeg / 365)).toFixed()
-        },
-        {
-            "name": "Торм. жидкость",
-            "probeg": userStore.userTormoznCh,
-            "forecast": (userStore.userTormoznCh / (userStore.userYearProbeg / 365)).toFixed()
-        },
-    ]
+    let yearProbeg = (((userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userInfo[0][1]) / ((userStore.userInfo[userStore.userInfo.length - 1][0] - userStore.userInfo[0][0]) / 1000 / 60 / 60)) * 24) //средний пробег в час
+
+        obsl.value = [
+            {
+                "name": "Масло АКПП",
+                "probeg": userStore.userMasloAKPPCh,
+                "forecast": (userStore.userMasloAKPPCh / (yearProbeg)).toFixed()
+            }, {
+                "name": "Свечи",
+                "probeg": userStore.userSvechiCh,
+                "forecast": (userStore.userSvechiCh / (yearProbeg)).toFixed()
+            }, {
+                "name": "Масло ДВС",
+                "probeg": userStore.userMasloCh,
+                "forecast": (userStore.userMasloCh / (yearProbeg)).toFixed()
+            },
+            {
+                "name": "Топл. фильтр",
+                "probeg": userStore.userToplFilterCh,
+                "forecast": (userStore.userToplFilterCh / (yearProbeg)).toFixed()
+            },
+            {
+                "name": "Торм. жидкость",
+                "probeg": userStore.userTormoznCh,
+                "forecast": (userStore.userTormoznCh / (yearProbeg)).toFixed()
+            },
+        ]
     obsl.value.sort(function (a, b) {
         return a.probeg - b.probeg;
     });

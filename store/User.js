@@ -5,7 +5,7 @@ import { useComponents } from './ComponentsHidden';
 
 export const useUser = defineStore('userStore', {
     state: () => ({
-        userID: 1, userLogin: "guest", userCost: 0, userInfo: [], userRashod: 0, userProbeg: 0, userRate: 0, userYearProbeg: 0, userCar: " ", userMaslo: "0", userSvechi: "0", userMasloAKPP: "0", userToplFilter: "0", userTormozn: "0", userMasloCh: "0", userSvechiCh: "0", userMasloAKPPCh: "0", userToplFilterCh: "0", userTormoznCh: "0"
+        userID: 1, userLogin: "guest", userCost: 0, userInfo: [], userRashod: 0, userProbeg: 0, userRate: 0, userCar: " ", userMaslo: "0", userSvechi: "0", userMasloAKPP: "0", userToplFilter: "0", userTormozn: "0", userMasloCh: "0", userSvechiCh: "0", userMasloAKPPCh: "0", userToplFilterCh: "0", userTormoznCh: "0"
     }
     ),
     getters: {
@@ -125,7 +125,7 @@ export const useUser = defineStore('userStore', {
                         this.userProbeg = res.data.info[res.data.info.length - 1][1] //текущий пробег (последнее показание в info)
                         this.userInfo = res.data.info //список записей заправок
                         this.userRate = rate.toFixed() //расход на топливо в месяц в рублях
-                        this.userYearProbeg = (((res.data.info[res.data.info.length - 1][1] - res.data.info[0][1]) / ((res.data.info[res.data.info.length - 1][0] - res.data.info[0][0]) / 1000 / 60 / 60)) * 24 * 365).toFixed() //годовой пробег
+
                     }
 
                     else {
@@ -135,7 +135,6 @@ export const useUser = defineStore('userStore', {
                         this.userInfo = res.data.info
                         this.userProbeg = 0
                         this.userRate = 0
-                        this.userYearProbeg = 0
 
                         userMaslo = 0
                         userSvechi = 0

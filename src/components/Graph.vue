@@ -20,7 +20,7 @@
         </ul>
 
 
-        <div >
+        <div>
             <div class="mx-auto p-4 bg-white rounded-lg p-8">
 
 
@@ -66,35 +66,40 @@ defineProps({
 
 const page = ref([true, false, false])
 
-const info = ref([])
-const date = ref([])
-const total = ref('загрузка...')
-const label = ref('загрузка...')
+const info = ref([]) //значения в графике
+const date = ref([]) //даты в графике
+const total = ref('загрузка...') //среднее значение
+const label = ref('загрузка...') //название графика
 function updateInfo() {
     info.value = []
     date.value = []
-    if (page.value[0] === true) { //пробег в день
+    if (page.value[0] === true) { //пробег
+        
         for (let i = 1; i < userStore.userInfo.length; i++) {
-            info.value.push((((userStore.userInfo[i][1] - userStore.userInfo[i - 1][1]) / ((userStore.userInfo[i][0] - userStore.userInfo[i - 1][0]) / 1000 / 60 / 60)) * 24).toFixed())
-            date.value.push(new Date(userStore.userInfo[i - 1][0]).toLocaleString().slice(0, 5) + " - " + (new Date(userStore.userInfo[i][0]).toLocaleString().slice(0, 5)))
+            info.value.push(((((userStore.userInfo[i][1] - userStore.userInfo[i - 1][1]) / ((userStore.userInfo[i][0] - userStore.userInfo[i - 1][0]) / 1000 / 60 / 60)) * 24)).toFixed(1))  //(следующий пробег - предыдущий)/((следующая дата - предыдущая дата)/1000мс /60сек/60мин) = пробег в час * 24часа = пробег в сутки
+            date.value.push(new Date(userStore.userInfo[i - 1][0]).toLocaleString().slice(0, 5) + " - " + (new Date(userStore.userInfo[i][0]).toLocaleString().slice(0, 5))) //массив дат
+
         }
-        label.value = "График среднего пробега по дням"
+        let average = (info.value.reduce((summ, item) => summ + Number(item), 0) / (userStore.userInfo.length - 1)) //среднее арифметическое инфо
+        label.value = "Дневной пробег"
+        total.value = 'Среднее: ' + average + " в день (~" + average*365 + " в год)" //среднее арифметическое данных
+        // console.log((((userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userInfo[0][1]) / ((userStore.userInfo[userStore.userInfo.length - 1][0] - userStore.userInfo[0][0]) / 1000 / 60 / 60)) * 24))
     }
-    if (page.value[1] === true) { //стоимость в день
+    if (page.value[1] === true) { //стоимость
         for (let i = 1; i < userStore.userInfo.length; i++) {
             info.value.push((((userStore.userInfo[i][2] * userStore.userCost) / ((userStore.userInfo[i][0] - userStore.userInfo[i - 1][0]) / 1000 / 60 / 60)) * 24).toFixed())
             date.value.push(new Date(userStore.userInfo[i - 1][0]).toLocaleString().slice(0, 5) + " - " + (new Date(userStore.userInfo[i][0]).toLocaleString().slice(0, 5)))
         }
-        label.value = "График средней стоимости по дням"
+        label.value = "Средняя стоимость в день"
     }
-    if (page.value[2] === true) { //расход в день
+    if (page.value[2] === true) { //расход
         for (let i = 1; i < userStore.userInfo.length; i++) {
             info.value.push((((userStore.userInfo[i][2]) / (userStore.userInfo[i][1] - userStore.userInfo[i - 1][1])) * 100).toFixed(1))
             date.value.push(new Date(userStore.userInfo[i - 1][0]).toLocaleString().slice(0, 5) + " - " + (new Date(userStore.userInfo[i][0]).toLocaleString().slice(0, 5)))
         }
-        label.value = "График среднего расхода по дням"
+        label.value = "Средний расход топлива на 100км"
     }
-    total.value = 'Среднее значение: ' + (info.value.reduce((summ, item) => summ + Number(item), 0) / (userStore.userInfo.length - 1)).toFixed(1) //среднее арифметическое данных
+
 }
 
 watch(userStore, () => {
