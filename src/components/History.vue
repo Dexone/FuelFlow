@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full max-w-md mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow p-6">
+    <div class="w-full max-w-md mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow p-6 mt-3">
         <h5 class="mb-3 text-base font-semibold text-gray-900 text-xl">
             История заправок
         </h5>

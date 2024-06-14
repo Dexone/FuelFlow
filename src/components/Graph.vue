@@ -31,7 +31,7 @@
 
 
         <div>
-            <div class="mx-auto p-4 bg-white rounded-lg p-8">
+            <div class="mx-auto p-4 bg-white rounded-lg">
 
 
                 <!-- loader -->
