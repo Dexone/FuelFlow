@@ -1,45 +1,8 @@
-<template>
-    <div class="w-full max-w-md mx-auto bg-white border border-gray-200  shadow rounded-lg p-5 mb-3">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <a>
+<template >
+            <a>
             <img class="rounded-t-lg" :src="picture" />
         </a>
-
-
-
-
+    <div class="w-full max-w-md mx-auto bg-white border border-gray-200  shadow rounded-lg p-5 mb-3">
 
 
         <!-- picture loader -->
@@ -57,70 +20,46 @@
         <!-- picture loader -->
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-        <div class="relative bg-gray-50 p-4 rounded-b-lg border border-gray-200 not-italic">
-            <!-- loader -->
-            <div v-if="hiddenStore.loaderUpdateInfo === true">
-                <div class="h-2.5 bg-gray-200 rounded-full w-48 mb-4"></div>
-                <div class="h-2 bg-gray-200 rounded-full mb-2.5"></div>
-                <div class="h-2 bg-gray-200 rounded-full mb-2.5"></div>
-                <div class="h-2 bg-gray-200 rounded-full"></div>
-            </div>
-            <!-- loader -->
-
-
-
-
-
-            <div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow p-6"
-                v-if="hiddenStore.loaderUpdateInfo === false">
-                <div class="flex items-start  text-gray-500 text-xs">
-
-                    <div class="flex  h-5">
-                        Текущий пробег
-                    </div>
-
-                    <a class="ms-auto text-blue-700">Обновлен 3 мин назад</a>
-                </div>
-
-
-                <div class="flex items-start">
-                    <div class="flex items-center h-5">
-                        <!-- 
-        <div id="odometer" class="odometer">123</div> -->
-
-
-                    </div>
-                    <a class="ms-auto text-sm text-blue-700 hover:underline">О</a>
-                </div>
-            </div>
-
-
-
-
-
-
-
-
-        </div>
     </div>
 
 
 
 
 
-    <Vue3Odometer class="o-text" :value="number" />
+
+
+
+
+
+    <div class="w-full max-w-md mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow p-6">
+
+    <!-- loader -->
+    <div v-if="hiddenStore.loaderUpdateInfo === true">
+        <!-- <div class="h-2.5 bg-gray-200 rounded-full w-48 mb-4"></div> -->
+        <div class="h-2 bg-gray-200 rounded-full mb-2.5"></div>
+        <div class="h-2 bg-gray-200 rounded-full mb-2.5"></div>
+        <div class="h-2 bg-gray-200 rounded-full"></div>
+    </div>
+    <!-- loader -->
+
+        <div v-if="hiddenStore.loaderUpdateInfo === false">
+            <div class="flex items-start  text-gray-500 text-xs">
+                <div class="flex  h-5">
+                    Текущий пробег
+                </div>
+                <a class="ms-auto text-blue-700">Обновлен 3 мин назад</a>
+            </div>
+            <div class="flex items-start">
+                <div class="flex items-center h-5">
+
+                    <Vue3Odometer class="text-blue-700 text-md" :value="number" />
+                </div>
+                <a class="ms-auto text-sm text-blue-700 hover:underline">О</a>
+            </div>
+        </div>
+    </div>
+
+
 </template>
 
 <script setup>
@@ -171,8 +110,6 @@ watch(userStore, () => { //odometr
     axios.get(`https://martynovd.ru/back-api/data/${userStore.userID}`).then((res) => {
         console.log(res.data.info[res.data.info.length - 1][1])
         number.value = res.data.info[res.data.info.length - 1][1] //последний внесенный пробег
-
-
     })
 })
 
