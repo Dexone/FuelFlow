@@ -40,7 +40,7 @@
 
 
 
-        
+
 
         <!-- picture loader -->
         <div class="max-w-md  rounded  animate-pulse">
@@ -62,7 +62,7 @@
 
 
 
- 
+
 
 
 
@@ -83,25 +83,28 @@
 
 
 
-            <div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow p-6" v-if="hiddenStore.loaderUpdateInfo === false">
-<div class="flex items-start  text-gray-500 text-xs">
+            <div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow p-6"
+                v-if="hiddenStore.loaderUpdateInfo === false">
+                <div class="flex items-start  text-gray-500 text-xs">
 
-    <div class="flex  h-5">
-        Текущий пробег
-    </div>
+                    <div class="flex  h-5">
+                        Текущий пробег
+                    </div>
 
-    <a class="ms-auto text-blue-700">Обновлен 3 мин назад</a>
-</div>
+                    <a class="ms-auto text-blue-700">Обновлен 3 мин назад</a>
+                </div>
 
 
-<div class="flex items-start">
-    <div class="flex items-center h-5">
+                <div class="flex items-start">
+                    <div class="flex items-center h-5">
+                        <!-- 
+        <div id="odometer" class="odometer">123</div> -->
 
-        <p class="odometer" id="odometer">0</p>
-    </div>
-    <a class="ms-auto text-sm text-blue-700 hover:underline">О</a>
-</div>
-</div>
+
+                    </div>
+                    <a class="ms-auto text-sm text-blue-700 hover:underline">О</a>
+                </div>
+            </div>
 
 
 
@@ -113,6 +116,11 @@
         </div>
     </div>
 
+
+
+
+
+    <Vue3Odometer class="o-text" :value="number" />
 </template>
 
 <script setup>
@@ -121,6 +129,13 @@ import { useUser } from '../../store/User';
 import { useComponents } from '../../store/ComponentsHidden';
 import { watch, ref } from 'vue';
 import axios from 'axios';
+import Vue3Odometer from 'vue3-odometer'
+import 'odometer/themes/odometer-theme-default.css'
+const number = ref(100)
+
+
+
+
 const hiddenStore = useComponents();
 const userStore = useUser();
 
@@ -147,13 +162,25 @@ function updatePicture() {
 
 
 
+// setTimeout(() => {
+//     number.value = 123456
+// }, 1000);
+
+
 watch(userStore, () => { //odometr
-    odometer.innerHTML = 0
     axios.get(`https://martynovd.ru/back-api/data/${userStore.userID}`).then((res) => {
         console.log(res.data.info[res.data.info.length - 1][1])
-        odometer.innerHTML = res.data.info[res.data.info.length - 1][1] //последний внесенный пробег
+        number.value = res.data.info[res.data.info.length - 1][1] //последний внесенный пробег
+
+
     })
 })
 
 
 </script>
+
+<style>
+.o-text {
+    color: red;
+}
+</style>

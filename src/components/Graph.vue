@@ -70,6 +70,11 @@ const info = ref([]) //значения в графике
 const date = ref([]) //даты в графике
 const total = ref('загрузка...') //среднее значение
 const label = ref('загрузка...') //название графика
+
+function searchMonth(){
+
+}
+
 function updateInfo() {
     info.value = []
     date.value = []
