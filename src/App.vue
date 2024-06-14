@@ -22,13 +22,13 @@ const hiddenStore = useComponents();
     </div>
   </nav> -->
 
-  <div :class="{ 'blur-md': hiddenStore.blur }">
+  <div class="mx-3" :class="{ 'blur-md': hiddenStore.blur }">
     <Stats />
-    <div class="mx-3">
-      <History />
-      <Graph />
-      <Obsl />
-    </div>
+
+    <History />
+    <Graph />
+    <Obsl />
+
   </div>
 
   <Adjustment />
