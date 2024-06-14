@@ -1,23 +1,33 @@
 <template>
-    <div class="w-full max-w-md mx-auto bg-white border border-gray-200 rounded-lg shadow mt-3">
-        <ul
-            class="flex flex-wrap text-sm font-medium text-center text-gray-500 border-b border-gray-200 rounded-t-lg bg-gray-50">
+
+
+
+    <div class="text-sm font-medium text-center text-gray-500  ">
+        <ul class="flex flex-wrap -mb-px">
             <li class="me-2">
-                <button value="1" :class="{ 'text-blue-600': page[0] }"
+                <button :class="{ 'text-blue-600': page[0], 'border-blue-600': page[0] }"
                     @click="page[1] = false, page[2] = false, page[0] = true, updateInfo()"
-                    class="inline-block p-4  rounded-ss-lg hover:bg-gray-100 ">Пробег</button>
+                    class="inline-block p-4 border-b-2  rounded-t-lg ">Пробег</button>
             </li>
             <li class="me-2">
-                <button :class="{ 'text-blue-600': page[1] }"
+                <button :class="{ 'text-blue-600': page[1], 'border-blue-600': page[1] }"
                     @click="page[1] = true, page[2] = false, page[0] = false, updateInfo()"
-                    class="inline-block p-4 hover:text-gray-600 hover:bg-gray-100 ">Стоимость</button>
+                    class="inline-block p-4  border-b-2  rounded-t-lg">Стоимость</button>
             </li>
             <li class="me-2">
-                <button :class="{ 'text-blue-600': page[2] }"
+                <button :class="{ 'text-blue-600': page[2], 'border-blue-600': page[2] }"
                     @click="page[1] = false, page[2] = true, page[0] = false, updateInfo()"
-                    class="inline-block p-4 hover:text-gray-600 hover:bg-gray-100 ">Расход</button>
+                    class="inline-block p-4 border-b-2  rounded-t-lg ">Расход</button>
             </li>
         </ul>
+    </div>
+
+
+
+
+
+    <div class="w-full max-w-md mx-auto bg-white border border-gray-200 rounded-lg shadow mt-3">
+
 
 
         <div>
@@ -71,7 +81,7 @@ const date = ref([]) //даты в графике
 const total = ref('загрузка...') //среднее значение
 const label = ref('загрузка...') //название графика
 
-function searchMonth(){
+function searchMonth() {
 
 }
 

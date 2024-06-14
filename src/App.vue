@@ -24,9 +24,9 @@ const hiddenStore = useComponents();
 
   <div class="mx-3" :class="{ 'blur-md': hiddenStore.blur }">
     <Stats />
-
-    <History />
     <Graph />
+    <History />
+
     <Obsl />
 
   </div>
