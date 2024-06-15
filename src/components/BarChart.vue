@@ -2,7 +2,7 @@
 
 
 
-    <div class="text-sm font-medium text-center text-gray-500  ">
+    <div class="text-sm font-medium text-center text-gray-500 max-w-md mx-auto ">
         <ul class="flex flex-wrap -mb-px">
             <li class="me-2">
                 <button :class="{ 'text-blue-600': page[0], 'border-blue-600': page[0] }"
@@ -52,7 +52,7 @@
 
 
 
-                <LineChart v-if="hiddenStore.loaderUpdateInfo === false" :chartData="lineData" :options="options" />
+                <BarChart v-if="hiddenStore.loaderUpdateInfo === false" :chartData="lineData" :options="options" />
             </div>
         </div>
     </div>
@@ -65,6 +65,8 @@
 import axios from 'axios'
 import Chart from 'chart.js/auto';
 import { LineChart } from "vue-chart-3"
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { BarChart } from 'vue-chart-3';
 import { computed, watch, ref, reactive } from 'vue'
 import { useUser } from '../../store/User';
 import { useComponents } from '../../store/ComponentsHidden';
@@ -131,14 +133,47 @@ watch(userStore, () => {
 
 const options = reactive({
     responsive: true,
-    plugins: {
+    plugins: [ChartDataLabels],
+    options: {
+        color: 'black'
+    },
+
+    scales: {
+        y: {
+            grid: {
+                display: false
+            },
+            ticks: {
+                color: 'rgb(255, 255, 255)',
+                backdropColor: 'rgb(255, 255, 255)',
+            }
+        },
+        x: {
+            grid: {
+                display: false
+            },
+            ticks: {
+                display: false,
+                color: 'rgb(255, 255, 255)',
+            }
+        }
+    },
+
+    plugins:
+
+    {
         legend: {
             position: 'top',
+
         },
+
         title: {
             display: true,
             text: total,
         },
+        datalabels: {
+            color: '#36A2EB'
+        }
     },
 });
 
@@ -146,14 +181,22 @@ const lineData = computed(() => ({
     name: total,
     labels: date.value,
     boxWidth: 0,
+    datalabels: {
+        color: 'black',
+        align: 'top'
+    },
     datasets: [
         {
             data: info.value,
             label: label.value,
             borderColor: 'rgb(55, 65, 81)', //цвет линии
-            borderWidth: 1, // толщина линии
-            backgroundColor: 'rgba(255, 255, 255, 0.0)', //точки
+            borderWidth: 0, // толщина линии
+            backgroundColor: 'rgb(26, 86, 219)', //точки
+            datalabels: {
+                color: '#FFCE56'
+            }
         },
+
     ],
 }));
 

@@ -3,7 +3,7 @@
 
 
 
-    <div class="flex items-start font-semibold text-gray-900 text-2xl mt-3">
+    <div class="flex items-start font-semibold text-gray-900 text-2xl mt-3 max-w-md mx-auto">
         <div class="flex h-5">
             {{ userStore.userCar }}
         </div>
@@ -15,7 +15,7 @@
             </svg>
         </button>
     </div>
-    <div class="flex items-start">
+    <div class="flex items-start max-w-md mx-auto">
         <div class="flex items-center h-5 text-gray-500 text-xs">
             27окт 2022 - 09 Июл 20023
         </div>

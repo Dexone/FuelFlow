@@ -4,9 +4,10 @@ import Bar from './components/Bar.vue'
 import Login from './components/Login.vue'
 import Add from './components/Add.vue'
 import Adjustment from './components/Adjustment.vue'
-import Graph from './components/Graph.vue'
+import BarChart from './components/BarChart.vue'
 import Stats from './components/Stats.vue'
 import Obsl from './components/Obsl.vue'
+import LineChart from './components/LineChart.vue'
 import { useComponents } from '../store/ComponentsHidden'
 const hiddenStore = useComponents();
 </script>
@@ -24,7 +25,8 @@ const hiddenStore = useComponents();
 
   <div class="mx-3" :class="{ 'blur-md': hiddenStore.blur }">
     <Stats />
-    <Graph />
+    <LineChart />
+    <BarChart />
     <History />
 
     <Obsl />
