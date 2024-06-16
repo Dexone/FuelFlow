@@ -96,7 +96,7 @@ userStore.updateInfo()
 
 watch(userStore, () => { //odometr
     axios.get(`https://martynovd.ru/back-api/data/${userStore.userID}`).then((res) => {
-        console.log(res.data.info[res.data.info.length - 1][1])
+        // console.log(res.data.info[res.data.info.length - 1][1])
         number.value = res.data.info[res.data.info.length - 1][1] //последний внесенный пробег
     })
 })

@@ -14,11 +14,6 @@
                     @click="page[1] = true, page[2] = false, page[0] = false, updateInfo()"
                     class="inline-block p-4  border-b-2  rounded-t-lg">Стоимость</button>
             </li>
-            <li class="me-2">
-                <button :class="{ 'text-blue-600': page[2], 'border-blue-600': page[2] }"
-                    @click="page[1] = false, page[2] = true, page[0] = false, updateInfo()"
-                    class="inline-block p-4 border-b-2  rounded-t-lg ">Расход</button>
-            </li>
         </ul>
     </div>
 
@@ -33,9 +28,8 @@
         <div>
             <div class="mx-auto p-4 bg-white rounded-lg">
 
-
                 <!-- loader -->
-                <div v-if="hiddenStore.loaderUpdateInfo === true" class="max-w-sm p-4  rounded  animate-pulse p-6 ">
+                <div v-if="hiddenStore.loaderUpdateInfo === true" class="max-w-sm p-4 rounded animate-pulse p-6 ">
                     <div class="h-2.5 bg-gray-200 rounded-full w-32 mb-2.5"></div>
                     <div class="w-48 h-2 mb-10 bg-gray-200 rounded-full"></div>
                     <div class="flex items-baseline mt-4">
@@ -52,10 +46,29 @@
 
 
 
+
+                <label v-if="hiddenStore.loaderUpdateInfo === false" class="inline-flex items-center cursor-pointer">
+                    <input type="checkbox" value="" class="sr-only peer" v-model="selectedRange">
+                    <div
+                        class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300  rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all  peer-checked:bg-blue-600">
+                    </div>
+                    <span class="ms-3 text-sm font-medium text-gray-600 ">Последняя неделя</span>
+                </label>
+
                 <BarChart v-if="hiddenStore.loaderUpdateInfo === false" :chartData="lineData" :options="options" />
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -83,60 +96,64 @@ const date = ref([]) //даты в графике
 const total = ref('загрузка...') //среднее значение
 const label = ref('загрузка...') //название графика
 
-function searchMonth() {
 
-}
+const selectedRange = ref(false)
 
 function updateInfo() {
+    const enterDate = ref(0)
+    if (selectedRange.value === true) {
+        let seconds = Date.now() - 604800000 //текущая дата - неделя в милисекундах
+        for (let i = 0; i < userStore.userInfo.length; i++) {
+            if (userStore.userInfo[i][0] > seconds) { //поиск ближайшего наименьшего значения, большего чем seconds и остановка цикла
+                enterDate.value = i
+                console.log(enterDate)
+                break
+            }
+        }
+    }
+
     info.value = []
     date.value = []
+
     if (page.value[0] === true) { //пробег
 
-        for (let i = 1; i < userStore.userInfo.length; i++) {
+        for (let i = enterDate.value + 1; i < userStore.userInfo.length; i++) {
             info.value.push(((((userStore.userInfo[i][1] - userStore.userInfo[i - 1][1]) / ((userStore.userInfo[i][0] - userStore.userInfo[i - 1][0]) / 1000 / 60 / 60)) * 24)).toFixed(1))  //(следующий пробег - предыдущий)/((следующая дата - предыдущая дата)/1000мс /60сек/60мин) = пробег в час * 24часа = пробег в сутки
             date.value.push(new Date(userStore.userInfo[i - 1][0]).toLocaleString().slice(0, 5) + " - " + (new Date(userStore.userInfo[i][0]).toLocaleString().slice(0, 5))) //массив дат
-
         }
-        let average = (info.value.reduce((summ, item) => summ + Number(item), 0) / (info.value.length)) //среднее арифметическое инфо
+        let average = (((userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userInfo[enterDate.value][1]) / ((userStore.userInfo[userStore.userInfo.length - 1][0] - userStore.userInfo[enterDate.value][0]) / 1000 / 60 / 60)) * 24)
         label.value = "Дневной пробег"
-        total.value = 'Среднее: ' + average + " в день (~" + average * 365 + " в год)" //среднее арифметическое данных
-        // console.log((((userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userInfo[0][1]) / ((userStore.userInfo[userStore.userInfo.length - 1][0] - userStore.userInfo[0][0]) / 1000 / 60 / 60)) * 24))
+        total.value = 'Среднее: ' + average.toFixed() + "км в день (~ " + (average * 365).toFixed() + "км в год)" //среднее арифметическое данных
 
     }
     if (page.value[1] === true) { //стоимость
-        for (let i = 1; i < userStore.userInfo.length; i++) {
+
+        let summ = 0 //сумма всех заправок
+        for (let i = enterDate.value + 1; i < userStore.userInfo.length; i++) {
             info.value.push((((userStore.userInfo[i][2] * userStore.userCost) / ((userStore.userInfo[i][0] - userStore.userInfo[i - 1][0]) / 1000 / 60 / 60)) * 24).toFixed()) //(кол-во литров * стоимость литра) / (следующая дата - предыдущая дата) / 1000мс / 60с / 60мин * 24 часа = стоимость езды в сутки
             date.value.push(new Date(userStore.userInfo[i - 1][0]).toLocaleString().slice(0, 5) + " - " + (new Date(userStore.userInfo[i][0]).toLocaleString().slice(0, 5))) //массив дат
-        }
 
-        let average = (info.value.reduce((summ, item) => summ + Number(item), 0) / (info.value.length)) //среднее арифметическое инфо
+            //для средней стоимости:
+            summ = summ + (userStore.userCost * userStore.userInfo[i][2]) //сумма всех заправок
+        }
+        let average = (summ / ((userStore.userInfo[userStore.userInfo.length - 1][0] - userStore.userInfo[enterDate.value][0]) / 1000 / 60 / 60)) * 24
+
+
         label.value = "Дневная стоимость"
-        total.value = 'Среднее: ' + average + " в день (~" + average * 30.5 + " в месяц)"
-
+        total.value = 'Среднее: ' + average.toFixed() + " в день (~" + average.toFixed() * 30.5 + " в месяц)"
 
     }
-    if (page.value[2] === true) { //расход
-        for (let i = 1; i < userStore.userInfo.length; i++) {
-            info.value.push((((userStore.userInfo[i][2]) / (userStore.userInfo[i][1] - userStore.userInfo[i - 1][1])) * 100).toFixed(2)) //(кол-во литров) / (пробег следующий - пробег предыдущий) * 100км
-            date.value.push(new Date(userStore.userInfo[i - 1][0]).toLocaleString().slice(0, 5) + " - " + (new Date(userStore.userInfo[i][0]).toLocaleString().slice(0, 5)))
-        }
-        let average = (info.value.reduce((summ, item) => summ + Number(item), 0) / (info.value.length)) //среднее арифметическое инфо
-        label.value = "Средний расход топлива на 100км"
-        total.value = 'Среднее: ' + average.toFixed(1)
-    }
+
 
 }
 
-watch(userStore, () => {
+watch([userStore, selectedRange], () => {
     updateInfo()
+
 })
 
 const options = reactive({
     responsive: true,
-    plugins: [ChartDataLabels],
-    options: {
-        color: 'black'
-    },
 
     scales: {
         y: {
@@ -144,7 +161,7 @@ const options = reactive({
                 display: false
             },
             ticks: {
-                color: 'rgb(255, 255, 255)',
+                color: 'rgb(55, 55, 55)',
                 backdropColor: 'rgb(255, 255, 255)',
             }
         },
@@ -156,18 +173,18 @@ const options = reactive({
                 display: false,
                 color: 'rgb(255, 255, 255)',
             }
-        }
+        },
     },
-
     plugins:
 
     {
         legend: {
             position: 'top',
-
+            display: false,
         },
 
         title: {
+            align: 'start',
             display: true,
             text: total,
         },
@@ -181,10 +198,6 @@ const lineData = computed(() => ({
     name: total,
     labels: date.value,
     boxWidth: 0,
-    datalabels: {
-        color: 'black',
-        align: 'top'
-    },
     datasets: [
         {
             data: info.value,
@@ -192,9 +205,6 @@ const lineData = computed(() => ({
             borderColor: 'rgb(55, 65, 81)', //цвет линии
             borderWidth: 0, // толщина линии
             backgroundColor: 'rgb(26, 86, 219)', //точки
-            datalabels: {
-                color: '#FFCE56'
-            }
         },
 
     ],
