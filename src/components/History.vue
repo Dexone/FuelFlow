@@ -5,7 +5,7 @@
         </h5>
 
         <ul class="my-4 space-y-3">
-            <li v-if="hiddenStore.loaderUpdateInfo === false"
+            <li v-if="userStore.userCost != 0"
                 v-for="info, index in userStore.userInfo.slice().reverse()">
                 <a
                     class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow">
@@ -27,7 +27,7 @@
             </li>
         </ul>
 
-        <div v-if="hiddenStore.loaderUpdateInfo === true"
+        <div v-if="userStore.userCost === 0"
             class="max-w-md p-1 space-y-4 divide-y divide-gray-200 rounded animate-pulse">
             <div class="flex items-center justify-between">
                 <div>

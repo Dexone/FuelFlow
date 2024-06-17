@@ -21,7 +21,7 @@
 
                 <!-- loader -->
                 <div class=" flex items-center justify-center mx-auto w-56 h-[450px] rounded-lg"
-                    v-if="hiddenStore.loaderUpdateInfo === true">
+                v-if="userStore.userCost === 0">
                         <svg 
                             class="w-8 h-8 text-gray-200 animate-spin fill-blue-600"
                             viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -36,7 +36,7 @@
                 <!-- loader -->
 
 
-                <div v-if="hiddenStore.loaderUpdateInfo === false">
+                <div v-if="userStore.userCost != 0">
 
                     <label class="block mb-2 mx-5 mt-4 text-sm font-medium text-gray-900">Стоимость литра</label>
                     <div class="flex">

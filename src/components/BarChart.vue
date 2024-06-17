@@ -29,7 +29,7 @@
             <div class="mx-auto p-4 bg-white rounded-lg">
 
                 <!-- loader -->
-                <div v-if="hiddenStore.loaderUpdateInfo === true" class="max-w-sm p-4 rounded animate-pulse p-6 ">
+                <div v-if="userStore.userCost === 0" class="max-w-sm p-4 rounded animate-pulse p-6 ">
                     <div class="h-2.5 bg-gray-200 rounded-full w-32 mb-2.5"></div>
                     <div class="w-48 h-2 mb-10 bg-gray-200 rounded-full"></div>
                     <div class="flex items-baseline mt-4">
@@ -47,21 +47,18 @@
 
 
 
-                <label v-if="hiddenStore.loaderUpdateInfo === false" class="inline-flex items-center cursor-pointer">
+                <label v-if="userStore.userCost != 0" class="inline-flex items-center cursor-pointer">
                     <input type="checkbox" value="" class="sr-only peer" v-model="selectedRange">
                     <div
                         class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300  rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all  peer-checked:bg-blue-600">
                     </div>
-                    <span class="ms-3 text-sm font-medium text-gray-600 ">Последняя неделя</span>
+                    <span class="ms-3 text-sm font-medium text-gray-600 ">10 дней</span>
                 </label>
 
-                <BarChart v-if="hiddenStore.loaderUpdateInfo === false" :chartData="lineData" :options="options" />
+                <BarChart v-if="userStore.userCost != 0" :chartData="lineData" :options="options" />
             </div>
         </div>
     </div>
-
-
-
 
 
 
@@ -96,13 +93,12 @@ const date = ref([]) //даты в графике
 const total = ref('загрузка...') //среднее значение
 const label = ref('загрузка...') //название графика
 
-
 const selectedRange = ref(false)
 
 function updateInfo() {
     const enterDate = ref(0)
     if (selectedRange.value === true) {
-        let seconds = Date.now() - 604800000 //текущая дата - неделя в милисекундах
+        let seconds = Date.now() - 864000000 //текущая дата - неделя в милисекундах
         for (let i = 0; i < userStore.userInfo.length; i++) {
             if (userStore.userInfo[i][0] > seconds) { //поиск ближайшего наименьшего значения, большего чем seconds и остановка цикла
                 enterDate.value = i
@@ -116,7 +112,6 @@ function updateInfo() {
     date.value = []
 
     if (page.value[0] === true) { //пробег
-
         for (let i = enterDate.value + 1; i < userStore.userInfo.length; i++) {
             info.value.push(((((userStore.userInfo[i][1] - userStore.userInfo[i - 1][1]) / ((userStore.userInfo[i][0] - userStore.userInfo[i - 1][0]) / 1000 / 60 / 60)) * 24)).toFixed(1))  //(следующий пробег - предыдущий)/((следующая дата - предыдущая дата)/1000мс /60сек/60мин) = пробег в час * 24часа = пробег в сутки
             date.value.push(new Date(userStore.userInfo[i - 1][0]).toLocaleString().slice(0, 5) + " - " + (new Date(userStore.userInfo[i][0]).toLocaleString().slice(0, 5))) //массив дат
@@ -143,7 +138,6 @@ function updateInfo() {
         total.value = 'Среднее: ' + average.toFixed() + " в день (~" + average.toFixed() * 30.5 + " в месяц)"
 
     }
-
 
 }
 

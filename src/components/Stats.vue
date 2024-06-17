@@ -17,7 +17,7 @@
     </div>
     <div class="flex items-start max-w-md mx-auto">
         <div class="flex items-center h-5 text-gray-500 text-xs">
-            27окт 2022 - 09 Июл 20023
+            11 мая 2024 - 17 Июл 2024
         </div>
 
     </div>
@@ -28,7 +28,7 @@
     <div class="w-full max-w-md mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow p-6 mt-3">
 
         <!-- loader -->
-        <div v-if="hiddenStore.loaderUpdateInfo === true">
+        <div v-if="userStore.userCost === 0">
             <!-- <div class="h-2.5 bg-gray-200 rounded-full w-48 mb-4"></div> -->
             <div class="h-2 bg-gray-200 rounded-full mb-2.5"></div>
             <div class="h-2 bg-gray-200 rounded-full mb-2.5"></div>
@@ -36,12 +36,12 @@
         </div>
         <!-- loader -->
 
-        <div v-if="hiddenStore.loaderUpdateInfo === false">
+        <div v-if="userStore.userCost != 0">
             <div class="flex items-start  text-gray-500 text-xs">
                 <div class="flex  h-5">
                     Текущий пробег
                 </div>
-                <a class="ms-auto text-gray-400 text-xs">обновлен 3 мин назад</a>
+                <a class="ms-auto text-gray-400 text-xs">обновлено {{ backTime }} мин назад</a>
             </div>
             <div class="flex items-start">
                 <div class="flex items-center h-5 text-gray-900 text-xl font-semibold">
@@ -71,7 +71,7 @@ import { watch, ref } from 'vue';
 import axios from 'axios';
 import Vue3Odometer from 'vue3-odometer'
 import 'odometer/themes/odometer-theme-default.css'
-const number = ref(100)
+const number = ref(0)
 
 
 
@@ -89,23 +89,20 @@ userStore.updateInfo()
 
 
 
-
-
-
-
+const backTime = ref(0)
+const upTime = ref(0)
+setInterval(() => updateTime(), 60000); //обновлено ... мин назад
+function updateTime() {
+    backTime.value = ((Date.now() - upTime.value) / 1000 / 60).toFixed()
+}
 
 watch(userStore, () => { //odometr
-    axios.get(`https://martynovd.ru/back-api/data/${userStore.userID}`).then((res) => {
-        // console.log(res.data.info[res.data.info.length - 1][1])
-        number.value = res.data.info[res.data.info.length - 1][1] //последний внесенный пробег
-    })
+    setTimeout(() => {
+        number.value = userStore.userInfo[userStore.userInfo.length - 1][1]
+    }, 100);
+    upTime.value = Date.now()
+    updateTime()
 })
 
 
 </script>
-
-<style>
-.o-text {
-    color: red;
-}
-</style>

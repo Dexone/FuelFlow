@@ -15,7 +15,7 @@
 
 
                 <!-- loader -->
-                <div v-if="hiddenStore.loaderUpdateInfo === true" class="max-w-sm p-4  rounded  animate-pulse p-6 ">
+                <div v-if="userStore.userCost === 0" class="max-w-sm p-4  rounded  animate-pulse p-6 ">
                     <div class="h-2.5 bg-gray-200 rounded-full w-32 mb-2.5"></div>
                     <div class="w-48 h-2 mb-10 bg-gray-200 rounded-full"></div>
                     <div class="flex items-baseline mt-4">
@@ -30,10 +30,15 @@
                 </div>
                 <!-- loader -->
 
+                <label v-if="userStore.userCost != 0" class="inline-flex items-center cursor-pointer">
+                    <input type="checkbox" value="" class="sr-only peer" v-model="selectedRange">
+                    <div
+                        class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300  rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all  peer-checked:bg-blue-600">
+                    </div>
+                    <span class="ms-3 text-sm font-medium text-white ">10 дней</span>
+                </label>
 
-
-                <LineChart class="max-h-40" v-if="hiddenStore.loaderUpdateInfo === false" :chartData="lineData"
-                    :options="options" />
+                <LineChart class="max-h-40" v-if="userStore.userCost != 0" :chartData="lineData" :options="options" />
             </div>
         </div>
     </div>
@@ -62,24 +67,49 @@ const date = ref([]) //даты в графике
 const total = ref('загрузка...') //среднее значение
 const label = ref('загрузка...') //название графика
 
-function searchMonth() {
-
-}
+const selectedRange = ref(false)
 
 function updateInfo() {
+    const enterDate = ref(0)
+    if (selectedRange.value === true) {
+        let seconds = Date.now() - 864000000 //текущая дата - неделя в милисекундах
+        for (let i = 0; i < userStore.userInfo.length; i++) {
+            if (userStore.userInfo[i][0] > seconds) { //поиск ближайшего наименьшего значения, большего чем seconds и остановка цикла
+                enterDate.value = i
+                console.log(enterDate)
+                break
+            }
+        }
+    }
+    //средний расход:
+    let rashod = 0
+    let count = 0
+    //
+
     info.value = []
     date.value = []
-
-    for (let i = 1; i < userStore.userInfo.length; i++) {
+    let litres = 0
+    for (let i = enterDate.value + 1; i < userStore.userInfo.length; i++) {
         info.value.push((((userStore.userInfo[i][2]) / (userStore.userInfo[i][1] - userStore.userInfo[i - 1][1])) * 100).toFixed(2)) //(кол-во литров) / (пробег следующий - пробег предыдущий) * 100км
         date.value.push(new Date(userStore.userInfo[i - 1][0]).toLocaleString().slice(0, 5) + " - " + (new Date(userStore.userInfo[i][0]).toLocaleString().slice(0, 5)))
+
+        //средний расход:
+
+        litres = litres + Number(userStore.userInfo[i][2])
+
+        //
     }
+
+    console.log(userStore.userInfo[userStore.userInfo.length-1][1] - userStore.userInfo[enterDate.value + 1][1])
+
+
+
     let average = (info.value.reduce((summ, item) => summ + Number(item), 0) / (info.value.length)) //среднее арифметическое инфо
     label.value = "Средний расход топлива на 100км"
     total.value = 'Средний расход: ' + average.toFixed(1) + "л"
 }
 
-watch(userStore, () => {
+watch([userStore, selectedRange], () => {
     updateInfo()
 })
 

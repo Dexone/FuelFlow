@@ -5,7 +5,7 @@ import { useComponents } from './ComponentsHidden';
 
 export const useUser = defineStore('userStore', {
     state: () => ({
-        userID: 1, userLogin: "guest", userCost: 0, userInfo: [], userCar: " ", userMaslo: "0", userSvechi: "0", userMasloAKPP: "0", userToplFilter: "0", userTormozn: "0"
+        userID: 1, userLogin: "guest", userCost: 0, userInfo: [], userCar: " ", userMaslo: "0", userSvechi: "0", userMasloAKPP: "0", userToplFilter: "0", userTormozn: "0",
     }
     ),
     getters: {
@@ -82,7 +82,7 @@ export const useUser = defineStore('userStore', {
         },
 
         updateInfo() {
-            useComponents().loaderUpdateInfo = true
+            this.userCost = 0 //для лоадера компонентов
             setTimeout(() => {
 
                 axios.get(`https://martynovd.ru/back-api/data/${this.userID}`).then((res) => {
@@ -125,8 +125,12 @@ export const useUser = defineStore('userStore', {
 
                     }
                 })
-                useComponents().loaderUpdateInfo = false //отключение лоадеров после обновления
-            }, 2000);
+            }, 1000);
+
+
+
+
+
 
         }
     },
