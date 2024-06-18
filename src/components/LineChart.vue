@@ -81,30 +81,21 @@ function updateInfo() {
             }
         }
     }
-    //средний расход:
-    let rashod = 0
-    let count = 0
-    //
+
 
     info.value = []
     date.value = []
-    let litres = 0
+    let litres = 0 //средний расход
     for (let i = enterDate.value + 1; i < userStore.userInfo.length; i++) {
         info.value.push((((userStore.userInfo[i][2]) / (userStore.userInfo[i][1] - userStore.userInfo[i - 1][1])) * 100).toFixed(2)) //(кол-во литров) / (пробег следующий - пробег предыдущий) * 100км
         date.value.push(new Date(userStore.userInfo[i - 1][0]).toLocaleString().slice(0, 5) + " - " + (new Date(userStore.userInfo[i][0]).toLocaleString().slice(0, 5)))
 
         //средний расход:
-
         litres = litres + Number(userStore.userInfo[i][2])
-
         //
     }
 
-    console.log(userStore.userInfo[userStore.userInfo.length-1][1] - userStore.userInfo[enterDate.value + 1][1])
-
-
-
-    let average = (info.value.reduce((summ, item) => summ + Number(item), 0) / (info.value.length)) //среднее арифметическое инфо
+    let average = (litres / (userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userInfo[enterDate.value][1])) * 100 //средний расход
     label.value = "Средний расход топлива на 100км"
     total.value = 'Средний расход: ' + average.toFixed(1) + "л"
 }

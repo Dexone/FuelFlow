@@ -40,7 +40,7 @@
                     <div class="flex items-center ms-auto">
                         <!-- <a class="px-1.5 rounded-lg"> {{ info[2] }}л
                         </a> -->
-                        <a
+                        <a onclick="alert('В разработке')"
                             class="inline-flex items-center px-1.5 py-1 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700"><svg
                                 class="w-[20px] h-[20px] text-gray-800" xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" fill="none" viewBox="0 0 24 24">
