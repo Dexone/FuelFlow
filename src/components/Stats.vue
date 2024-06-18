@@ -3,11 +3,22 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
     <div class="flex items-start font-semibold text-gray-900 text-2xl mt-3 max-w-md mx-auto">
         <div class="flex h-5">
             {{ userStore.userCar }}
         </div>
-        <button onclick="alert('В разработке')" class="ms-auto text-blue-700 mt-1">
+        <button @click="hiddenStore.showEditCar = !hiddenStore.showEditCar" class="ms-auto text-blue-700 mt-1">
             <svg class="w-6 h-6 text-blue-700 " xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                 viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -103,6 +114,9 @@ watch(userStore, () => { //odometr
     upTime.value = Date.now()
     updateTime()
 })
+
+
+
 
 
 </script>
