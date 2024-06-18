@@ -1,31 +1,72 @@
 <template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div class="w-full max-w-md mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow p-6 mt-3">
         <h5 class="mb-3 text-base font-semibold text-gray-900 text-xl">
             История заправок
         </h5>
 
-        <ul class="my-4 space-y-3">
-            <li v-if="userStore.userCost != 0"
-                v-for="info, index in userStore.userInfo.slice().reverse()">
-                <a
-                    class="flex items-center p-3 text-base font-bold text-gray-900 rounded-lg bg-gray-50 hover:bg-gray-100 group hover:shadow">
-                    <button @click="deleteValue(index)"
-                        class="inline-flex items-center pr-1.5 pt-0.5 text-sm text-gray-400 bg-transparent rounded-sm hover:text-gray-900">
-                        <svg class="w-2 h-2" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                        </svg>
-                    </button>
-                    {{ info[2] }}
-                    <span class="flex-1 ms-3 whitespace-nowrap">{{ new Date(info[0]).toLocaleString().slice(0, 10)
-                        }}</span>
-                    <span
-                        class="inline-flex items-center justify-center px-2 py-0.5 ms-3 text-xs font-medium text-gray-500 bg-gray-200 rounded">{{
-                            info[1] }}</span>
-                </a>
+
+        <ol class="relative border-s border-gray-200">
+
+            <li class="ms-4 mt-4" v-if="userStore.userCost != 0" v-for="info, index in userStore.userInfo.slice().reverse()">
+                <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white"></div>
+                <time class="mb-1 text-sm font-normal leading-none text-gray-400 ">{{ new
+                    Date(info[0]).toLocaleString().slice(0, 10)
+                    }}</time>
+
+                <div class="flex text-lg font-semibold items-center w-full text-gray-900">
+                    <div class="">
+                        {{
+                            info[1] }}км
+                    </div>
+
+                    <div class="flex items-center ms-auto">
+                        <!-- <a class="px-1.5 rounded-lg"> {{ info[2] }}л
+                        </a> -->
+                        <a
+                            class="inline-flex items-center px-1.5 py-1 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700"><svg
+                                class="w-[20px] h-[20px] text-gray-800" xmlns="http://www.w3.org/2000/svg" width="24"
+                                height="24" fill="none" viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1"
+                                    d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28" />
+                            </svg>
+
+                        </a>
+                        <a @click="deleteValue(index)"
+                            class="ml-1 inline-flex items-center px-1.5 py-1 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700"><svg
+                                class="w-[20px] h-[20px] text-gray-800 dark:text-white" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                viewBox="0 0 24 24">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1" d="M6 18 17.94 6M18 18 6.06 6" />
+                            </svg>
+
+
+                        </a>
+                    </div>
+                </div>
+                <p class="text-base font-normal text-gray-500 ">{{ info[2] }}л</p>
             </li>
-        </ul>
+        </ol>
+
 
         <div v-if="userStore.userCost === 0"
             class="max-w-md p-1 space-y-4 divide-y divide-gray-200 rounded animate-pulse">
