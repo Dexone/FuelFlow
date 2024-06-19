@@ -25,7 +25,9 @@ export const useUser = defineStore('userStore', {
                     axios.post(`https://martynovd.ru/back-api/data`, { id: lastId + 1, car: "Unnamed Car", cost: "50", maslo: "0", svechi: "0", masloAKPP: "0", toplFilter: "0", tormozn: "0", info: [] }) //создание data
                     this.userID = lastId + 1 //задает id нового пользователя в сторе
                     this.userLogin = value[0] //задается login пользователя в сторе
-                    this.updateInfo()
+                    setTimeout(() => {
+                        this.updateInfo()
+                    }, 1000);
                 }
                 else {
                     alert("Такой пользователь существует")
@@ -117,11 +119,11 @@ export const useUser = defineStore('userStore', {
                         this.userCar = res.data.car
                         this.userInfo = res.data.info
 
-                        userMaslo = 0
-                        userSvechi = 0
-                        userMasloAKPP = 0
-                        userToplFilter = 0
-                        userTormozn = 0
+                        this.userMaslo = 0
+                        this.userSvechi = 0
+                        this.userMasloAKPP = 0
+                        this.userToplFilter = 0
+                        this.userTormozn = 0
 
                     }
                 })

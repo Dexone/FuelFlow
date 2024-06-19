@@ -76,7 +76,6 @@ function updateInfo() {
         for (let i = 0; i < userStore.userInfo.length; i++) {
             if (userStore.userInfo[i][0] > seconds) { //поиск ближайшего наименьшего значения, большего чем seconds и остановка цикла
                 enterDate.value = i
-                console.log(enterDate)
                 break
             }
         }
@@ -94,10 +93,14 @@ function updateInfo() {
         litres = litres + Number(userStore.userInfo[i][2])
         //
     }
-
-    let average = (litres / (userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userInfo[enterDate.value][1])) * 100 //средний расход
+    if (userStore.userInfo.length >= 1) {
+        let average = (litres / (userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userInfo[enterDate.value][1])) * 100 //средний расход
+        total.value = 'Средний расход: ' + average.toFixed(1) + "л"
+    }
+    else {
+        total.value = 0
+    }
     label.value = "Средний расход топлива на 100км"
-    total.value = 'Средний расход: ' + average.toFixed(1) + "л"
 }
 
 watch([userStore, selectedRange], () => {

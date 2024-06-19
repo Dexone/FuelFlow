@@ -21,14 +21,15 @@
                 <div class="p-4 p-5">
                     <a class="space-y-4">
                         <div>
-                            <label class="block mb-2 text-sm font-medium text-gray-900">Пробег</label>
-                            <input type="search" v-model="probeg"
+                            <label class="block mb-2 text-sm font-medium text-gray-900">Кол-во литров</label>
+                            <input type="search" v-model="litres"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         </div>
 
+
                         <div>
-                            <label class="block mb-2 text-sm font-medium text-gray-900">Кол-во литров</label>
-                            <input type="search" v-model="litres"
+                            <label class="block mb-2 text-sm font-medium text-gray-900">Пробег</label>
+                            <input type="search" v-model="probeg"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         </div>
 

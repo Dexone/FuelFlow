@@ -102,7 +102,6 @@ function updateInfo() {
         for (let i = 0; i < userStore.userInfo.length; i++) {
             if (userStore.userInfo[i][0] > seconds) { //поиск ближайшего наименьшего значения, большего чем seconds и остановка цикла
                 enterDate.value = i
-                console.log(enterDate)
                 break
             }
         }
@@ -116,10 +115,14 @@ function updateInfo() {
             info.value.push(((((userStore.userInfo[i][1] - userStore.userInfo[i - 1][1]) / ((userStore.userInfo[i][0] - userStore.userInfo[i - 1][0]) / 1000 / 60 / 60)) * 24)).toFixed(1))  //(следующий пробег - предыдущий)/((следующая дата - предыдущая дата)/1000мс /60сек/60мин) = пробег в час * 24часа = пробег в сутки
             date.value.push(new Date(userStore.userInfo[i - 1][0]).toLocaleString().slice(0, 5) + " - " + (new Date(userStore.userInfo[i][0]).toLocaleString().slice(0, 5))) //массив дат
         }
-        let average = (((userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userInfo[enterDate.value][1]) / ((userStore.userInfo[userStore.userInfo.length - 1][0] - userStore.userInfo[enterDate.value][0]) / 1000 / 60 / 60)) * 24)
+        if (userStore.userInfo.length >= 1) {
+            let average = (((userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userInfo[enterDate.value][1]) / ((userStore.userInfo[userStore.userInfo.length - 1][0] - userStore.userInfo[enterDate.value][0]) / 1000 / 60 / 60)) * 24)
+            total.value = 'Среднее: ' + average.toFixed() + "км в день (~ " + (average * 365).toFixed() + "км в год)" //среднее арифметическое данных
+        }
+        else {
+            total.value = 0
+        }
         label.value = "Дневной пробег"
-        total.value = 'Среднее: ' + average.toFixed() + "км в день (~ " + (average * 365).toFixed() + "км в год)" //среднее арифметическое данных
-
     }
     if (page.value[1] === true) { //стоимость
 
@@ -131,12 +134,14 @@ function updateInfo() {
             //для средней стоимости:
             summ = summ + (userStore.userCost * userStore.userInfo[i][2]) //сумма всех заправок
         }
-        let average = (summ / ((userStore.userInfo[userStore.userInfo.length - 1][0] - userStore.userInfo[enterDate.value][0]) / 1000 / 60 / 60)) * 24
-
-
+        if (userStore.userInfo.length >= 1) {
+            let average = (summ / ((userStore.userInfo[userStore.userInfo.length - 1][0] - userStore.userInfo[enterDate.value][0]) / 1000 / 60 / 60)) * 24
+            total.value = 'Среднее: ' + average.toFixed() + " в день (~" + average.toFixed() * 30.5 + " в месяц)"
+        }
+        else {
+            total.value = 0
+        }
         label.value = "Дневная стоимость"
-        total.value = 'Среднее: ' + average.toFixed() + " в день (~" + average.toFixed() * 30.5 + " в месяц)"
-
     }
 
 }

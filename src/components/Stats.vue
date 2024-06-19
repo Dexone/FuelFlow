@@ -27,8 +27,12 @@
         </button>
     </div>
     <div class="flex items-start max-w-md mx-auto">
-        <div class="flex items-center h-5 text-gray-500 text-xs">
-            11 мая 2024 - 17 Июл 2024
+        <div class="flex items-center h-5 text-gray-500 text-xs" v-if="userStore.userInfo.length < 1">
+            Недостаточно данных
+        </div>
+        <div class="flex items-center h-5 text-gray-500 text-xs" v-if="userStore.userInfo.length >= 1">
+            {{ new Date(userStore.userInfo[0][0]).toLocaleString().slice(0, 10) }} - {{ new
+                Date(userStore.userInfo[userStore.userInfo.length - 1][0]).toLocaleString().slice(0, 10) }}
         </div>
 
     </div>
@@ -108,15 +112,18 @@ function updateTime() {
 }
 
 watch(userStore, () => { //odometr
-    setTimeout(() => {
-        number.value = userStore.userInfo[userStore.userInfo.length - 1][1]
-    }, 100);
+    if (userStore.userInfo.length >= 1) {
+        setTimeout(() => {
+            number.value = userStore.userInfo[userStore.userInfo.length - 1][1]
+        }, 100);
+    }
+    else {
+        number.value = 0
+    }
     upTime.value = Date.now()
     updateTime()
+
 })
-
-
-
 
 
 </script>
