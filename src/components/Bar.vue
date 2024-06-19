@@ -70,9 +70,6 @@ defineProps({
     msg: String,
 })
 
-watch(hiddenStore, () => {
-    hiddenStore.blurEdit()
-})
 
 function topFunction() {
     window.scrollTo({

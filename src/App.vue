@@ -9,28 +9,35 @@ import Stats from './components/Stats.vue'
 import Obsl from './components/Obsl.vue'
 import LineChart from './components/LineChart.vue'
 import { useComponents } from '../store/ComponentsHidden'
+import { ref, watch } from 'vue'
 const hiddenStore = useComponents();
+
+
+
+const blur = ref(false)
+watch(hiddenStore, () => {
+  blurEdit()
+})
+function blurEdit() {
+  if (hiddenStore.showLogin == false || hiddenStore.showAdd == false || hiddenStore.showAdjustment == false) {
+    blur.value = true
+  }
+  else {
+    blur.value = false
+  }
+}
+
+
 </script>
 
 <template>
 
-  <!-- <nav class="border-gray-200 mx-auto max-w-36">
-    <div class="flex flex-wrap items-center justify-between mx-auto p-4">
-      <a class="flex items-center space-x-3 rtl:space-x-reverse">
-        <img src="../public/car.ico" class="h-8" />
-        <span class="self-center text-2xl font-semibold whitespace-nowrap">Fuelly</span>
-      </a>
-    </div>
-  </nav> -->
-
-  <div class="mx-3" :class="{ 'blur-md': hiddenStore.blur }">
+  <div class="mx-3" :class="{ 'blur-md': blur }">
     <Stats />
     <LineChart />
     <BarChart />
     <History />
-
     <Obsl />
-
   </div>
 
   <Adjustment />
