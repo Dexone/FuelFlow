@@ -17,7 +17,7 @@
 
 
 
-    <div class="w-full max-w-md mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow p-6 mt-3">
+    <div class="w-full max-w-2xl mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow p-6 mt-3">
         <h5 class="mb-3 text-base font-semibold text-gray-900 text-xl">
             История заправок
         </h5>
@@ -69,7 +69,7 @@
 
 
         <div v-if="userStore.userCost === 0"
-            class="max-w-md p-1 space-y-4 divide-y divide-gray-200 rounded animate-pulse">
+            class="max-w-2xl p-1 space-y-4 divide-y divide-gray-200 rounded animate-pulse">
             <div class="flex items-center justify-between">
                 <div>
                     <div class="h-2.5 bg-gray-300 rounded-full  w-24 mb-2.5"></div>

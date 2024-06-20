@@ -2,7 +2,7 @@
 
 
 
-    <div class="text-sm font-medium text-center text-gray-500 max-w-md mx-auto ">
+    <div class="text-sm font-medium text-center text-gray-500 max-w-2xl mx-auto ">
         <ul class="flex flex-wrap -mb-px">
             <li class="me-2">
                 <button :class="{ 'text-blue-600': page[0], 'border-blue-600': page[0] }"
@@ -21,7 +21,7 @@
 
 
 
-    <div class="w-full max-w-md mx-auto bg-white border border-gray-200 rounded-lg shadow mt-3">
+    <div class="w-full max-w-2xl mx-auto bg-white border border-gray-200 rounded-lg shadow mt-3">
 
 
 

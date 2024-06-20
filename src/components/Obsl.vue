@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-md mx-auto  justify-center items-center w-full shadow border border-gray-200 rounded-lg mt-3">
+    <div class="max-w-2xl mx-auto  justify-center items-center w-full shadow border border-gray-200 rounded-lg mt-3">
         <div class="relative w-full">
             <div class="relative bg-white rounded-lg">
                 <div class="flex items-center justify-between p-4 border-b rounded-t">
@@ -10,7 +10,7 @@
 
 
                 <div v-if="userStore.userCost === 0"
-                    class="max-w-md p-4 space-y-4  divide-y divide-gray-200 rounded animate-pulse  p-6">
+                    class="max-w-2xl p-4 space-y-4  divide-y divide-gray-200 rounded animate-pulse  p-6">
                     <div class="flex items-center justify-between">
                         <div>
                             <div class="h-2.5 bg-gray-300 rounded-full w-24 mb-2.5"></div>

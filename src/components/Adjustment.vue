@@ -20,8 +20,8 @@
 
 
     <div :class="{ 'hidden': hiddenStore.showAdjustment }"
-        class=" fixed top-0 right-0 left-0 z-50 justify-center items-center w-full inset-0 h-[calc(100%-1rem)] max-w-md mx-auto">
-        <div class="relative p-4 w-full max-w-md max-h-full">
+        class=" fixed top-0 right-0 left-0 z-50 justify-center items-center w-full inset-0 h-[calc(100%-1rem)] max-w-2xl mx-auto">
+        <div class="relative p-4 w-full max-w-2xl max-h-full">
             <div class="max-h-[450px] overflow-auto relative bg-white rounded-lg shadow">
                 <div class="flex items-center justify-between p-4 p-5 border-b rounded-t">
                     <h3 class="text-xl font-semibold text-gray-900">
