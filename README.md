@@ -24,3 +24,22 @@ npm run dev
 ```
 npm run build
 ```
+
+
+
+## 🔧 Configuration
+
+Installing dependencies (Установка зависимостей)
+
+```
+npm install
+```
+Compiles and start the development server (Компилирует и запускает сервер разработки)
+```
+npm run dev
+```
+
+Compiles and minifies for production (Компилирует и минимизирует для продакшена)
+```
+npm run build
+```
