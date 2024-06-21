@@ -1,6 +1,5 @@
 <template>
-    <div
-        class="fixed bottom-0 z-50 w-full h-16 -translate-x-1/2 bg-white border-t border-gray-200 left-1/2">
+    <div class="fixed bottom-0 z-50 w-full h-16 -translate-x-1/2 bg-white border-t border-gray-200 left-1/2">
 
         <div class="grid h-full max-w-lg grid-cols-5 mx-auto">
             <button @click="topFunction()"
@@ -12,13 +11,14 @@
                 </svg>
             </button>
 
-            <button @click="userStore.updateInfo(), sync()"
+            <button @click="hiddenStore.showObsl = !hiddenStore.showObsl"
                 class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50  group">
-                <svg class="w-[27px] h-[27px] mb-1 text-gray-500  group-hover:text-blue-600 " aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <svg class="w-7 h-7 mb-1 text-gray-500  group-hover:text-blue-600 " xmlns="http://www.w3.org/2000/svg"
+                    fill="none" viewBox="0 0 24 24">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M17.651 7.65a7.131 7.131 0 0 0-12.68 3.15M18.001 4v4h-4m-7.652 8.35a7.13 7.13 0 0 0 12.68-3.15M6 20v-4h4" />
+                        d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" />
                 </svg>
+
             </button>
 
             <div class="flex items-center justify-center">
@@ -78,18 +78,7 @@ function topFunction() {
     })
 }
 
-function sync() {
-    axios.get(`https://martynovd.ru/back-api/data/2`).then((res) => {
-        axios.patch(`https://martynovd.ru/back-api/data/1`, { car: res.data.car })
-        axios.patch(`https://martynovd.ru/back-api/data/1`, { cost: res.data.cost })
-        axios.patch(`https://martynovd.ru/back-api/data/1`, { maslo: res.data.maslo })
-        axios.patch(`https://martynovd.ru/back-api/data/1`, { svechi: res.data.svechi })
-        axios.patch(`https://martynovd.ru/back-api/data/1`, { masloAKPP: res.data.masloAKPP })
-        axios.patch(`https://martynovd.ru/back-api/data/1`, { info: res.data.info })
-        axios.patch(`https://martynovd.ru/back-api/data/1`, { toplFilter: res.data.toplFilter })
-        axios.patch(`https://martynovd.ru/back-api/data/1`, { tormozn: res.data.tormozn })
-    })
-}
+
 
 
 </script>

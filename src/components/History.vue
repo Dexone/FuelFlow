@@ -1,22 +1,6 @@
 <template>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <div class="w-full max-w-2xl mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow p-6 mt-3">
         <h5 class="mb-3 text-base font-semibold text-gray-900 text-xl">
             История заправок
@@ -25,17 +9,28 @@
 
         <ol class="relative border-s border-gray-200">
 
-            <li class="ms-4 mt-4" v-if="userStore.userCost != 0" v-for="info, index in userStore.userInfo.slice().reverse()">
+            <li class="ms-4 mt-4" v-if="userStore.userCost != 0"
+                v-for="info, index in userStore.userInfo.slice().reverse()">
                 <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white"></div>
                 <time class="mb-1 text-sm font-normal leading-none text-gray-400 ">{{ new
                     Date(info[0]).toLocaleString().slice(0, 10)
                     }}</time>
 
+
+
+
+
+
+
+
+
                 <div class="flex text-lg font-semibold items-center w-full text-gray-900">
                     <div class="">
                         {{
                             info[1] }}км
+
                     </div>
+
 
                     <div class="flex items-center ms-auto">
                         <!-- <a class="px-1.5 rounded-lg"> {{ info[2] }}л
@@ -52,7 +47,7 @@
                         </a>
                         <a @click="deleteValue(index)"
                             class="ml-1 inline-flex items-center px-1.5 py-1 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700"><svg
-                                class="w-[20px] h-[20px] text-gray-800 dark:text-white" aria-hidden="true"
+                                class="w-[20px] h-[20px] text-gray-800 dark:text-white"
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                 viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -61,9 +56,18 @@
 
 
                         </a>
+
                     </div>
                 </div>
                 <p class="text-base font-normal text-gray-500 ">{{ info[2] }}л</p>
+
+
+
+
+
+
+
+
             </li>
         </ol>
 

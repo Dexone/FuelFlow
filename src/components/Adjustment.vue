@@ -1,24 +1,6 @@
 <template>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <div :class="{ 'hidden': hiddenStore.showAdjustment }"
         class=" fixed top-0 right-0 left-0 z-50 justify-center items-center w-full inset-0 h-[calc(100%-1rem)] max-w-2xl mx-auto">
         <div class="relative p-4 w-full max-w-2xl max-h-full">
@@ -75,76 +57,7 @@
                     </div>
 
 
-                    <label class="block mb-2 mx-5 text-sm font-medium text-gray-900">Последняя замена масла</label>
-                    <div class="flex">
-                        <div class="relative w-full mx-5 mb-5">
-                            <input type="search" v-model="maslo" :placeholder="userStore.userMaslo"
-                                class="rounded-s-lg block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg rounded-s-gray-100 rounded-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500">
-                            <button @click="editMaslo"
-                                class="absolute top-0 end-0 p-1.5 h-full text-sm font-medium text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                                <svg class="w-[24px] h-[24px] text-white" xmlns="http://www.w3.org/2000/svg" width="24"
-                                    height="24" fill="none" viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="1.3"
-                                        d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
-                                </svg></button>
-                        </div>
-                    </div>
-
-
-                    <label class="block mb-2 mx-5 text-sm font-medium text-gray-900">Последняя замена свечей</label>
-                    <div class="flex">
-                        <div class="relative w-full mx-5 mb-5">
-                            <input type="search" v-model="svechi" :placeholder="userStore.userSvechi"
-                                class="rounded-s-lg block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg rounded-s-gray-100 rounded-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500">
-                            <button @click="editSvechi"
-                                class="absolute top-0 end-0 p-1.5 h-full text-sm font-medium text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                                <svg class="w-[24px] h-[24px] text-white" xmlns="http://www.w3.org/2000/svg" width="24"
-                                    height="24" fill="none" viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="1.3"
-                                        d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
-                                </svg></button>
-                        </div>
-                    </div>
-
-
-                    <label class="block mb-2 mx-5 text-sm font-medium text-gray-900">Последняя замена масла АКПП</label>
-                    <div class="flex">
-                        <div class="relative w-full mx-5 mb-5">
-                            <input type="search" v-model="masloAKPP" :placeholder="userStore.userMasloAKPP"
-                                class="rounded-s-lg block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg rounded-s-gray-100 rounded-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 ">
-
-                            <button @click="editMasloAKPP"
-                                class="absolute top-0 end-0 p-1.5 h-full text-sm font-medium text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-                                <svg class="w-[24px] h-[24px] text-white" xmlns="http://www.w3.org/2000/svg" width="24"
-                                    height="24" fill="none" viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="1.3"
-                                        d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
-                                </svg></button>
-                        </div>
-                    </div>
-
-
-                    <label class="block mb-2 mx-5 text-sm font-medium text-gray-900">Последняя замена топливного
-                        фильтра</label>
-                    <div class="flex">
-                        <div class="relative w-full mx-5 mb-5">
-                            <input type="search" v-model="toplFilter" :placeholder="userStore.userToplFilter"
-                                class="rounded-s-lg block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg rounded-s-gray-100 rounded-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500">
-
-                            <button @click="editToplFilter"
-                                class="absolute top-0 end-0 p-1.5 h-full text-sm font-medium text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
-
-                                <svg class="w-[24px] h-[24px] text-white" xmlns="http://www.w3.org/2000/svg" width="24"
-                                    height="24" fill="none" viewBox="0 0 24 24">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="1.3"
-                                        d="m14.304 4.844 2.852 2.852M7 7H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-4.5m2.409-9.91a2.017 2.017 0 0 1 0 2.853l-6.844 6.844L8 14l.713-3.565 6.844-6.844a2.015 2.015 0 0 1 2.852 0Z" />
-                                </svg></button>
-                        </div>
-                    </div>
+                   
 
                 </div>
 
@@ -188,47 +101,5 @@ function editValue() {
 
 
 
-const maslo = ref()
-function editMaslo() {
-    if (userStore.userID === 1) {
-        alert("Для использования приложения необходимо зарегистрироваться")
-    }
-    else {
-        axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { maslo: maslo.value }) //
-        userStore.updateInfo()
-    }
-}
 
-const svechi = ref()
-function editSvechi() {
-    if (userStore.userID === 1) {
-        alert("Для использования приложения необходимо зарегистрироваться")
-    }
-    else {
-        axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { svechi: svechi.value }) //
-        userStore.updateInfo()
-    }
-}
-
-const masloAKPP = ref()
-function editMasloAKPP() {
-    if (userStore.userID === 1) {
-        alert("Для использования приложения необходимо зарегистрироваться")
-    }
-    else {
-        axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { masloAKPP: masloAKPP.value }) //
-        userStore.updateInfo()
-    }
-}
-
-const toplFilter = ref()
-function editToplFilter() {
-    if (userStore.userID === 1) {
-        alert("Для использования приложения необходимо зарегистрироваться")
-    }
-    else {
-        axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { toplFilter: toplFilter.value }) //
-        userStore.updateInfo()
-    }
-}
 </script>

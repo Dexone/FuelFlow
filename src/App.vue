@@ -9,6 +9,7 @@ import Stats from './components/Stats.vue'
 import Obsl from './components/Obsl.vue'
 import LineChart from './components/LineChart.vue'
 import Reminders from './components/Reminders.vue'
+import EditObsl from './components/EditObsl.vue'
 import { useComponents } from '../store/ComponentsHidden'
 import { ref, watch } from 'vue'
 const hiddenStore = useComponents();
@@ -20,7 +21,7 @@ watch(hiddenStore, () => {
   blurEdit()
 })
 function blurEdit() {
-  if (hiddenStore.showLogin == false || hiddenStore.showAdd == false || hiddenStore.showAdjustment == false) {
+  if (hiddenStore.showLogin == false || hiddenStore.showAdd == false || hiddenStore.showAdjustment == false || hiddenStore.showObsl == false) {
     blur.value = true
   }
   else {
@@ -41,7 +42,7 @@ function blurEdit() {
     <History />
     <Obsl />
   </div>
-
+  <EditObsl />
   <Adjustment />
   <Bar />
   <Add />

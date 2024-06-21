@@ -110,7 +110,7 @@
 
                         <Vue3Odometer :value="number" /><a class="mb-1 ml-1">км</a>
                     </div>
-                    <a @click="userStore.updateInfo()" class="ms-auto text-sm text-blue-700 hover:underline">
+                    <a @click="userStore.updateInfo(), sync()" class="ms-auto text-sm text-blue-700 hover:underline">
                         <svg class="w-[20px] h-[20px] text-blue-600 " xmlns="http://www.w3.org/2000/svg" width="24"
                             height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -198,5 +198,20 @@ watch(userStore, () => { //odometr
 
 })
 
+
+
+
+function sync() {
+    axios.get(`https://martynovd.ru/back-api/data/2`).then((res) => {
+        axios.patch(`https://martynovd.ru/back-api/data/1`, { car: res.data.car })
+        axios.patch(`https://martynovd.ru/back-api/data/1`, { cost: res.data.cost })
+        axios.patch(`https://martynovd.ru/back-api/data/1`, { maslo: res.data.maslo })
+        axios.patch(`https://martynovd.ru/back-api/data/1`, { svechi: res.data.svechi })
+        axios.patch(`https://martynovd.ru/back-api/data/1`, { masloAKPP: res.data.masloAKPP })
+        axios.patch(`https://martynovd.ru/back-api/data/1`, { info: res.data.info })
+        axios.patch(`https://martynovd.ru/back-api/data/1`, { toplFilter: res.data.toplFilter })
+        axios.patch(`https://martynovd.ru/back-api/data/1`, { tormozn: res.data.tormozn })
+    })
+}
 
 </script>
