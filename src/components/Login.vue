@@ -136,14 +136,6 @@ const regData = ref([])
 const enterData = ref([])
 const editPassData = ref([])
 
-
-
-
-
-
-
-
-
 function registration(value) {
     axios.get(`https://martynovd.ru/back-api/users`).then((res) => {
         let lastId = Number(res.data[res.data.length - 1].id) //последний зарегистрированный id
@@ -215,13 +207,4 @@ function editPassword(value) {
         alert("Пароли не совпадают")
     }
 }
-
-
-
-
-
-
-
-
-
 </script>

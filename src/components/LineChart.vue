@@ -1,18 +1,8 @@
 <template>
-
-
-
-
-
-
-
-
     <div class="w-full max-w-2xl mx-auto bg-blue-700 border border-gray-200 rounded-lg shadow mt-3 ">
-
 
         <div>
             <div class="mx-auto p-4 bg-blue-700 rounded-lg">
-
 
                 <!-- loader -->
                 <div v-if="userStore.userCost === 0" class="max-w-sm p-4  rounded  animate-pulse p-6 ">
@@ -30,21 +20,18 @@
                 </div>
                 <!-- loader -->
 
-                <label v-if="userStore.userCost != 0" class="inline-flex items-center cursor-pointer">
+                <!-- <label v-if="userStore.userCost != 0" class="inline-flex items-center cursor-pointer">
                     <input type="checkbox" value="" class="sr-only peer" v-model="selectedRange">
                     <div
                         class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300  rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all  peer-checked:bg-blue-600">
                     </div>
                     <span class="ms-3 text-sm font-medium text-white ">10 дней</span>
-                </label>
+                </label> -->
 
                 <LineChart class="max-h-40" v-if="userStore.userCost != 0" :chartData="lineData" :options="options" />
             </div>
         </div>
     </div>
-
-
-
 
 </template>
 <script setup>
@@ -71,7 +58,7 @@ const selectedRange = ref(false)
 
 function updateInfo() {
     const enterDate = ref(0)
-    if (selectedRange.value === true) {
+    if (hiddenStore.selectedRange === true) {
         let seconds = Date.now() - 864000000 //текущая дата - неделя в милисекундах
         for (let i = 0; i < userStore.userInfo.length; i++) {
             if (userStore.userInfo[i][0] > seconds) { //поиск ближайшего наименьшего значения, большего чем seconds и остановка цикла
@@ -80,7 +67,6 @@ function updateInfo() {
             }
         }
     }
-
 
     info.value = []
     date.value = []
@@ -95,7 +81,7 @@ function updateInfo() {
     }
     if (userStore.userInfo.length >= 1) {
         let average = (litres / (userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userInfo[enterDate.value][1])) * 100 //средний расход
-        total.value = 'Средний расход: ' + average.toFixed(1) + "л"
+        total.value = average.toFixed(1) + " л/100км"
     }
     else {
         total.value = 0
@@ -103,7 +89,7 @@ function updateInfo() {
     label.value = "Средний расход топлива на 100км"
 }
 
-watch([userStore, selectedRange], () => {
+watch([userStore, hiddenStore], () => {
     updateInfo()
 })
 
@@ -140,7 +126,11 @@ const options = reactive({
             align: 'end',
             display: true,
             text: total,
-            color: 'rgb(255, 255, 255)',
+            color: 'rgb(199, 206, 223)',
+            font: {
+                size: 16,
+                weight: 'bold',
+            },
         },
 
     },

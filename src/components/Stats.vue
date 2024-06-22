@@ -1,22 +1,9 @@
 <template>
-
-
-
     <div class="max-w-2xl mx-auto">
         <div :class="{ 'hidden': showEditCar }"
             class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full inset-0 h-[calc(100%-1rem)] max-h-[470px]">
             <div class="relative px-3 md:px-0 w-full  max-h-full">
                 <div class="relative bg-white">
-
-
-
-
-
-
-
-
-
-
 
                     <div v-if="userStore.userCost != 0">
                         <div class="flex items-center w-full max-w-2xl mx-auto text-gray-900">
@@ -54,11 +41,6 @@
             </div>
         </div>
 
-
-
-
-
-
         <!-- fdfdfdf -->
         <div class="flex items-start font-semibold text-gray-900 text-2xl mt-3">
 
@@ -83,9 +65,6 @@
             </div>
 
         </div>
-
-
-
 
         <div class="w-full  p-4 bg-white border border-gray-200 rounded-lg shadow p-6 mt-3">
 
@@ -126,7 +105,6 @@
 </template>
 
 <script setup>
-
 import { useUser } from '../../store/User';
 import { useComponents } from '../../store/ComponentsHidden';
 import { watch, ref } from 'vue';
@@ -135,24 +113,14 @@ import Vue3Odometer from 'vue3-odometer'
 import 'odometer/themes/odometer-theme-default.css'
 const number = ref(0)
 
-
-
-
-
-
 const hiddenStore = useComponents();
 const userStore = useUser();
-
-
 
 defineProps({
     msg: String,
 })
 
-
 const showEditCar = ref(true)
-
-
 
 const car = ref()
 function editCar() {
@@ -165,17 +133,7 @@ function editCar() {
     }
 }
 
-
-
-
-
-
-
-
-
 userStore.updateInfo()
-
-
 
 const backTime = ref(0)
 const upTime = ref(0)
@@ -198,9 +156,6 @@ watch(userStore, () => { //odometr
 
 })
 
-
-
-
 function sync() {
     axios.get(`https://martynovd.ru/back-api/data/2`).then((res) => {
         axios.patch(`https://martynovd.ru/back-api/data/1`, { car: res.data.car })
@@ -213,5 +168,4 @@ function sync() {
         axios.patch(`https://martynovd.ru/back-api/data/1`, { tormozn: res.data.tormozn })
     })
 }
-
 </script>

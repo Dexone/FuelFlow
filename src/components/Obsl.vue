@@ -8,7 +8,6 @@
                     </h3>
                 </div>
 
-
                 <div v-if="userStore.userCost === 0"
                     class="max-w-2xl p-4 space-y-4  divide-y divide-gray-200 rounded animate-pulse  p-6">
                     <div class="flex items-center justify-between">
@@ -48,9 +47,7 @@
                     </div>
                 </div>
 
-
                 <div v-if="userStore.userCost != 0" class="p-4">
-
                     <div class="flex items-center w-full px-4 text-gray-500 mt-2" v-for="ob in obsl">
                         <div class="text-sm font-normal">
                             {{ ob.name }}
@@ -65,10 +62,10 @@
                             </a>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
+        
     </div>
 </template>
 

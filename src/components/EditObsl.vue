@@ -1,31 +1,11 @@
 <template>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <div :class="{ 'hidden': hiddenStore.showObsl }"
         class=" fixed top-0 right-0 left-0 z-50 justify-center items-center w-full inset-0 h-[calc(100%-1rem)] max-w-2xl mx-auto">
         <div class="relative p-4 w-full max-w-2xl max-h-full">
             <div class="max-h-[450px] overflow-auto relative bg-white rounded-lg shadow">
                 <div class="flex items-center justify-between p-4 p-5 border-b rounded-t">
                     <h3 class="text-xl font-semibold text-gray-900">
-                        Настройки
+                        Обслуживание
                     </h3>
                     <button @click="hiddenStore.showObsl = !hiddenStore.showObsl"
                         class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center ">
@@ -36,7 +16,6 @@
                         </svg>
                     </button>
                 </div>
-
 
                 <!-- loader -->
                 <div class=" flex items-center justify-center mx-auto w-56 h-[450px] rounded-lg"
@@ -53,12 +32,7 @@
                 </div>
                 <!-- loader -->
 
-
                 <div v-if="userStore.userCost != 0">
-
-
-
-
                     <label class="block mb-2 mx-5 mt-4 text-sm font-medium text-gray-900">Последняя замена масла</label>
                     <div class="flex">
                         <div class="relative w-full mx-5 mb-5">
@@ -74,7 +48,6 @@
                                 </svg></button>
                         </div>
                     </div>
-
 
                     <label class="block mb-2 mx-5 text-sm font-medium text-gray-900">Последняя замена свечей</label>
                     <div class="flex">
@@ -92,7 +65,6 @@
                         </div>
                     </div>
 
-
                     <label class="block mb-2 mx-5 text-sm font-medium text-gray-900">Последняя замена масла АКПП</label>
                     <div class="flex">
                         <div class="relative w-full mx-5 mb-5">
@@ -109,7 +81,6 @@
                                 </svg></button>
                         </div>
                     </div>
-
 
                     <label class="block mb-2 mx-5 text-sm font-medium text-gray-900">Последняя замена топливного
                         фильтра</label>
@@ -129,14 +100,10 @@
                                 </svg></button>
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </div>
-
-
 </template>
 
 <script setup>
@@ -149,9 +116,6 @@ const hiddenStore = useComponents();
 defineProps({
     msg: String,
 })
-
-
-
 
 const maslo = ref()
 function editMaslo() {

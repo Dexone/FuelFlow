@@ -11,8 +11,6 @@ export const useUser = defineStore('userStore', {
     getters: {
     },
     actions: {
-
-
         updateInfo() {
             this.userCost = 0 //для лоадера компонентов
             setTimeout(() => {
@@ -29,10 +27,6 @@ export const useUser = defineStore('userStore', {
                         }
                         //
 
-
-
-
-
                         this.userCost = res.data.cost //стоимость литра топлива
                         this.userCar = res.data.car //модель машины
                         this.userMaslo = res.data.maslo //пробег последней замены масла
@@ -43,12 +37,10 @@ export const useUser = defineStore('userStore', {
                         this.userInfo = res.data.info //список записей заправок
 
                     }
-
                     else {
                         this.userCost = res.data.cost
                         this.userCar = res.data.car
                         this.userInfo = res.data.info
-
                         this.userMaslo = 0
                         this.userSvechi = 0
                         this.userMasloAKPP = 0
@@ -58,17 +50,10 @@ export const useUser = defineStore('userStore', {
                     }
                 })
             }, 1000);
-
-
-
-
-
-
         }
     },
     persist: true
 }
-
 );
 
 

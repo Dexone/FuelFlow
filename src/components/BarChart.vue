@@ -1,7 +1,4 @@
 <template>
-
-
-
     <div class="text-sm font-medium text-center text-gray-500 max-w-2xl mx-auto ">
         <ul class="flex flex-wrap -mb-px">
             <li class="me-2">
@@ -17,14 +14,7 @@
         </ul>
     </div>
 
-
-
-
-
     <div class="w-full max-w-2xl mx-auto bg-white border border-gray-200 rounded-lg shadow mt-3">
-
-
-
         <div>
             <div class="mx-auto p-4 bg-white rounded-lg">
 
@@ -43,34 +33,20 @@
                     </div>
                 </div>
                 <!-- loader -->
-
-
-
-
-                <label v-if="userStore.userCost != 0" class="inline-flex items-center cursor-pointer">
+                <!-- <label v-if="userStore.userCost != 0" class="inline-flex items-center cursor-pointer">
                     <input type="checkbox" value="" class="sr-only peer" v-model="selectedRange">
                     <div
                         class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300  rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all  peer-checked:bg-blue-600">
                     </div>
                     <span class="ms-3 text-sm font-medium text-gray-600 ">10 дней</span>
-                </label>
+                </label> -->
 
                 <BarChart v-if="userStore.userCost != 0" :chartData="lineData" :options="options" />
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
 </template>
+
 <script setup>
 import axios from 'axios'
 import Chart from 'chart.js/auto';
@@ -91,13 +67,14 @@ const page = ref([true, false, false])
 const info = ref([]) //значения в графике
 const date = ref([]) //даты в графике
 const total = ref('загрузка...') //среднее значение
+const subtotal = ref('загрузка...') //прогноз на год
 const label = ref('загрузка...') //название графика
 
-const selectedRange = ref(false)
+// const selectedRange = ref(false)
 
 function updateInfo() {
     const enterDate = ref(0)
-    if (selectedRange.value === true) {
+    if (hiddenStore.selectedRange === true) {
         let seconds = Date.now() - 864000000 //текущая дата - неделя в милисекундах
         for (let i = 0; i < userStore.userInfo.length; i++) {
             if (userStore.userInfo[i][0] > seconds) { //поиск ближайшего наименьшего значения, большего чем seconds и остановка цикла
@@ -117,10 +94,12 @@ function updateInfo() {
         }
         if (userStore.userInfo.length >= 1) {
             let average = (((userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userInfo[enterDate.value][1]) / ((userStore.userInfo[userStore.userInfo.length - 1][0] - userStore.userInfo[enterDate.value][0]) / 1000 / 60 / 60)) * 24)
-            total.value = 'Среднее: ' + average.toFixed() + "км в день (~ " + (average * 365).toFixed() + "км в год)" //среднее арифметическое данных
+            total.value = average.toFixed() + "км в день"  //среднее арифметическое данных
+            subtotal.value = (average * 365).toFixed() + "км в год"
         }
         else {
             total.value = 0
+            subtotal.value = 0
         }
         label.value = "Дневной пробег"
     }
@@ -136,17 +115,19 @@ function updateInfo() {
         }
         if (userStore.userInfo.length >= 1) {
             let average = (summ / ((userStore.userInfo[userStore.userInfo.length - 1][0] - userStore.userInfo[enterDate.value][0]) / 1000 / 60 / 60)) * 24
-            total.value = 'Среднее: ' + average.toFixed() + " в день (~" + average.toFixed() * 30.5 + " в месяц)"
+            total.value = average.toFixed() + "р в день"
+            subtotal.value = average.toFixed() * 30.5 + "р в месяц"
         }
         else {
             total.value = 0
+            subtotal.value = 0
         }
         label.value = "Дневная стоимость"
     }
 
 }
 
-watch([userStore, selectedRange], () => {
+watch([userStore, hiddenStore], () => {
     updateInfo()
 
 })
@@ -182,11 +163,32 @@ const options = reactive({
             display: false,
         },
 
-        title: {
+        title: {            
+            color: 'black',
             align: 'start',
             display: true,
             text: total,
+            font: {
+                size: 18,
+            },
         },
+
+        subtitle: {
+            display: true,
+            text: subtotal,
+            color: 'grey',
+            align: 'start',
+            padding: {
+                bottom: 30
+            },
+            font: {
+                size: 12,
+                family: 'tahoma',
+                weight: 'normal',
+
+            }
+        },
+
         datalabels: {
             color: '#36A2EB'
         }
@@ -208,5 +210,4 @@ const lineData = computed(() => ({
 
     ],
 }));
-
 </script>

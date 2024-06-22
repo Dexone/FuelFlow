@@ -1,6 +1,4 @@
 <template>
-
-
     <div :class="{ 'hidden': hiddenStore.showAdjustment }"
         class=" fixed top-0 right-0 left-0 z-50 justify-center items-center w-full inset-0 h-[calc(100%-1rem)] max-w-2xl mx-auto">
         <div class="relative p-4 w-full max-w-2xl max-h-full">
@@ -19,7 +17,6 @@
                     </button>
                 </div>
 
-
                 <!-- loader -->
                 <div class=" flex items-center justify-center mx-auto w-56 h-[450px] rounded-lg"
                     v-if="userStore.userCost === 0">
@@ -34,7 +31,6 @@
                     </svg>
                 </div>
                 <!-- loader -->
-
 
                 <div v-if="userStore.userCost != 0">
 
@@ -56,15 +52,27 @@
                         </div>
                     </div>
 
-
-                   
-
+                    <div v-if="userStore.userCost != 0">
+                <div class="flex items-start  text-sm font-medium text-gray-900  mx-5 mb-5">
+                    <div class="flex  h-5">
+                        Статистика за последние 10 дней
+                    </div>
+                    <a class="ms-auto text-gray-400 text-xs">                
+                        
+                        <label v-if="userStore.userCost != 0" class="inline-flex items-center cursor-pointer">
+                    <input type="checkbox" value="" class="sr-only peer" v-model="hiddenStore.selectedRange">
+                    <div
+                        class="relative w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300  rounded-full peer  peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all  peer-checked:bg-blue-600">
+                    </div>
+                </label>
+            </a>
+                </div>
+</div>
                 </div>
 
             </div>
         </div>
     </div>
-
 
 </template>
 
@@ -79,15 +87,6 @@ defineProps({
     msg: String,
 })
 
-
-
-
-
-
-
-
-
-
 const cost = ref()
 function editValue() {
     if (userStore.userID === 1) {
@@ -98,8 +97,5 @@ function editValue() {
         userStore.updateInfo()
     }
 }
-
-
-
 
 </script>
