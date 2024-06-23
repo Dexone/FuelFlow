@@ -55,7 +55,7 @@
                     <div v-if="userStore.userCost != 0">
                 <div class="flex items-start  text-sm font-medium text-gray-900  mx-5 mb-5">
                     <div class="flex  h-5">
-                        Статистика за последние 10 дней
+                        Cкрывать старые данные
                     </div>
                     <a class="ms-auto text-gray-400 text-xs">                
                         
