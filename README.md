@@ -18,6 +18,18 @@
 
 
 
+<p align="center">
+  <a href="https://dexone.github.io/Fuelly/" alt="demo" >
+    Демо
+  </a>
+  |
+  <a href="https://github.com/Dexone/Fuelly/releases" alt="releases" >
+    Список релизов
+  </a>
+</p>
+
+
+
 
 
 ## ✨ Особенности
