@@ -26,6 +26,10 @@
   <a href="https://github.com/Dexone/Fuelly/releases" alt="releases" >
     Список релизов
   </a>
+    |
+  <a href="https://t.me/mrtynnvv" alt="telegram" >
+    Связаться с автором
+  </a>
 </p>
 
 
