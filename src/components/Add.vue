@@ -58,7 +58,7 @@ const litres = ref()
 
 function addValue() {
     if (userStore.userID === 1) {
-        alert("Для использования приложения необходимо зарегистрироваться")
+        hiddenStore.showLogin = !hiddenStore.showLogin
     }
     else {
         axios.get(`https://martynovd.ru/back-api/data/${userStore.userID}`).then((res) => {

@@ -127,7 +127,7 @@ const showEditCar = ref(true)
 const car = ref()
 function editCar() {
     if (userStore.userID === 1) {
-        alert("Для использования приложения необходимо зарегистрироваться")
+        hiddenStore.showLogin = !hiddenStore.showLogin
     }
     else {
         axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { car: car.value }) //

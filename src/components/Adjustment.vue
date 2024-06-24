@@ -90,7 +90,7 @@ defineProps({
 const cost = ref()
 function editValue() {
     if (userStore.userID === 1) {
-        alert("Для использования приложения необходимо зарегистрироваться")
+        hiddenStore.showLogin = !hiddenStore.showLogin
     }
     else {
         axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { cost: cost.value }) //

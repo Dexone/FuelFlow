@@ -17,10 +17,72 @@
                         {{
                             info[1] }}км
                     </div>
+
+
+
+                    <div v-if="editData[index]" class="absolute bg-white w-48  max-w-24 ">
+
+
+                        <div class="relative">
+                            <input :placeholder="info[1]" v-model="probeg"
+                                class="block w-full pt-6 pe-0 text-sm text-gray-900 border-b-2 focus:outline-none focus:border-blue-600"
+                                placeholder="Search" required />
+                            <button @click="editProbeg(index)"
+                                class="text-black absolute end-5 bottom-0  font-medium rounded-lg text-sm py-1"><svg
+                                    class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                    viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M5 11.917 9.724 16.5 19 7.5" />
+                                </svg>
+                            </button>
+
+                            <button @click="editData[index] = false"
+                                class="text-black absolute end-0 bottom-0   font-medium rounded-lg text-sm py-1"><svg
+                                    class="w-4 h-4 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
+                                </svg>
+                            </button>
+
+                        </div>
+
+                        <div class="relative">
+                            <input :placeholder="info[2]" v-model="litres"
+                                class="block w-full pt-6 pe-0 text-sm text-gray-900 border-b-2 focus:outline-none focus:border-blue-600"
+                                placeholder="Search" required />
+                            <button @click="editLitres(index)"
+                                class="text-black absolute end-5 bottom-0  font-medium rounded-lg text-sm py-1"><svg
+                                    class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                    viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M5 11.917 9.724 16.5 19 7.5" />
+                                </svg>
+                            </button>
+
+                            <button @click="editData[index] = false"
+                                class="text-black absolute end-0 bottom-0   font-medium rounded-lg text-sm py-1"><svg
+                                    class="w-4 h-4 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
+                                </svg>
+                            </button>
+
+                        </div>
+
+
+                    </div>
+
+
+
+
                     <div class="flex items-center ms-auto">
                         <!-- <a class="px-1.5 rounded-lg"> {{ info[2] }}л
                         </a> -->
-                        <a @click="console.log(index)"
+                        <a @click="editData[index] = true"
                             class="inline-flex items-center px-1.5 py-1 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700"><svg
                                 class="w-[20px] h-[20px] text-gray-800" xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" fill="none" viewBox="0 0 24 24">
@@ -64,23 +126,53 @@
 
 
                         <div class="relative">
-                            <input :placeholder="info[1]"
+                            <input :placeholder="info[1]" v-model="probeg"
                                 class="block w-full pt-6 pe-0 text-sm text-gray-900 border-b-2 focus:outline-none focus:border-blue-600"
                                 placeholder="Search" required />
-                                <button @click="console.log('1')"
-                                class="text-black absolute end-5 bottom-0  font-medium rounded-lg text-sm py-1">V</button>
-                            <button @click="console.log('2')"
-                                class="text-black absolute end-0 bottom-0   font-medium rounded-lg text-sm py-1">X</button>
+                            <button @click="editProbeg(index)"
+                                class="text-black absolute end-5 bottom-0  font-medium rounded-lg text-sm py-1"><svg
+                                    class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                    viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M5 11.917 9.724 16.5 19 7.5" />
+                                </svg>
+                            </button>
+
+                            <button @click="editData[index] = false"
+                                class="text-black absolute end-0 bottom-0   font-medium rounded-lg text-sm py-1"><svg
+                                    class="w-4 h-4 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
+                                </svg>
+                            </button>
+
                         </div>
 
                         <div class="relative">
-                            <input :placeholder="info[2]"
+                            <input :placeholder="info[2]" v-model="litres"
                                 class="block w-full pt-6 pe-0 text-sm text-gray-900 border-b-2 focus:outline-none focus:border-blue-600"
                                 placeholder="Search" required />
-                            <button @click="console.log('1')"
-                                class="text-black absolute end-5 bottom-0  font-medium rounded-lg text-sm py-1">V</button>
-                            <button @click="console.log('2')"
-                                class="text-black absolute end-0 bottom-0   font-medium rounded-lg text-sm py-1">X</button>
+                            <button @click="editLitres(index)"
+                                class="text-black absolute end-5 bottom-0  font-medium rounded-lg text-sm py-1"><svg
+                                    class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                    viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M5 11.917 9.724 16.5 19 7.5" />
+                                </svg>
+                            </button>
+
+                            <button @click="editData[index] = false"
+                                class="text-black absolute end-0 bottom-0   font-medium rounded-lg text-sm py-1"><svg
+                                    class="w-4 h-4 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
+                                </svg>
+                            </button>
+
                         </div>
 
 
@@ -189,6 +281,35 @@ watch([hiddenStore, userStore], () => {
 
 
 
+const probeg = ref()
+function editProbeg(value) {
+    if (userStore.userID === 1) {
+        hiddenStore.showLogin = !hiddenStore.showLogin
+    }
+    else {
+        let info = userStore.userInfo
+        info[userStore.userInfo.length - value - 1][1] = probeg.value
+        axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { info: info })
+    }
+}
+
+const litres = ref()
+function editLitres(value) {
+    if (userStore.userID === 1) {
+        hiddenStore.showLogin = !hiddenStore.showLogin
+    }
+    else {
+        let info = userStore.userInfo
+        info[userStore.userInfo.length - value - 1][2] = litres.value
+        axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { info: info })
+    }
+}
+
+
+
+
+
+
 
 const enterDate = ref(0)
 let seconds = Date.now() - 1209600000 //текущая дата - неделя в милисекундах
@@ -203,7 +324,7 @@ for (let i = 0; i < userStore.userInfo.length; i++) {
 
 function deleteValue(value) {
     if (userStore.userID === 1) {
-        alert("Для использования приложения необходимо зарегистрироваться")
+        hiddenStore.showLogin = !hiddenStore.showLogin
     }
     else {
         axios.get(`https://martynovd.ru/back-api/data/${userStore.userID}`).then((res) => {

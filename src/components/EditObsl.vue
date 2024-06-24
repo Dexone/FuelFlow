@@ -120,7 +120,7 @@ defineProps({
 const maslo = ref()
 function editMaslo() {
     if (userStore.userID === 1) {
-        alert("Для использования приложения необходимо зарегистрироваться")
+        hiddenStore.showLogin = !hiddenStore.showLogin
     }
     else {
         axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { maslo: maslo.value }) //
@@ -131,7 +131,7 @@ function editMaslo() {
 const svechi = ref()
 function editSvechi() {
     if (userStore.userID === 1) {
-        alert("Для использования приложения необходимо зарегистрироваться")
+        hiddenStore.showLogin = !hiddenStore.showLogin
     }
     else {
         axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { svechi: svechi.value }) //
@@ -142,7 +142,7 @@ function editSvechi() {
 const masloAKPP = ref()
 function editMasloAKPP() {
     if (userStore.userID === 1) {
-        alert("Для использования приложения необходимо зарегистрироваться")
+        hiddenStore.showLogin = !hiddenStore.showLogin
     }
     else {
         axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { masloAKPP: masloAKPP.value }) //
@@ -153,7 +153,7 @@ function editMasloAKPP() {
 const toplFilter = ref()
 function editToplFilter() {
     if (userStore.userID === 1) {
-        alert("Для использования приложения необходимо зарегистрироваться")
+        hiddenStore.showLogin = !hiddenStore.showLogin
     }
     else {
         axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { toplFilter: toplFilter.value }) //
