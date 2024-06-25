@@ -284,7 +284,7 @@ watch([hiddenStore, userStore], () => {
 const probeg = ref()
 function editProbeg(value) {
     if (userStore.userID === 1) {
-        hiddenStore.showLogin = !hiddenStore.showLogin
+        hiddenStore.showLogin()
     }
     else {
         let info = userStore.userInfo
@@ -296,7 +296,7 @@ function editProbeg(value) {
 const litres = ref()
 function editLitres(value) {
     if (userStore.userID === 1) {
-        hiddenStore.showLogin = !hiddenStore.showLogin
+        hiddenStore.showLogin()
     }
     else {
         let info = userStore.userInfo
@@ -324,7 +324,7 @@ for (let i = 0; i < userStore.userInfo.length; i++) {
 
 function deleteValue(value) {
     if (userStore.userID === 1) {
-        hiddenStore.showLogin = !hiddenStore.showLogin
+        hiddenStore.showLogin()
     }
     else {
         axios.get(`https://martynovd.ru/back-api/data/${userStore.userID}`).then((res) => {

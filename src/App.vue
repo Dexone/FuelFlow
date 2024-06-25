@@ -18,10 +18,12 @@ const hiddenStore = useComponents();
 
 const blur = ref(false)
 watch(hiddenStore, () => {
-  blurEdit()
+ blurEdit()
 })
+
+
 function blurEdit() {
-  if (hiddenStore.showLogin == false || hiddenStore.showAdd == false || hiddenStore.showAdjustment == false || hiddenStore.showObsl == false) {
+  if (hiddenStore.login === false || hiddenStore.add === false || hiddenStore.adjustment === false || hiddenStore.obsl === false) {
     blur.value = true
   }
   else {
@@ -56,4 +58,3 @@ function blurEdit() {
   </footer>
 
 </template>
-

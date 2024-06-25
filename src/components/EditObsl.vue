@@ -1,5 +1,5 @@
 <template>
-    <div :class="{ 'hidden': hiddenStore.showObsl }"
+    <div :class="{ 'hidden': hiddenStore.obsl }"
         class=" fixed top-0 right-0 left-0 z-50 justify-center items-center w-full inset-0 h-[calc(100%-1rem)] max-w-2xl mx-auto">
         <div class="relative p-4 w-full max-w-2xl max-h-full">
             <div class="max-h-[450px] overflow-auto relative bg-white rounded-lg shadow">
@@ -7,7 +7,7 @@
                     <h3 class="text-xl font-semibold text-gray-900">
                         Обслуживание
                     </h3>
-                    <button @click="hiddenStore.showObsl = !hiddenStore.showObsl"
+                    <button @click="hiddenStore.showObsl()"
                         class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center ">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
@@ -120,7 +120,7 @@ defineProps({
 const maslo = ref()
 function editMaslo() {
     if (userStore.userID === 1) {
-        hiddenStore.showLogin = !hiddenStore.showLogin
+        hiddenStore.showLogin()
     }
     else {
         axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { maslo: maslo.value }) //
@@ -131,7 +131,7 @@ function editMaslo() {
 const svechi = ref()
 function editSvechi() {
     if (userStore.userID === 1) {
-        hiddenStore.showLogin = !hiddenStore.showLogin
+        hiddenStore.showLogin()
     }
     else {
         axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { svechi: svechi.value }) //
@@ -142,7 +142,7 @@ function editSvechi() {
 const masloAKPP = ref()
 function editMasloAKPP() {
     if (userStore.userID === 1) {
-        hiddenStore.showLogin = !hiddenStore.showLogin
+        hiddenStore.showLogin()
     }
     else {
         axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { masloAKPP: masloAKPP.value }) //
@@ -153,7 +153,7 @@ function editMasloAKPP() {
 const toplFilter = ref()
 function editToplFilter() {
     if (userStore.userID === 1) {
-        hiddenStore.showLogin = !hiddenStore.showLogin
+        hiddenStore.showLogin()
     }
     else {
         axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { toplFilter: toplFilter.value }) //

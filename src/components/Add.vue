@@ -1,5 +1,5 @@
 <template>
-    <div :class="{ 'hidden': hiddenStore.showAdd }"
+    <div :class="{ 'hidden': hiddenStore.add }"
         class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full inset-0 h-[calc(100%-1rem)] max-h-[470px] max-w-2xl mx-auto">
         <div class="relative p-4 w-full max-w-2xl max-h-full">
             <div class="relative bg-white rounded-lg shadow">
@@ -8,7 +8,7 @@
                         Заправка
                     </h3>
                     <button 
-                        @click="hiddenStore.showAdd = !hiddenStore.showAdd, hiddenStore.blur = !hiddenStore.blur"
+                        @click="hiddenStore.showAdd()"
                         class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center">
                         <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 14">
@@ -58,7 +58,7 @@ const litres = ref()
 
 function addValue() {
     if (userStore.userID === 1) {
-        hiddenStore.showLogin = !hiddenStore.showLogin
+        hiddenStore.showLogin()
     }
     else {
         axios.get(`https://martynovd.ru/back-api/data/${userStore.userID}`).then((res) => {
@@ -68,7 +68,7 @@ function addValue() {
             axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { info: updInfo }) //
         })
         userStore.updateInfo()
-        hiddenStore.showAdd = true
+        hiddenStore.add = true
     }
 }
 

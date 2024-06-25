@@ -11,7 +11,7 @@
                 </svg>
             </button>
 
-            <button @click="hiddenStore.showObsl = !hiddenStore.showObsl"
+            <button @click="hiddenStore.showObsl()"
                 class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50  group">
                 <svg class="w-7 h-7 mb-1 text-gray-500  group-hover:text-blue-600 " xmlns="http://www.w3.org/2000/svg"
                     fill="none" viewBox="0 0 24 24">
@@ -22,7 +22,7 @@
             </button>
 
             <div class="flex items-center justify-center">
-                <button @click="hiddenStore.showAdd = !hiddenStore.showAdd"
+                <button @click="hiddenStore.showAdd()"
                     class="inline-flex items-center justify-center w-10 h-10 font-medium bg-blue-600 rounded-full hover:bg-blue-700 group focus:ring-4 focus:ring-blue-300 focus:outline-none">
                     <svg class="w-4 h-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -31,7 +31,7 @@
                 </button>
             </div>
 
-            <button @click="hiddenStore.showAdjustment = !hiddenStore.showAdjustment"
+            <button @click="hiddenStore.showAdjustment()"
                 class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 ">
                 <svg class="w-5 h-5 mb-1 text-gray-500  group-hover:text-blue-600 " xmlns="http://www.w3.org/2000/svg"
                     fill="none" viewBox="0 0 20 20">
@@ -40,7 +40,7 @@
                 </svg>
             </button>
 
-            <button @click="hiddenStore.showLogin = !hiddenStore.showLogin"
+            <button @click="hiddenStore.showLogin()"
                 class="inline-flex flex-col items-center justify-center px-5  hover:bg-gray-50 ">
                 <svg class="w-5 h-5 mb-1 text-gray-500  group-hover:text-blue-600 " xmlns="http://www.w3.org/2000/svg"
                     fill="currentColor" viewBox="0 0 20 20">
