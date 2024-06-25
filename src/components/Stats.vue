@@ -91,7 +91,7 @@
 
                         <Vue3Odometer :value="number" /><a class="mb-1 ml-1">км</a>
                     </div>
-                    <a @click="userStore.updateInfo(), sync()" class="ms-auto text-sm text-blue-700 hover:underline">
+                    <a @click="sync()" class="ms-auto text-sm text-blue-700 hover:underline">
                         <svg class="w-[20px] h-[20px] text-blue-600 " xmlns="http://www.w3.org/2000/svg" width="24"
                             height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -169,5 +169,6 @@ function sync() {
         axios.patch(`https://martynovd.ru/back-api/data/1`, { toplFilter: res.data.toplFilter })
         axios.patch(`https://martynovd.ru/back-api/data/1`, { tormozn: res.data.tormozn })
     })
+    userStore.updateInfo()
 }
 </script>
