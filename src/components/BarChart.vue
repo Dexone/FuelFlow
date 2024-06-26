@@ -1,5 +1,5 @@
 <template>
-    <div class="text-sm font-medium text-center text-gray-500 max-w-2xl mx-auto ">
+    <div class="text-sm font-medium text-center text-gray-500">
         <ul class="flex flex-wrap -mb-px">
             <li class="me-2">
                 <button :class="{ 'text-blue-600': page[0], 'border-blue-600': page[0] }"
@@ -19,9 +19,9 @@
             <div class="mx-auto p-4 bg-white rounded-lg">
 
                 <!-- loader -->
-                <div v-if="userStore.userCost === 0" class="max-w-sm p-4 rounded animate-pulse p-6 ">
+                <div v-if="userStore.userCost === 0" class="max-w-2xl p-4 rounded animate-pulse p-6 ">
                     <div class="h-2.5 bg-gray-200 rounded-full w-32 mb-2.5"></div>
-                    <div class="w-48 h-2 mb-10 bg-gray-200 rounded-full"></div>
+                    <div class="w-48 h-2 mb-6 bg-gray-200 rounded-full"></div>
                     <div class="flex items-baseline mt-4">
                         <div class="w-full bg-gray-200 rounded-t-lg h-72"></div>
                         <div class="w-full h-56 ms-6 bg-gray-200 rounded-t-lg"></div>

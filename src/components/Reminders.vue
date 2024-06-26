@@ -1,23 +1,38 @@
 <template>
-    <div class="flex mx-auto max-w-2xl">
+    <div class="flex ">
 
-        <div class="bg-white border border-gray-200 rounded-lg shadow p-3 mt-3 max-w-60">
-            <div class="flex items-center gap-4">
+        <div class=" bg-white border border-gray-200 rounded-lg shadow p-3 mt-3 max-w-60">
+            <div class="flex items-center gap-4" v-if="userStore.userCost != 0">
                 <svg class="w-6 h-6 text-purple-500 dark:text-white" aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                     <path fill-rule="evenodd"
                         d="M9.586 2.586A2 2 0 0 1 11 2h2a2 2 0 0 1 2 2v.089l.473.196.063-.063a2.002 2.002 0 0 1 2.828 0l1.414 1.414a2 2 0 0 1 0 2.827l-.063.064.196.473H20a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-.089l-.196.473.063.063a2.002 2.002 0 0 1 0 2.828l-1.414 1.414a2 2 0 0 1-2.828 0l-.063-.063-.473.196V20a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-.089l-.473-.196-.063.063a2.002 2.002 0 0 1-2.828 0l-1.414-1.414a2 2 0 0 1 0-2.827l.063-.064L4.089 15H4a2 2 0 0 1-2-2v-2a2 2 0 0 1 2-2h.09l.195-.473-.063-.063a2 2 0 0 1 0-2.828l1.414-1.414a2 2 0 0 1 2.827 0l.064.063L9 4.089V4a2 2 0 0 1 .586-1.414ZM8 12a4 4 0 1 1 8 0 4 4 0 0 1-8 0Z"
                         clip-rule="evenodd" />
                 </svg>
-                <div class="text-gray-400 text-xs font-medium">
+                <div class="text-gray-400 text-xs font-medium" >
                     <div><a class="text-gray-900">Замена масла</a> через {{ obsl[0].probeg }} км</div>
                     <div class="w-full bg-gray-200 rounded-full h-0.5 mb-1  mt-2">
                         <div v-if="obsl[0].procent > 100" class="bg-blue-600 h-0.5 rounded-full"
                             :style="{ width: 0 + '%' }"></div>
                     <div v-else class="bg-blue-600 h-0.5 rounded-full" :style="{ width: obsl[0].procent + '%' }"></div>
                 </div>
+                
             </div>
+
         </div>
+<!-- loader -->
+        <div v-if="userStore.userCost === 0"
+                    class="max-w-2xl p-0.5 space-y-4  divide-y divide-gray-200 rounded animate-pulse">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <div class="h-2.5 bg-gray-300 rounded-full w-24 mb-2.5"></div>
+                            <div class="w-32 h-2 bg-gray-200 rounded-full"></div>
+                        </div>
+                        <div class="h-2.5 bg-gray-300 rounded-full w-12"></div>
+                    </div>
+                </div>
+                <!-- loader -->
+
     </div>
 
     <div class="p-3.5 mt-3 inline-flex" @click="topFunction()">

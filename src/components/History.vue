@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full max-w-2xl mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow p-6 mt-3">
+    <div class="w-full p-4 bg-white border border-gray-200 rounded-lg shadow p-6 mt-3">
         <h5 class="mb-3 text-base font-semibold text-gray-900 text-xl">
             История заправок
         </h5>
@@ -220,6 +220,27 @@
                     <div class="w-32 h-2 bg-gray-200 rounded-full "></div>
                 </div>
                 <div class="h-2.5 bg-gray-300 rounded-full w-12"></div>
+            </div>
+            <div class="flex items-center justify-between pt-4">
+                <div>
+                    <div class="h-2.5 bg-gray-300 rounded-full  w-24 mb-2.5"></div>
+                    <div class="w-32 h-2 bg-gray-200 rounded-full "></div>
+                </div>
+                <div class="h-2.5 bg-gray-300 rounded-full  w-12"></div>
+            </div>
+            <div class="flex items-center justify-between pt-4">
+                <div>
+                    <div class="h-2.5 bg-gray-300 rounded-full  w-24 mb-2.5"></div>
+                    <div class="w-32 h-2 bg-gray-200 rounded-full "></div>
+                </div>
+                <div class="h-2.5 bg-gray-300 rounded-full  w-12"></div>
+            </div>
+            <div class="flex items-center justify-between pt-4">
+                <div>
+                    <div class="h-2.5 bg-gray-300 rounded-full  w-24 mb-2.5"></div>
+                    <div class="w-32 h-2 bg-gray-200 rounded-full "></div>
+                </div>
+                <div class="h-2.5 bg-gray-300 rounded-full  w-12"></div>
             </div>
             <div class="flex items-center justify-between pt-4">
                 <div>

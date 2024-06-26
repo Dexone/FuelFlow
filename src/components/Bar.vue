@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed bottom-0 z-50 w-full h-16 -translate-x-1/2 bg-white border-t border-gray-200 left-1/2">
+    <div class="sm:hidden fixed bottom-0 z-50 w-full h-16 -translate-x-1/2 bg-white border-t border-gray-200 left-1/2">
 
         <div class="grid h-full max-w-lg grid-cols-5 mx-auto">
             <button @click="topFunction()"

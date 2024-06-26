@@ -1,21 +1,21 @@
 <template>
-    <div class="w-full max-w-2xl mx-auto bg-blue-700 border border-gray-200 rounded-lg shadow mt-3 ">
+    <div class="w-full bg-blue-700 border border-gray-200 rounded-lg shadow mt-3">
 
         <div>
             <div class="mx-auto p-4 bg-blue-700 rounded-lg">
 
                 <!-- loader -->
-                <div v-if="userStore.userCost === 0" class="max-w-sm p-4  rounded  animate-pulse p-6 ">
+                <div v-if="userStore.userCost === 0" class="max-w-2xl p-4  rounded  animate-pulse p-6 ">
                     <div class="h-2.5 bg-gray-200 rounded-full w-32 mb-2.5"></div>
-                    <div class="w-48 h-2 mb-10 bg-gray-200 rounded-full"></div>
+                    <div class="w-48 h-2 mb-6 bg-gray-200 rounded-full"></div>
                     <div class="flex items-baseline mt-4">
-                        <div class="w-full bg-gray-200 rounded-t-lg h-72"></div>
-                        <div class="w-full h-56 ms-6 bg-gray-200 rounded-t-lg"></div>
-                        <div class="w-full bg-gray-200 rounded-t-lg h-72 ms-6"></div>
-                        <div class="w-full h-64 ms-6 bg-gray-200 rounded-t-lg"></div>
-                        <div class="w-full bg-gray-200 rounded-t-lg h-80 ms-6"></div>
-                        <div class="w-full bg-gray-200 rounded-t-lg h-72 ms-6"></div>
-                        <div class="w-full bg-gray-200 rounded-t-lg h-80 ms-6"></div>
+                        <div class="w-full bg-gray-200 rounded-t-lg h-16"></div>
+                        <div class="w-full h-10 ms-6 bg-gray-200 rounded-t-lg"></div>
+                        <div class="w-full bg-gray-200 rounded-t-lg h-16 ms-6"></div>
+                        <div class="w-full h-14 ms-6 bg-gray-200 rounded-t-lg"></div>
+                        <div class="w-full bg-gray-200 rounded-t-lg h-16 ms-6"></div>
+                        <div class="w-full bg-gray-200 rounded-t-lg h-10 ms-6"></div>
+                        <div class="w-full bg-gray-200 rounded-t-lg h-16 ms-6"></div>
                     </div>
                 </div>
                 <!-- loader -->

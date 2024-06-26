@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-2xl mx-auto  justify-center items-center w-full shadow border border-gray-200 rounded-lg mt-3">
+    <div class="justify-center items-center w-full shadow border border-gray-200 rounded-lg mt-3">
         <div class="relative w-full">
             <div class="relative bg-white rounded-lg">
                 <div class="flex items-center justify-between p-4 border-b rounded-t">
@@ -31,13 +31,8 @@
                         </div>
                         <div class="h-2.5 bg-gray-300 rounded-full w-12"></div>
                     </div>
-                    <div class="flex items-center justify-between pt-4">
-                        <div>
-                            <div class="h-2.5 bg-gray-300 rounded-full w-24 mb-2.5"></div>
-                            <div class="w-32 h-2 bg-gray-200 rounded-full"></div>
-                        </div>
-                        <div class="h-2.5 bg-gray-300 rounded-full w-12"></div>
-                    </div>
+
+                    
                     <div class="flex items-center justify-between pt-4">
                         <div>
                             <div class="h-2.5 bg-gray-300 rounded-full w-24 mb-2.5"></div>
