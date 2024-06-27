@@ -91,7 +91,7 @@ function update() {
                 "name": "Масло АКПП",
                 "probeg": userMasloAKPPCh,
                 "forecast": (userMasloAKPPCh / (yearProbeg)).toFixed(),
-                "image": import.meta.env.BASE_URL + "/src/assets/akpp.png",
+                "image": import.meta.env.BASE_URL + "/akpp.png",
                 "procent": ((userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userMasloAKPP) / 30000 * 100).toFixed()
             }, {
                 "name": "Свечи",
