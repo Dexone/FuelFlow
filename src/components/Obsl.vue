@@ -18,38 +18,38 @@
 
 
         <div v-if="userStore.userCost === 0"
-                    class="max-w-2xl p-4 space-y-4  divide-y divide-gray-200 rounded animate-pulse  p-6">
-                    <div class="flex items-center justify-between">
-                        <div>
-                            <div class="h-2.5 bg-gray-300 rounded-full w-24 mb-2.5"></div>
-                            <div class="w-32 h-2 bg-gray-200 rounded-full"></div>
-                        </div>
-                        <div class="h-2.5 bg-gray-300 rounded-full w-12"></div>
-                    </div>
-                    <div class="flex items-center justify-between pt-4">
-                        <div>
-                            <div class="h-2.5 bg-gray-300 rounded-full w-24 mb-2.5"></div>
-                            <div class="w-32 h-2 bg-gray-200 rounded-full"></div>
-                        </div>
-                        <div class="h-2.5 bg-gray-300 rounded-full w-12"></div>
-                    </div>
-                    <div class="flex items-center justify-between pt-4">
-                        <div>
-                            <div class="h-2.5 bg-gray-300 rounded-full w-24 mb-2.5"></div>
-                            <div class="w-32 h-2 bg-gray-200 rounded-full"></div>
-                        </div>
-                        <div class="h-2.5 bg-gray-300 rounded-full w-12"></div>
-                    </div>
-
-
-                    <div class="flex items-center justify-between pt-4">
-                        <div>
-                            <div class="h-2.5 bg-gray-300 rounded-full w-24 mb-2.5"></div>
-                            <div class="w-32 h-2 bg-gray-200 rounded-full"></div>
-                        </div>
-                        <div class="h-2.5 bg-gray-300 rounded-full w-12"></div>
-                    </div>
+            class="max-w-2xl p-4 space-y-4  divide-y divide-gray-200 rounded animate-pulse  p-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <div class="h-2.5 bg-gray-300 rounded-full w-24 mb-2.5"></div>
+                    <div class="w-32 h-2 bg-gray-200 rounded-full"></div>
                 </div>
+                <div class="h-2.5 bg-gray-300 rounded-full w-12"></div>
+            </div>
+            <div class="flex items-center justify-between pt-4">
+                <div>
+                    <div class="h-2.5 bg-gray-300 rounded-full w-24 mb-2.5"></div>
+                    <div class="w-32 h-2 bg-gray-200 rounded-full"></div>
+                </div>
+                <div class="h-2.5 bg-gray-300 rounded-full w-12"></div>
+            </div>
+            <div class="flex items-center justify-between pt-4">
+                <div>
+                    <div class="h-2.5 bg-gray-300 rounded-full w-24 mb-2.5"></div>
+                    <div class="w-32 h-2 bg-gray-200 rounded-full"></div>
+                </div>
+                <div class="h-2.5 bg-gray-300 rounded-full w-12"></div>
+            </div>
+
+
+            <div class="flex items-center justify-between pt-4">
+                <div>
+                    <div class="h-2.5 bg-gray-300 rounded-full w-24 mb-2.5"></div>
+                    <div class="w-32 h-2 bg-gray-200 rounded-full"></div>
+                </div>
+                <div class="h-2.5 bg-gray-300 rounded-full w-12"></div>
+            </div>
+        </div>
 
 
 
@@ -91,34 +91,34 @@ function update() {
                 "name": "Масло АКПП",
                 "probeg": userMasloAKPPCh,
                 "forecast": (userMasloAKPPCh / (yearProbeg)).toFixed(),
-                "image": import.meta.env.BASE_URL + "/akpp.png",
+                "image": import.meta.env.BASE_URL + "/obsl.pictures/akpp.png",
                 "procent": ((userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userMasloAKPP) / 30000 * 100).toFixed()
             }, {
                 "name": "Свечи",
                 "probeg": userSvechiCh,
                 "forecast": (userSvechiCh / (yearProbeg)).toFixed(),
-                "image": import.meta.env.BASE_URL + "/src/assets/svechi.png",
+                "image": import.meta.env.BASE_URL + "/obsl.pictures/svechi.png",
                 "procent": ((userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userSvechi) / 30000 * 100).toFixed()
 
             }, {
                 "name": "Масло ДВС",
                 "probeg": userMasloCh,
                 "forecast": (userMasloCh / (yearProbeg)).toFixed(),
-                "image": import.meta.env.BASE_URL + "/src/assets/maslo.png",
+                "image": import.meta.env.BASE_URL + "/obsl.pictures/maslo.png",
                 "procent": ((userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userMaslo) / 6000 * 100).toFixed()
             },
             {
                 "name": "Топл. фильтр",
                 "probeg": userToplFilterCh,
                 "forecast": (userToplFilterCh / (yearProbeg)).toFixed(),
-                "image": import.meta.env.BASE_URL + "/src/assets/filter.png",
+                "image": import.meta.env.BASE_URL + "/obsl.pictures/filter.png",
                 "procent": ((userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userToplFilter) / 30000 * 100).toFixed()
             },
             {
                 "name": "Торм. жидкость",
                 "probeg": userTormoznCh,
                 "forecast": (userTormoznCh / (yearProbeg)).toFixed(),
-                "image": import.meta.env.BASE_URL + "/src/assets/tormozn.png",
+                "image": import.meta.env.BASE_URL + "/obsl.pictures/tormozn.png",
                 "procent": ((userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userTormozn) / 30000 * 100).toFixed()
             },
         ]
