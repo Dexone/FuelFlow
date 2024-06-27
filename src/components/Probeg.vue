@@ -1,6 +1,6 @@
 <template>
     <!-- текущий пробег -->
-    <div class="w-full  p-4 bg-white border border-gray-200 rounded-lg shadow p-6 mt-3">
+    <div class="w-full bg-white border border-gray-200 rounded-lg shadow p-6 mt-3">
         <!-- loader -->
         <div v-if="userStore.userCost === 0">
             <!-- <div class="h-2.5 bg-gray-200 rounded-full w-48 mb-4"></div> -->
@@ -12,11 +12,14 @@
 
         <div v-if="userStore.userCost != 0">
             <div class="flex items-start  text-gray-500 text-xs">
+
                 <div class="flex  h-5">
                     Текущий пробег
                 </div>
+                
                 <a class="ms-auto text-gray-400 text-xs">обновлено {{ backTime }} мин назад</a>
             </div>
+            
             <div class="flex items-start">
                 <div class="flex items-center h-5 text-gray-900 text-xl font-semibold">
 

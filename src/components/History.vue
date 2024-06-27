@@ -1,9 +1,8 @@
 <template>
-    <div class="w-full p-4 bg-white border border-gray-200 rounded-lg shadow p-6 mt-3">
-        <h5 class="mb-3 text-base font-semibold text-gray-900 text-xl">
-            История заправок
-        </h5>
+    <div class="mt-4 mb-2 font-medium">История заправок</div>
 
+
+    <div class="w-full bg-white border border-gray-200 rounded-lg shadow px-6 pb-4">
         <ol class="relative border-s border-gray-200" v-if="hiddenStore.selectedRange === false">
             <li class="ms-4 mt-4" v-if="userStore.userCost != 0"
                 v-for="info, index in userStore.userInfo.slice().reverse()">

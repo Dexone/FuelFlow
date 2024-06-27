@@ -1,14 +1,23 @@
 <template>
-    <div class="justify-center items-center w-full shadow border border-gray-200 rounded-lg mt-3">
-        <div class="relative w-full">
-            <div class="relative bg-white rounded-lg">
-                <div class="flex items-center justify-between p-4 border-b rounded-t">
-                    <h3 class="text-xl font-semibold text-gray-900">
-                        Обслуживание
-                    </h3>
-                </div>
 
-                <div v-if="userStore.userCost === 0"
+
+    <div class="mt-4 mb-2 font-medium">Обслуживание</div>
+    <div class="w-full  bg-white border border-gray-200 rounded-lg shadow px-6 py-2 ">
+        <div class="flex items-center my-4" v-for="ob in obsl" v-if="userStore.userCost != 0">
+            <img v-bind:src="ob.image" width="40">
+            <div class="w-[2000px] ml-2 mx-6 -mt-2 text-gray-900 text-sm font-medium ">
+                {{ ob.name }} <a class="text-gray-400 text-xs">{{
+                    ob.probeg }} км</a>
+                <div class=" bg-gray-200 rounded mt-3">
+                    <div class="h-0.5 bg-blue-600 rounded-full" :style="{ width: ob.procent + '%' }"></div>
+                </div>
+            </div>
+            <span class="text-sm font-medium  font-medium text-gray-900 min-w-12">{{ ob.forecast }} дн</span>
+        </div>
+
+
+
+        <div v-if="userStore.userCost === 0"
                     class="max-w-2xl p-4 space-y-4  divide-y divide-gray-200 rounded animate-pulse  p-6">
                     <div class="flex items-center justify-between">
                         <div>
@@ -32,7 +41,7 @@
                         <div class="h-2.5 bg-gray-300 rounded-full w-12"></div>
                     </div>
 
-                    
+
                     <div class="flex items-center justify-between pt-4">
                         <div>
                             <div class="h-2.5 bg-gray-300 rounded-full w-24 mb-2.5"></div>
@@ -42,26 +51,18 @@
                     </div>
                 </div>
 
-                <div v-if="userStore.userCost != 0" class="p-4">
-                    <div class="flex items-center w-full px-4 text-gray-500 mt-2" v-for="ob in obsl">
-                        <div class="text-sm font-normal">
-                            {{ ob.name }}
-                        </div>
-                        <div class="flex items-center ms-auto">
-                            <a v-if="ob.probeg <= 0" class="text-sm font-medium p-1.5 rounded-lg text-red-600"> {{
-                                ob.probeg }}км ~{{ ob.forecast }}дн
-                            </a>
 
-                            <a v-if="ob.probeg > 0" class="text-sm font-medium p-1.5 rounded-lg"> {{
-                                ob.probeg }}км <a class="text-blue-600">~{{ ob.forecast }}дн</a>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
+
     </div>
+
+
+
+
+
+
+
+
+
 </template>
 
 <script setup>
@@ -89,25 +90,36 @@ function update() {
             {
                 "name": "Масло АКПП",
                 "probeg": userMasloAKPPCh,
-                "forecast": (userMasloAKPPCh / (yearProbeg)).toFixed()
+                "forecast": (userMasloAKPPCh / (yearProbeg)).toFixed(),
+                "image": import.meta.env.BASE_URL + "/src/assets/akpp.png",
+                "procent": ((userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userMasloAKPP) / 30000 * 100).toFixed()
             }, {
                 "name": "Свечи",
                 "probeg": userSvechiCh,
-                "forecast": (userSvechiCh / (yearProbeg)).toFixed()
+                "forecast": (userSvechiCh / (yearProbeg)).toFixed(),
+                "image": import.meta.env.BASE_URL + "/src/assets/svechi.png",
+                "procent": ((userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userSvechi) / 30000 * 100).toFixed()
+
             }, {
                 "name": "Масло ДВС",
                 "probeg": userMasloCh,
-                "forecast": (userMasloCh / (yearProbeg)).toFixed()
+                "forecast": (userMasloCh / (yearProbeg)).toFixed(),
+                "image": import.meta.env.BASE_URL + "/src/assets/maslo.png",
+                "procent": ((userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userMaslo) / 6000 * 100).toFixed()
             },
             {
                 "name": "Топл. фильтр",
                 "probeg": userToplFilterCh,
-                "forecast": (userToplFilterCh / (yearProbeg)).toFixed()
+                "forecast": (userToplFilterCh / (yearProbeg)).toFixed(),
+                "image": import.meta.env.BASE_URL + "/src/assets/filter.png",
+                "procent": ((userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userToplFilter) / 30000 * 100).toFixed()
             },
             {
                 "name": "Торм. жидкость",
                 "probeg": userTormoznCh,
-                "forecast": (userTormoznCh / (yearProbeg)).toFixed()
+                "forecast": (userTormoznCh / (yearProbeg)).toFixed(),
+                "image": import.meta.env.BASE_URL + "/src/assets/tormozn.png",
+                "procent": ((userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userTormozn) / 30000 * 100).toFixed()
             },
         ]
         obsl.value.sort(function (a, b) {
