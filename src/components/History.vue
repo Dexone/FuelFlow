@@ -181,7 +181,7 @@
                     <div class="flex items-center ms-auto">
                         <!-- <a class="px-1.5 rounded-lg"> {{ info[2] }}л
                         </a> -->
-                        <a @click="editData[index] = true"
+                        <button @click="editData[index] = true"
                             class="inline-flex items-center px-1.5 py-1 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700"><svg
                                 class="w-[20px] h-[20px] text-gray-800" xmlns="http://www.w3.org/2000/svg" width="24"
                                 height="24" fill="none" viewBox="0 0 24 24">
@@ -189,8 +189,8 @@
                                     stroke-width="1"
                                     d="M10.779 17.779 4.36 19.918 6.5 13.5m4.279 4.279 8.364-8.643a3.027 3.027 0 0 0-2.14-5.165 3.03 3.03 0 0 0-2.14.886L6.5 13.5m4.279 4.279L6.499 13.5m2.14 2.14 6.213-6.504M12.75 7.04 17 11.28" />
                             </svg>
-                        </a>
-                        <a @click="deleteValue(index)"
+                        </button>
+                        <button @click="deleteValue(index)"
                             class="ml-1 inline-flex items-center px-1.5 py-1 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-100 focus:text-blue-700"><svg
                                 class="w-[20px] h-[20px] text-gray-800 dark:text-white"
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
@@ -198,7 +198,7 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="1" d="M6 18 17.94 6M18 18 6.06 6" />
                             </svg>
-                        </a>
+                        </button>
                     </div>
 
 

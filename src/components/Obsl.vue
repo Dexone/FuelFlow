@@ -9,7 +9,8 @@
                 {{ ob.name }} <a class="text-gray-400 text-xs">{{
                     ob.probeg }} км</a>
                 <div class=" bg-gray-200 rounded mt-3">
-                    <div class="h-0.5 bg-blue-600 rounded-full" :style="{ width: ob.procent + '%' }"></div>
+                    <div v-if="ob.procent > 100" class="h-0.5 bg-blue-600 rounded-full" :style="{ width: 0 + '%' }"></div>
+                    <div v-else class="h-0.5 bg-blue-600 rounded-full" :style="{ width: ob.procent + '%' }"></div>
                 </div>
             </div>
             <span class="text-sm font-medium  font-medium text-gray-900 min-w-12">{{ ob.forecast }} дн</span>
@@ -78,7 +79,7 @@ const userStore = useUser();
 const obsl = ref()
 
 function update() {
-    if (userStore.userInfo.length >= 1) {
+    if (userStore.userInfo.length >= 2) {
         let userMasloCh = 6000 - (userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userMaslo)
         let userSvechiCh = 30000 - (userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userSvechi)
         let userMasloAKPPCh = 30000 - (userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userMasloAKPP)

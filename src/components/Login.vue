@@ -7,8 +7,7 @@
                     <h3 class="text-xl font-semibold text-gray-900">
                         Авторизация
                     </h3>
-                    <button
-                        @click="hiddenStore.showLogin()"
+                    <button @click="hiddenStore.showLogin()"
                         class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center">
                         <svg class="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -28,8 +27,17 @@
                         </div>
 
                         <div>
-                            <input type="password" placeholder="Пароль" v-model="enterData[1]"
+                            <input :type="inputType" placeholder="Пароль" v-model="enterData[1]"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        </div>
+
+                        <div class="flex items-start mb-5">
+                            <div class="flex items-center h-5">
+                                <input type="checkbox" v-model="checkbox"
+                                    class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800">
+                            </div>
+                            <label class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Показать
+                                пароль</label>
                         </div>
 
                         <button @click="enter(enterData)"
@@ -53,9 +61,20 @@
                         </div>
 
                         <div>
-                            <input type="password" placeholder="Пароль" v-model="regData[1]"
+                            <input :type="inputType" placeholder="Пароль" v-model="regData[1]"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         </div>
+
+
+                        <div class="flex items-start mb-5">
+                            <div class="flex items-center h-5">
+                                <input type="checkbox" v-model="checkbox"
+                                    class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800">
+                            </div>
+                            <label class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Показать
+                                пароль</label>
+                        </div>
+
 
                         <button type="submit" @click="registration(regData)"
                             class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Создать
@@ -94,23 +113,37 @@
                     <a class="space-y-4">
                         <label class="block mb-2 text-sm font-medium text-gray-900">Смена пароля</label>
                         <div>
-                            <input type="password" placeholder="Новый пароль" v-model="editPassData[0]"
+                            <input :type="inputType" placeholder="Новый пароль" v-model="editPassData[0]"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         </div>
 
                         <div>
-                            <input type="password" placeholder="Повторите пароль" v-model="editPassData[1]"
+                            <input :type="inputType" placeholder="Повторите пароль" v-model="editPassData[1]"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        </div>
+
+                        <div class="flex items-start mb-5">
+                            <div class="flex items-center h-5">
+                                <input type="checkbox" v-model="checkbox"
+                                    class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800">
+                            </div>
+                            <label class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Показать
+                                пароль</label>
                         </div>
 
                         <button @click="editPassword(editPassData)"
                             class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Сменить
                             пароль</button>
 
+
+
+
+
                         <div class="text-sm font-medium text-gray-500">
                             <button @click="showing = 'reg'" class="text-blue-700 hover:underline">
                                 Назад</button>
                         </div>
+
                     </a>
                 </div>
 
@@ -121,7 +154,7 @@
 
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useComponents } from '../../store/ComponentsHidden';
 import { useUser } from '../../store/User';
 import axios from 'axios';
@@ -135,6 +168,22 @@ const showing = ref('reg')
 const regData = ref([])
 const enterData = ref([])
 const editPassData = ref([])
+
+
+const checkbox = ref(false)
+const inputType = ref("password")
+
+
+watch(checkbox, () => {
+    if (checkbox.value === true) {
+        inputType.value = "text"
+    }
+    if (checkbox.value === false) {
+        inputType.value = "password"
+    }
+})
+
+
 
 function registration(value) {
     axios.get(`https://martynovd.ru/back-api/users`).then((res) => {

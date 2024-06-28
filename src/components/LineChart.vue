@@ -79,7 +79,7 @@ function updateInfo() {
         litres = litres + Number(userStore.userInfo[i][2])
         //
     }
-    if (userStore.userInfo.length >= 1) {
+    if (userStore.userInfo.length >= 2) {
         let average = (litres / (userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userInfo[enterDate.value][1])) * 100 //средний расход
         total.value = average.toFixed(1) + " л/100км"
     }

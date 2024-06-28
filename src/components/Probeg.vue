@@ -1,6 +1,6 @@
 <template>
     <!-- текущий пробег -->
-    <div class="w-full bg-white border border-gray-200 rounded-lg shadow p-6 mt-3">
+    <div class="w-full bg-white border border-gray-200 rounded-lg shadow p-4 mt-3">
         <!-- loader -->
         <div v-if="userStore.userCost === 0">
             <!-- <div class="h-2.5 bg-gray-200 rounded-full w-48 mb-4"></div> -->
@@ -68,7 +68,7 @@ function updateTime() {
 }
 
 watch(userStore, () => { //odometr
-    if (userStore.userInfo.length >= 1) {
+    if (userStore.userInfo.length >= 2) {
         setTimeout(() => {
             number.value = userStore.userInfo[userStore.userInfo.length - 1][1]
         }, 100);
