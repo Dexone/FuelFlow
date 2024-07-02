@@ -13,13 +13,6 @@
     </button>
     </div>
 
-
-
-
-
-
-
-
     <div class="flex ">
         <div class=" bg-white border border-gray-200 rounded-lg shadow p-3 max-w-72">
             <div class="flex items-center gap-4" v-if="userStore.userCost != 0">
