@@ -108,7 +108,7 @@ function editCar() {
         hiddenStore.showLogin()
     }
     else {
-        axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { car: car.value }) //
+        axios.patch(`https://dexone.ru/backend_fuelly/data/${userStore.userID}`, { car: car.value }) //
         userStore.updateInfo()
         showEditCar.value = true
     }

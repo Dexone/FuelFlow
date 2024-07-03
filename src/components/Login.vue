@@ -186,7 +186,7 @@ watch(checkbox, () => {
 
 
 function registration(value) {
-    axios.get(`https://martynovd.ru/back-api/users`).then((res) => {
+    axios.get(`https://dexone.ru/backend_fuelly/users`).then((res) => {
         let lastId = Number(res.data[res.data.length - 1].id) //последний зарегистрированный id
 
         let logins = [] //массив логинов
@@ -195,8 +195,8 @@ function registration(value) {
         }
 
         if (logins.includes(value[0]) == false) { //если логин не найден в бд допускается регистрация
-            axios.post(`https://martynovd.ru/back-api/users`, { id: lastId + 1, login: value[0], password: value[1] }) //создание пользователя
-            axios.post(`https://martynovd.ru/back-api/data`, { id: lastId + 1, car: "Unnamed Car", cost: "50", maslo: "0", svechi: "0", masloAKPP: "0", toplFilter: "0", tormozn: "0", info: [] }) //создание data
+            axios.post(`https://dexone.ru/backend_fuelly/users`, { id: lastId + 1, login: value[0], password: value[1] }) //создание пользователя
+            axios.post(`https://dexone.ru/backend_fuelly/data`, { id: lastId + 1, car: "Unnamed Car", cost: "50", maslo: "0", svechi: "0", masloAKPP: "0", toplFilter: "0", tormozn: "0", info: [] }) //создание data
             userStore.userID = lastId + 1 //задает id нового пользователя в сторе
             userStore.userLogin = value[0] //задается login пользователя в сторе
             setTimeout(() => {
@@ -211,7 +211,7 @@ function registration(value) {
 }
 
 function enter(value) {
-    axios.get(`https://martynovd.ru/back-api/users`).then((res) => {
+    axios.get(`https://dexone.ru/backend_fuelly/users`).then((res) => {
         let logins = []
         let passwords = []
         for (let i = 0; i < res.data.length; i++) {
@@ -237,8 +237,8 @@ function exit() {
 }
 
 function deleteAccount() {
-    axios.delete(`https://martynovd.ru/back-api/users/${userStore.userID}`) //удаление user
-    axios.delete(`https://martynovd.ru/back-api/data/${userStore.userID}`) //удаление data
+    axios.delete(`https://dexone.ru/backend_fuelly/users/${userStore.userID}`) //удаление user
+    axios.delete(`https://dexone.ru/backend_fuelly/data/${userStore.userID}`) //удаление data
     userStore.userID = 1 //задается id пользователя в сторе
     userStore.userLogin = "guest" //задается login пользователя в сторе
     userStore.updateInfo()
@@ -246,7 +246,7 @@ function deleteAccount() {
 
 function editPassword(value) {
     if (value[0] == value[1]) { //если пароль и повтор пароля совпадают
-        axios.patch(`https://martynovd.ru/back-api/users/${userStore.userID}`, { password: value[0] }) //изменение пароля
+        axios.patch(`https://dexone.ru/backend_fuelly/users/${userStore.userID}`, { password: value[0] }) //изменение пароля
         value[0] = ""
         value[1] = ""
         alert("Пароль изменен")

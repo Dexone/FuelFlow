@@ -61,11 +61,11 @@ function addValue() {
         hiddenStore.showLogin()
     }
     else {
-        axios.get(`https://martynovd.ru/back-api/data/${userStore.userID}`).then((res) => {
+        axios.get(`https://dexone.ru/backend_fuelly/data/${userStore.userID}`).then((res) => {
             let seconds = Date.now()
             let updInfo = res.data.info
             updInfo.push([seconds, probeg.value, litres.value])
-            axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { info: updInfo }) //
+            axios.patch(`https://dexone.ru/backend_fuelly/data/${userStore.userID}`, { info: updInfo }) //
         })
         userStore.updateInfo()
         hiddenStore.add = true

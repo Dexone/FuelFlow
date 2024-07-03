@@ -123,7 +123,7 @@ function editMaslo() {
         hiddenStore.showLogin()
     }
     else {
-        axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { maslo: maslo.value }) //
+        axios.patch(`https://dexone.ru/backend_fuelly/data/${userStore.userID}`, { maslo: maslo.value }) //
         userStore.updateInfo()
     }
 }
@@ -134,7 +134,7 @@ function editSvechi() {
         hiddenStore.showLogin()
     }
     else {
-        axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { svechi: svechi.value }) //
+        axios.patch(`https://dexone.ru/backend_fuelly/data/${userStore.userID}`, { svechi: svechi.value }) //
         userStore.updateInfo()
     }
 }
@@ -145,7 +145,7 @@ function editMasloAKPP() {
         hiddenStore.showLogin()
     }
     else {
-        axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { masloAKPP: masloAKPP.value }) //
+        axios.patch(`https://dexone.ru/backend_fuelly/data/${userStore.userID}`, { masloAKPP: masloAKPP.value }) //
         userStore.updateInfo()
     }
 }
@@ -156,7 +156,7 @@ function editToplFilter() {
         hiddenStore.showLogin()
     }
     else {
-        axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { toplFilter: toplFilter.value }) //
+        axios.patch(`https://dexone.ru/backend_fuelly/data/${userStore.userID}`, { toplFilter: toplFilter.value }) //
         userStore.updateInfo()
     }
 }

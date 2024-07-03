@@ -309,7 +309,7 @@ function editProbeg(value) {
     else {
         let info = userStore.userInfo
         info[userStore.userInfo.length - value - 1][1] = probeg.value
-        axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { info: info })
+        axios.patch(`https://dexone.ru/backend_fuelly/data/${userStore.userID}`, { info: info })
     }
 }
 
@@ -321,7 +321,7 @@ function editLitres(value) {
     else {
         let info = userStore.userInfo
         info[userStore.userInfo.length - value - 1][2] = litres.value
-        axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { info: info })
+        axios.patch(`https://dexone.ru/backend_fuelly/data/${userStore.userID}`, { info: info })
     }
 }
 
@@ -347,13 +347,13 @@ function deleteValue(value) {
         hiddenStore.showLogin()
     }
     else {
-        axios.get(`https://martynovd.ru/back-api/data/${userStore.userID}`).then((res) => {
+        axios.get(`https://dexone.ru/backend_fuelly/data/${userStore.userID}`).then((res) => {
             let edit = res.data.info
 
             edit.reverse()
             edit.splice(value, 1)
             edit.reverse()
-            axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { info: edit })
+            axios.patch(`https://dexone.ru/backend_fuelly/data/${userStore.userID}`, { info: edit })
         })
         userStore.updateInfo()
     }

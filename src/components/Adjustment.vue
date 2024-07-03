@@ -92,7 +92,7 @@ function editValue() {
         hiddenStore.showLogin()
     }
     else {
-        axios.patch(`https://martynovd.ru/back-api/data/${userStore.userID}`, { cost: cost.value }) //
+        axios.patch(`https://dexone.ru/backend_fuelly/data/${userStore.userID}`, { cost: cost.value }) //
         userStore.updateInfo()
     }
 }

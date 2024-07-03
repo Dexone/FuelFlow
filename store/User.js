@@ -15,7 +15,7 @@ export const useUser = defineStore('userStore', {
             this.userCost = 0 //для лоадера компонентов
             setTimeout(() => {
 
-                axios.get(`https://martynovd.ru/back-api/data/${this.userID}`).then((res) => {
+                axios.get(`https://dexone.ru/backend_fuelly/data/${this.userID}`).then((res) => {
 
                     //расход бензина на 100км
                     if (res.data.info.length > 1) { //если более 1 записи в истории заправок
