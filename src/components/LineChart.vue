@@ -59,7 +59,7 @@ const selectedRange = ref(false)
 function updateInfo() {
     const enterDate = ref(0)
     if (hiddenStore.selectedRange === true) {
-        let seconds = Date.now() - 1209600000 //текущая дата - неделя в милисекундах
+        let seconds = Date.now() - 2419200000 //текущая дата - месяц в милисекундах
         for (let i = 0; i < userStore.userInfo.length; i++) {
             if (userStore.userInfo[i][0] > seconds) { //поиск ближайшего наименьшего значения, большего чем seconds и остановка цикла
                 enterDate.value = i
