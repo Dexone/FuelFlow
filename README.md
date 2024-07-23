@@ -83,16 +83,68 @@
 
 ## 🔧 Конфигурация
 
-<!-- Installing dependencies (Установка зависимостей) -->
-Установка зависимостей
+Установка зависимостей:
 
-```
+```bash
+# npm
 npm install
+
+# pnpm
+pnpm install
+
+# yarn
+yarn install
+
+# bun
+bun install
 ```
-<!-- Compiles and start the development server (Компилирует и запускает сервер разработки) -->
-Компиляция и запуск сервера разработки
-```
+
+Компиляция и запуск сервера разработки `http://localhost:3000`:
+
+```bash
+# npm
 npm run dev
+
+# pnpm
+pnpm run dev
+
+# yarn
+yarn dev
+
+# bun
+bun run dev
+```
+
+Компиляция и минимизация для продакшена:
+
+```bash
+# npm
+npm run build
+
+# pnpm
+pnpm run build
+
+# yarn
+yarn build
+
+# bun
+bun run build
+```
+
+Локальная предварительная версия рабочей сборки:
+
+```bash
+# npm
+npm run preview
+
+# pnpm
+pnpm run preview
+
+# yarn
+yarn preview
+
+# bun
+bun run preview
 ```
 
 <!-- Compiles and minifies for production (Компилирует и минимизирует для продакшена) -->
