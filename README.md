@@ -146,9 +146,3 @@ yarn preview
 # bun
 bun run preview
 ```
-
-<!-- Compiles and minifies for production (Компилирует и минимизирует для продакшена) -->
-Компиляция и минимизация для продакшена
-```
-npm run build
-```
