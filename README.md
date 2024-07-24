@@ -4,7 +4,7 @@
 </p>
 
 
-<h1 align="center">Fuelly - Auto Organizer</h1>
+<h1 align="center">FuelFlow - Auto Organizer</h1>
 <p align="center">Глубокая аналитика использования транспортных средств</p>
 
 
