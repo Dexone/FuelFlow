@@ -119,7 +119,7 @@ function update() {
                 "name": "Торм. жидкость",
                 "probeg": userTormoznCh,
                 "forecast": (userTormoznCh / (yearProbeg)).toFixed(),
-                "image": import.meta.env.BASE_URL + "/obsl.pictures/tormozn.png",
+                "image": import.meta.env.BASE_URL + "obsl.pictures/tormozn.png",
                 "procent": ((userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userTormozn) / 30000 * 100).toFixed()
             },
         ]
