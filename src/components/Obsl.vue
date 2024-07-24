@@ -92,27 +92,27 @@ function update() {
                 "name": "Масло АКПП",
                 "probeg": userMasloAKPPCh,
                 "forecast": (userMasloAKPPCh / (yearProbeg)).toFixed(),
-                "image": import.meta.env.BASE_URL + "/obsl.pictures/akpp.png",
+                "image": import.meta.env.BASE_URL + "obsl.pictures/akpp.png",
                 "procent": ((userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userMasloAKPP) / 30000 * 100).toFixed()
             }, {
                 "name": "Свечи",
                 "probeg": userSvechiCh,
                 "forecast": (userSvechiCh / (yearProbeg)).toFixed(),
-                "image": import.meta.env.BASE_URL + "/obsl.pictures/svechi.png",
+                "image": import.meta.env.BASE_URL + "obsl.pictures/svechi.png",
                 "procent": ((userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userSvechi) / 30000 * 100).toFixed()
 
             }, {
                 "name": "Масло ДВС",
                 "probeg": userMasloCh,
                 "forecast": (userMasloCh / (yearProbeg)).toFixed(),
-                "image": import.meta.env.BASE_URL + "/obsl.pictures/maslo.png",
+                "image": import.meta.env.BASE_URL + "obsl.pictures/maslo.png",
                 "procent": ((userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userMaslo) / 6000 * 100).toFixed()
             },
             {
                 "name": "Топл. фильтр",
                 "probeg": userToplFilterCh,
                 "forecast": (userToplFilterCh / (yearProbeg)).toFixed(),
-                "image": import.meta.env.BASE_URL + "/obsl.pictures/filter.png",
+                "image": import.meta.env.BASE_URL + "obsl.pictures/filter.png",
                 "procent": ((userStore.userInfo[userStore.userInfo.length - 1][1] - userStore.userToplFilter) / 30000 * 100).toFixed()
             },
             {
