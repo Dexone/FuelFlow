@@ -82,16 +82,16 @@ watch(userStore, () => { //odometr
 })
 
 function sync() {
-    axios.get(`https://dexone.ru/backend_fuelly/data/2`).then((res) => {
-        axios.patch(`https://dexone.ru/backend_fuelly/data/1`, { car: res.data.car })
-        axios.patch(`https://dexone.ru/backend_fuelly/data/1`, { cost: res.data.cost })
-        axios.patch(`https://dexone.ru/backend_fuelly/data/1`, { maslo: res.data.maslo })
-        axios.patch(`https://dexone.ru/backend_fuelly/data/1`, { svechi: res.data.svechi })
-        axios.patch(`https://dexone.ru/backend_fuelly/data/1`, { masloAKPP: res.data.masloAKPP })
-        axios.patch(`https://dexone.ru/backend_fuelly/data/1`, { info: res.data.info })
-        axios.patch(`https://dexone.ru/backend_fuelly/data/1`, { toplFilter: res.data.toplFilter })
-        axios.patch(`https://dexone.ru/backend_fuelly/data/1`, { tormozn: res.data.tormozn })
-    })
+    // axios.get(`https://dexone.ru/backend_fuelly/data/2`).then((res) => {
+    //     axios.patch(`https://dexone.ru/backend_fuelly/data/1`, { car: res.data.car })
+    //     axios.patch(`https://dexone.ru/backend_fuelly/data/1`, { cost: res.data.cost })
+    //     axios.patch(`https://dexone.ru/backend_fuelly/data/1`, { maslo: res.data.maslo })
+    //     axios.patch(`https://dexone.ru/backend_fuelly/data/1`, { svechi: res.data.svechi })
+    //     axios.patch(`https://dexone.ru/backend_fuelly/data/1`, { masloAKPP: res.data.masloAKPP })
+    //     axios.patch(`https://dexone.ru/backend_fuelly/data/1`, { info: res.data.info })
+    //     axios.patch(`https://dexone.ru/backend_fuelly/data/1`, { toplFilter: res.data.toplFilter })
+    //     axios.patch(`https://dexone.ru/backend_fuelly/data/1`, { tormozn: res.data.tormozn })
+    // })
     userStore.updateInfo()
 }
 </script>

@@ -52,8 +52,9 @@ function blurEdit() {
           <Reminders />
           <LineChart />
           <BarChart />
-          <History />
           <Obsl />
+          <History />
+
         </div>
 
  
